@@ -24,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4A479BEB2D92E4150008030E /* SRPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SRPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4A685DB42D88083C0053791C /* SwiftRide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftRide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A685DC62D88083E0053791C /* SwiftRideTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftRideTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A685DD02D88083E0053791C /* SwiftRideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftRideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,6 +80,7 @@
 				4A685DC92D88083E0053791C /* SwiftRideTests */,
 				4A685DD32D88083E0053791C /* SwiftRideUITests */,
 				4A685DB52D88083C0053791C /* Products */,
+				4A479BEB2D92E4150008030E /* SRPlayground.playground */,
 			);
 			sourceTree = "<group>";
 		};

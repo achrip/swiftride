@@ -10,32 +10,42 @@ import SwiftData
 import MapKit
 
 struct MapView: View {
-    @State private var userPosition = MapCameraPosition.region(MKCoordinateRegion (
-        center: CLLocationCoordinate2D(),
-        span: MKCoordinateSpan(latitudeDelta: 0.03, longitudeDelta: 0.03)
-    ))
-    
-    @State private var position = MapCameraPosition.region(MKCoordinateRegion(
+    @State private var defaultPosition = MapCameraPosition.region(MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: -6.302793115915458, longitude: 106.65204508592274),
         latitudinalMeters: CLLocationDistance(1000),
         longitudinalMeters: CLLocationDistance(1000)
     ))
-    private let busStops: [BusStop] = loadBusStops()
+    
     @State private var searchText: String = ""
-    @State var sliderValue: Double = 3
     @State var isSheetShown: Bool = true
+    private let busStops: [BusStop] = loadBusStops()
+    let columns = Array(repeating: GridItem(.flexible(), spacing: 3), count: 3)
     
     var body: some View {
-        Map(position: $position) {
-            ForEach(busStops) {stop in
-                Marker(stop.name, coordinate: stop.coordinate)
+        Map(position: $defaultPosition) {
+            ForEach(busStops) { stop in
+                Annotation(stop.name, coordinate: stop.coordinate) {
+                    Image(systemName: "mappin.circle.fill")
+                        .foregroundStyle(.teal)
+                        .onTapGesture {
+                           print("Tapped")
+                        }
+                }
+//                Marker(stop.name, coordinate: stop.coordinate)
+                UserAnnotation()
             }
         }
+        .onAppear() {
+            CLLocationManager().requestWhenInUseAuthorization()
+        }
+        .mapControls({
+            MapUserLocationButton()
+        })
         .sheet(isPresented: $isSheetShown) {
             NavigationStack {
                 ScrollView{
                     ForEach(busStops) { stop in
-                        if stop.name.lowercased().contains(searchText.lowercased()) || searchText.isEmpty {
+                        if stop.name.localizedCaseInsensitiveContains(searchText) || searchText.isEmpty {
                             HStack{
                                 Circle()
                                     .frame(width: 30, height: 30)
@@ -47,10 +57,8 @@ struct MapView: View {
                         }
                     }
                 }
-                .navigationBarTitleDisplayMode(.inline)
                 .searchable(text: $searchText,
                             placement: .navigationBarDrawer(displayMode: .always))
-                .environment(\.defaultMinListRowHeight, 0)
             }
             .presentationDetents([.fraction(0.15), .medium])
             .presentationDragIndicator(.visible)

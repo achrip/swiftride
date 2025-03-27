@@ -18,7 +18,7 @@ enum StopStatus {
     case passed, current, upcoming
 }
 
-struct BusRoutePage4: View {
+struct BusRouteP4: View {
     let stops: [Stop] = [
         Stop(name: "Lobby AEON", time: "16.45", status: .passed),
         Stop(name: "AEON Mall 2", time: "16.50", status: .passed),
@@ -77,5 +77,5 @@ struct BusRoutePage4: View {
 }
 
 #Preview {
-    BusRoutePage4()
+    BusRouteP4()
 }

@@ -31,7 +31,6 @@ struct MapView: View {
                            print("Tapped")
                         }
                 }
-//                Marker(stop.name, coordinate: stop.coordinate)
                 UserAnnotation()
             }
         }
@@ -44,18 +43,21 @@ struct MapView: View {
         .sheet(isPresented: $isSheetShown) {
             NavigationStack {
                 ScrollView{
-                    ForEach(busStops) { stop in
-                        if stop.name.localizedCaseInsensitiveContains(searchText) || searchText.isEmpty {
-                            HStack{
-                                Circle()
-                                    .frame(width: 30, height: 30)
-                                    .padding(.horizontal, 10)
-                                Spacer()
-                                Text(stop.name)
-                                    .padding(.horizontal, 10)
-                            }
+                        ForEach(busStops) { stop in
+                            if stop.name.localizedCaseInsensitiveContains(searchText) || searchText.isEmpty {
+                                HStack{
+                                    Circle()
+                                        .frame(width: 30, height: 30)
+                                        .padding(.horizontal, 10)
+                                    VStack(alignment: .leading){
+                                        Text(stop.name)
+                                            .padding(.horizontal, 10)
+                                    }
+                                    Spacer()
+                                }
                         }
                     }
+                        .padding()
                 }
                 .searchable(text: $searchText,
                             placement: .navigationBarDrawer(displayMode: .always))

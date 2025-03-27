@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct BusStopCardPage4: View {
+struct BusStopCardP2: View {
     var name: String
     var distance: Int
     var color: Color
@@ -29,5 +29,5 @@ struct BusStopCardPage4: View {
 }
 
 #Preview {
-    BusStopCardPage4(name: "SML PLAZA", distance: 100, color: .yellow)
+    BusStopCardP2(name: "SML PLAZA", distance: 100, color: .yellow)
 }

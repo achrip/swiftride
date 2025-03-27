@@ -6,7 +6,8 @@
 //
 import SwiftUI
 
-struct BusCardPage4: View {
+struct BusCardP3: View {
+    var number: Int
     var name: String
     var license: String
     var color: Color
@@ -18,8 +19,12 @@ struct BusCardPage4: View {
             VStack(alignment: .leading) {
                 Text(name)
                     .fontWeight(.bold)          
-                Text(license)
-                    .font(.caption)
+                HStack {
+                    Text("No.\(number)")
+                        .font(.caption)
+                    Text(license)
+                        .font(.caption)
+                }
             }
         }
         .padding()
@@ -29,5 +34,5 @@ struct BusCardPage4: View {
 }
 
 #Preview {
-    BusCardPage4(name: "AEON - THE BREEZE", license: "B 0000 XXX", color: .yellow)
+    BusCardP3(number: 7, name: "AEON - THE BREEZE", license: "B0000XXX", color: .yellow)
 }

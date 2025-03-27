@@ -17,10 +17,9 @@ struct Page4: View {
         NavigationStack {
             ZStack {
                 VStack {
-                    BusStopCardPage4(name: "SML PLAZA", distance: 100, color: .yellow)
-                    BusCardPage4(name: "AEON - THE BREEZE", license: "B 0000 XXX", color: .yellow)
-
-                    BusRoutePage4()
+                    BusStopCardP4(name: "SML PLAZA", distance: 100, color: .yellow)
+                    BusCardP4(number: 7, name: "AEON - THE BREEZE", license: "B0000XXX", color: .yellow)
+                    BusRouteP4()
                         .padding(.top, 10)
 
                     Spacer()

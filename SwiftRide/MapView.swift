@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import MapKit
+import Observation
 
 struct MapView: View {
     @State private var defaultPosition = MapCameraPosition.region(MKCoordinateRegion(

@@ -26,7 +26,7 @@ struct BusStop: Identifiable, Decodable{
 
 func loadBusStops() -> [BusStop] {
     guard let url = Bundle.main.url(forResource: "Stops", withExtension: "json") else {
-        print("JSON file not found")
+        print("Bus Stop JSON file not found")
             return []
     }
 
@@ -36,7 +36,7 @@ func loadBusStops() -> [BusStop] {
         let stops = try decoder.decode([BusStop].self, from: data)
         return stops
     } catch {
-        print("Error decoding JSON: \(error)")
+        print("Error decoding Bus Stop JSON: \(error)")
             return []
     }
 }

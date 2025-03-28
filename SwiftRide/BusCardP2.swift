@@ -75,6 +75,7 @@ struct ColorMapper {
 
 struct BusCardP2: View {
     private let busCardDataP2: [BusCardDataP2] = getBusCardsP2()
+    @Binding var isNavToPage3: Bool
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -83,6 +84,9 @@ struct BusCardP2: View {
                         Image(systemName: "bus")
                             .foregroundColor(cardData.color)
                             .font(.system(size: 40))
+                            .onTapGesture {
+                                isNavToPage3 = true
+                            }
                         VStack(alignment: .leading) {
                             Text(cardData.name)
                                 .fontWeight(.bold)
@@ -105,5 +109,5 @@ struct BusCardP2: View {
 }
 
 #Preview {
-    BusCardP2()
+    BusCardP2(isNavToPage3: .constant(false))
 }

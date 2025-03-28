@@ -9,14 +9,14 @@ import SwiftData
 import MapKit
 
 struct MapView: View {
-    @State private var defaultPosition = MapCameraPosition.region(MKCoordinateRegion(
+    @State private var defaultPosition =  MapCameraPosition.region(MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: -6.302793115915458, longitude: 106.65204508592274),
         latitudinalMeters: CLLocationDistance(1000),
         longitudinalMeters: CLLocationDistance(1000)
     ))
 
     @State private var searchText: String = ""
-    @State var isSheetShown: Bool = true
+    @State private var isSheetShown: Bool = true
     @State private var isNavToPage2: Bool = false
 
     private let busStops: [BusStop] = loadBusStops()
@@ -26,6 +26,7 @@ struct MapView: View {
         NavigationStack {
             ZStack {
                 Map(position: $defaultPosition) {
+                    UserAnnotation()
                     ForEach(busStops) { stop in
                         Annotation(stop.name, coordinate: stop.coordinate) {
                             Image(systemName: "mappin.circle.fill")
@@ -37,7 +38,6 @@ struct MapView: View {
                                     }
                                 }
                         }
-                        UserAnnotation()
                     }
                 }
                 .onAppear {
@@ -46,12 +46,9 @@ struct MapView: View {
                 .mapControls {
                     MapUserLocationButton()
                 }
-
-                NavigationLink(
-                    destination: Page2(),
-                    isActive: $isNavToPage2
-                ) {
-                    EmptyView()
+                .navigationDestination(isPresented: $isNavToPage2)
+                {
+                    Page2(isSheetShown: $isSheetShown)
                 }
             }
             .sheet(isPresented: $isSheetShown) {
@@ -86,8 +83,8 @@ struct MapView: View {
                 .presentationBackgroundInteraction(.enabled)
                 .interactiveDismissDisabled()
             }
-            .onChange(of: isNavToPage2) { newValue in
-                if newValue == false {
+            .onChange(of: isNavToPage2) {
+                if isNavToPage2 == false {
                     isSheetShown = true
                 }
             }

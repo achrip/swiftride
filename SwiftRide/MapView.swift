@@ -18,6 +18,8 @@ struct MapView: View {
     @State private var searchText: String = ""
     @State private var isSheetShown: Bool = true
     @State private var isNavToPage2: Bool = false
+    @State private var isNavToPage3: Bool = false
+    @State private var isNavToPage4: Bool = false
 
     private let busStops: [BusStop] = loadBusStops()
     let columns = Array(repeating: GridItem(.flexible(), spacing: 3), count: 3)
@@ -48,7 +50,7 @@ struct MapView: View {
                 }
                 .navigationDestination(isPresented: $isNavToPage2)
                 {
-                    Page2(isSheetShown: $isSheetShown)
+                    Page2(isNavToPage3: $isNavToPage3, isNavToPage4: $isNavToPage4, isSheetShown: $isSheetShown)
                 }
             }
             .sheet(isPresented: $isSheetShown) {
@@ -84,7 +86,17 @@ struct MapView: View {
                 .interactiveDismissDisabled()
             }
             .onChange(of: isNavToPage2) {
-                if isNavToPage2 == false {
+                if (isNavToPage2 == false) {
+                    isSheetShown = true
+                }
+            }
+            .onChange(of: isNavToPage3) {
+                if (isNavToPage3 == false) {
+                    isSheetShown = true
+                }
+            }
+            .onChange(of: isNavToPage4) {
+                if (isNavToPage4 == false) {
                     isSheetShown = true
                 }
             }

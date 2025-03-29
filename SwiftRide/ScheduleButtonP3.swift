@@ -28,6 +28,8 @@ struct ScheduleButtonP3: View {
         BusScheduleP3(schedule: "17:15", status: .available),
         BusScheduleP3(schedule: "17:45", status: .available)
     ]
+    
+    @Binding var isNavToPage4: Bool
     var body: some View {
         LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 12) {
                         ForEach(busSchedulesP3, id: \.self) { schedule in
@@ -39,7 +41,7 @@ struct ScheduleButtonP3: View {
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .shadow(radius: 2)
                                 .onTapGesture{
-                                    print("Tapped on \(schedule.schedule)")
+                                    isNavToPage4 = true
                                 }
                         }
                     }
@@ -47,5 +49,5 @@ struct ScheduleButtonP3: View {
 }
 
 #Preview {
-    ScheduleButtonP3()
+    ScheduleButtonP3(isNavToPage4: .constant(false))
 }

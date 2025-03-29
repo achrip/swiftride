@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct Page2: View {
-    @State private var isNavToPage3: Bool = false
+    @Binding var isNavToPage3: Bool
+    @Binding var isNavToPage4: Bool
     @Binding var isSheetShown: Bool
     var body: some View {
         NavigationStack{
@@ -25,7 +26,7 @@ struct Page2: View {
                 Spacer()
             }
             .navigationDestination(isPresented: $isNavToPage3){
-                Page3()
+                Page3(isNavToPage4: $isNavToPage4, isSheetShown: $isSheetShown)
                     .onAppear {
                         isSheetShown = false
                     }
@@ -35,5 +36,5 @@ struct Page2: View {
 }
 
 #Preview {
-    Page2(isSheetShown: .constant(true))
+    Page2(isNavToPage3: .constant(false), isNavToPage4: .constant(false), isSheetShown: .constant(true))
 }

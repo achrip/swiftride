@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import SwiftUI
-
 struct Page4: View {
     @State private var showAlert = false
     @State private var alertTime = Date()
@@ -25,7 +23,9 @@ struct Page4: View {
                     Spacer()
 
                     Button(action: {
-                        showAlert = true
+                        withAnimation {
+                            showAlert = true
+                        }
                     }) {
                         Label("Notify Me!", systemImage: "bell.fill")
                             .foregroundColor(.white)
@@ -36,22 +36,15 @@ struct Page4: View {
                     }
                 }
 
-                // Overlay Popup
+                // Alert Popup
                 if showAlert {
-                    VStack {
-                        AlertPopup(
-                            selectedTime: $alertTime,
-                            onCancel: {
-                                print("Cancel Pressed")
-                                showAlert = false
-                            },
-                            onSave: {
-                                print("Save Pressed")
-                                showAlert = false
-                            }
-                        )
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    AlertPopup(
+                        selectedTime: $alertTime,
+                        onCancel: handleAlertDismiss,
+                        onSave: {
+                            handleAlertDismiss()
+                        }
+                    )
                     .transition(.scale)
                     .zIndex(1)
                 }
@@ -59,8 +52,12 @@ struct Page4: View {
             .animation(.easeInOut(duration: 0.25), value: showAlert)
         }
     }
+    private func handleAlertDismiss() {
+        withAnimation {
+            showAlert = false
+        }
+    }
 }
-
 
 #Preview {
     Page4()

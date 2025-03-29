@@ -94,6 +94,9 @@ struct BusCardP2: View {
                                 Text("No.\(cardData.number)")
                                     .accessibilityLabel("No. \(cardData.number)")
                                     .font(.caption)
+                                    .onTapGesture {
+                                        isNavToPage3 = true
+                                    }
                                 Text(cardData.license)
                                     .font(.caption)
                             }

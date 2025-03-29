@@ -30,22 +30,9 @@
 		4A685DD02D88083E0053791C /* SwiftRideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftRideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		BDC70CCF2D96F362003717C5 /* Exceptions for "SwiftRide" folder in "SwiftRide" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 4A685DB32D88083C0053791C /* SwiftRide */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4A685DB62D88083C0053791C /* SwiftRide */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				BDC70CCF2D96F362003717C5 /* Exceptions for "SwiftRide" folder in "SwiftRide" target */,
-			);
 			path = SwiftRide;
 			sourceTree = "<group>";
 		};
@@ -414,8 +401,6 @@
 				DEVELOPMENT_TEAM = 84KMF7PD4V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SwiftRide/Info.plist;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show your position on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -446,8 +431,6 @@
 				DEVELOPMENT_TEAM = 84KMF7PD4V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SwiftRide/Info.plist;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show your position on the map.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -1,6 +1,6 @@
 import Foundation 
 
-struct BusSchedule: Identifiable, Decodable { 
+struct BusSchedule: Identifiable, Codable { 
 
     let id: UUID
     let busStopName: String
@@ -8,8 +8,8 @@ struct BusSchedule: Identifiable, Decodable {
     let timeOfArrival: String
     let session: Int
 
-    enum CodingKeys: String, CodingKey {
-        case busStopName = "bus_stop_name"
+    enum CodingKeys: String, CodingKey { 
+        case busStopName = "bus_stop_name" 
         case busNumber = "bus_number" 
         case timeOfArrival = "time_of_arrival"
         case session

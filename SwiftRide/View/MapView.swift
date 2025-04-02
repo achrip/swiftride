@@ -22,6 +22,7 @@ struct MapView: View {
     @State private var isNavToPage4: Bool = false
 
     @State private var busStops: [BusStop] = loadBusStops()
+    @State private var busSchedules: [BusSchedule] = loadBusSchedules()
     @State private var presentationDetent: PresentationDetent = .fraction(0.15)
     
     var body: some View {

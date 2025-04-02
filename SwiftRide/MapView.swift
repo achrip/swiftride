@@ -21,9 +21,16 @@ struct MapView: View {
     @State private var isNavToPage3: Bool = false
     @State private var isNavToPage4: Bool = false
 
+<<<<<<< HEAD:SwiftRide/MapView.swift
     private let busStops: [BusStop] = loadBusStops()
     let columns = Array(repeating: GridItem(.flexible(), spacing: 3), count: 3)
 
+=======
+    @State private var busStops: [BusStop] = loadBusStops()
+    @State private var busSchedules: [BusSchedule] = loadBusSchedules()
+    @State private var presentationDetent: PresentationDetent = .fraction(0.15)
+    
+>>>>>>> 4c8ca44 (restructure views and models):SwiftRide/View/MapView.swift
     var body: some View {
         NavigationStack {
             ZStack {

@@ -7,7 +7,7 @@ struct Bus: Identifiable, Decodable{
     let number: Int
     let licensePlate: String
     let color: Color
-    let schedule: [BusSchedule]
+    var schedule: [BusSchedule]
     
     enum Codnames: String, CodingKey {
         case name = "bus_name"
@@ -24,6 +24,16 @@ struct Bus: Identifiable, Decodable{
         licensePlate = try container.decode(String.self, forKey: .licensePlate)
         color = Color.fromString(try container.decode(String.self, forKey: .color))
         schedule = []
+    }
+    
+    func assignSchedule(schedules: [BusSchedule]) -> Bus {
+        var updatedSelf = self
+        
+        for schedule in schedules {
+            if schedule.busNumber != self.number { continue }
+            updatedSelf.schedule.append(schedule)
+        }
+        return updatedSelf
     }
 }
 
@@ -62,8 +72,8 @@ extension Color {
     }
 }
 
-func getBus() -> [Bus] {
-    guard let url = Bundle.main.url(forResource: "Bus", withExtension: "json") else {
+func loadBuses() -> [Bus] {
+    guard let url = Bundle.main.url(forResource: "BusName", withExtension: "json") else {
         print("Bus.json not found")
         return []
     }

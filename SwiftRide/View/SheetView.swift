@@ -35,7 +35,7 @@ struct DefaultSheetView: View {
                 }
             }
         }
-        .presentationDetents([.fraction(0.1), .medium, .large], selection: $selectionDetent)
+        .presentationDetents([.fraction(0.1), .medium, .large])
         .presentationDragIndicator(.visible)
         .presentationBackgroundInteraction(.enabled)
         .interactiveDismissDisabled()
@@ -66,10 +66,11 @@ struct SearchBar: View {
                 }
             }
             .padding()
+            .frame(height: 35)
             .background(Color(.systemGray6))
             .clipShape(RoundedRectangle(cornerRadius: 12))
             .padding(.horizontal)
-            .padding(.top, 20)
+            .padding(.top, 25)
         }
         .frame( alignment: .top)
     }

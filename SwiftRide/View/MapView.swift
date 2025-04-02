@@ -34,10 +34,10 @@ struct MapView: View {
                             Image(systemName: "mappin.circle.fill")
                                 .foregroundStyle(.teal)
                                 .onTapGesture {
-//                                    isSheetShown = false
-//                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-//                                        isNavToPage2 = true
-//                                    }
+                                    isSheetShown = false
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                        isNavToPage2 = true
+                                    }
                                 }
                         }
                     }

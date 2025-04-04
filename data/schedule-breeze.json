@@ -1,0 +1,2246 @@
+[
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "09:00",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 7,
+    "time_of_arrival": "09:02",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "09:09",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "09:11",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 7,
+    "time_of_arrival": "09:12",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 7,
+    "time_of_arrival": "09:15",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 7,
+    "time_of_arrival": "09:20",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 7,
+    "time_of_arrival": "09:22",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 7,
+    "time_of_arrival": "09:23",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 7,
+    "time_of_arrival": "09:26",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 7,
+    "time_of_arrival": "09:26",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "09:33",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "09:34",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 7,
+    "time_of_arrival": "09:37",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 7,
+    "time_of_arrival": "09:39",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 7,
+    "time_of_arrival": "09:42",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "09:45",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "10:00",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 7,
+    "time_of_arrival": "10:02",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "10:09",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "10:11",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 7,
+    "time_of_arrival": "10:12",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 7,
+    "time_of_arrival": "10:15",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 7,
+    "time_of_arrival": "10:20",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 7,
+    "time_of_arrival": "10:22",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 7,
+    "time_of_arrival": "10:23",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 7,
+    "time_of_arrival": "10:26",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 7,
+    "time_of_arrival": "10:26",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "10:33",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "10:34",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 7,
+    "time_of_arrival": "10:37",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 7,
+    "time_of_arrival": "10:39",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 7,
+    "time_of_arrival": "10:42",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "10:45",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "11:00",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 7,
+    "time_of_arrival": "11:02",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "11:09",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "11:11",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 7,
+    "time_of_arrival": "11:12",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 7,
+    "time_of_arrival": "11:15",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 7,
+    "time_of_arrival": "11:20",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 7,
+    "time_of_arrival": "11:22",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 7,
+    "time_of_arrival": "11:23",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 7,
+    "time_of_arrival": "11:26",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 7,
+    "time_of_arrival": "11:26",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "11:33",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "11:34",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 7,
+    "time_of_arrival": "11:37",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 7,
+    "time_of_arrival": "11:39",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 7,
+    "time_of_arrival": "11:42",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "11:45",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "12:00",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 7,
+    "time_of_arrival": "12:02",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "12:09",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "12:11",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 7,
+    "time_of_arrival": "12:12",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 7,
+    "time_of_arrival": "12:15",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 7,
+    "time_of_arrival": "12:20",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 7,
+    "time_of_arrival": "12:22",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 7,
+    "time_of_arrival": "12:23",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 7,
+    "time_of_arrival": "12:26",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 7,
+    "time_of_arrival": "12:26",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "12:33",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "12:34",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 7,
+    "time_of_arrival": "12:37",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 7,
+    "time_of_arrival": "12:39",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 7,
+    "time_of_arrival": "12:42",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "12:45",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "13:00",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 7,
+    "time_of_arrival": "13:02",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "13:09",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "13:11",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 7,
+    "time_of_arrival": "13:12",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 7,
+    "time_of_arrival": "13:15",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 7,
+    "time_of_arrival": "13:20",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 7,
+    "time_of_arrival": "13:22",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 7,
+    "time_of_arrival": "13:23",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 7,
+    "time_of_arrival": "13:26",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 7,
+    "time_of_arrival": "13:26",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "13:33",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "13:34",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 7,
+    "time_of_arrival": "13:37",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 7,
+    "time_of_arrival": "13:39",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 7,
+    "time_of_arrival": "13:42",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "13:45",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "14:00",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 7,
+    "time_of_arrival": "14:02",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "14:09",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "14:11",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 7,
+    "time_of_arrival": "14:12",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 7,
+    "time_of_arrival": "14:15",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 7,
+    "time_of_arrival": "14:20",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 7,
+    "time_of_arrival": "14:22",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 7,
+    "time_of_arrival": "14:23",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 7,
+    "time_of_arrival": "14:26",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 7,
+    "time_of_arrival": "14:26",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "14:33",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "14:34",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 7,
+    "time_of_arrival": "14:37",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 7,
+    "time_of_arrival": "14:39",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 7,
+    "time_of_arrival": "14:42",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "14:45",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "15:00",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 7,
+    "time_of_arrival": "15:02",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "15:09",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "15:11",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 7,
+    "time_of_arrival": "15:12",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 7,
+    "time_of_arrival": "15:15",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 7,
+    "time_of_arrival": "15:20",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 7,
+    "time_of_arrival": "15:22",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 7,
+    "time_of_arrival": "15:23",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 7,
+    "time_of_arrival": "15:26",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 7,
+    "time_of_arrival": "15:26",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "15:33",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "15:34",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 7,
+    "time_of_arrival": "15:37",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 7,
+    "time_of_arrival": "15:39",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 7,
+    "time_of_arrival": "15:42",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "15:45",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "16:00",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 7,
+    "time_of_arrival": "16:02",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "16:09",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "16:11",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 7,
+    "time_of_arrival": "16:12",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 7,
+    "time_of_arrival": "16:15",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 7,
+    "time_of_arrival": "16:20",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 7,
+    "time_of_arrival": "16:22",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 7,
+    "time_of_arrival": "16:23",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 7,
+    "time_of_arrival": "16:26",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 7,
+    "time_of_arrival": "16:26",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "16:33",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "16:34",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 7,
+    "time_of_arrival": "16:37",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 7,
+    "time_of_arrival": "16:39",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 7,
+    "time_of_arrival": "16:42",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "16:45",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "17:00",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 7,
+    "time_of_arrival": "17:02",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "17:09",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "17:11",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 7,
+    "time_of_arrival": "17:12",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 7,
+    "time_of_arrival": "17:15",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 7,
+    "time_of_arrival": "17:20",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 7,
+    "time_of_arrival": "17:22",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 7,
+    "time_of_arrival": "17:23",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 7,
+    "time_of_arrival": "17:26",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 7,
+    "time_of_arrival": "17:26",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "17:33",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "17:34",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 7,
+    "time_of_arrival": "17:37",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 7,
+    "time_of_arrival": "17:39",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 7,
+    "time_of_arrival": "17:42",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "17:45",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "18:00",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 7,
+    "time_of_arrival": "18:02",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "18:09",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "18:11",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 7,
+    "time_of_arrival": "18:12",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 7,
+    "time_of_arrival": "18:15",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 7,
+    "time_of_arrival": "18:20",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 7,
+    "time_of_arrival": "18:22",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 7,
+    "time_of_arrival": "18:23",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 7,
+    "time_of_arrival": "18:26",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 7,
+    "time_of_arrival": "18:26",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "18:33",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "18:34",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 7,
+    "time_of_arrival": "18:37",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 7,
+    "time_of_arrival": "18:39",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 7,
+    "time_of_arrival": "18:42",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "18:45",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "19:00",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 7,
+    "time_of_arrival": "19:02",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "19:09",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "19:11",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 7,
+    "time_of_arrival": "19:12",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 7,
+    "time_of_arrival": "19:15",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 7,
+    "time_of_arrival": "19:20",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 7,
+    "time_of_arrival": "19:22",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 7,
+    "time_of_arrival": "19:23",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 7,
+    "time_of_arrival": "19:26",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 7,
+    "time_of_arrival": "19:26",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 7,
+    "time_of_arrival": "19:33",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 7,
+    "time_of_arrival": "19:34",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 7,
+    "time_of_arrival": "19:37",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 7,
+    "time_of_arrival": "19:39",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 7,
+    "time_of_arrival": "19:42",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "19:45",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 7,
+    "time_of_arrival": "09:30",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 7,
+    "time_of_arrival": "09:32",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "09:39",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "09:41",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 8,
+    "time_of_arrival": "09:42",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 8,
+    "time_of_arrival": "09:45",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 8,
+    "time_of_arrival": "09:50",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 8,
+    "time_of_arrival": "09:52",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 8,
+    "time_of_arrival": "09:53",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 8,
+    "time_of_arrival": "09:56",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 8,
+    "time_of_arrival": "09:56",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "10:03",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "10:04",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 8,
+    "time_of_arrival": "10:07",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 8,
+    "time_of_arrival": "10:09",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 8,
+    "time_of_arrival": "10:12",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "10:15",
+    "session": 1
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "10:30",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 8,
+    "time_of_arrival": "10:32",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "10:39",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "10:41",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 8,
+    "time_of_arrival": "10:42",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 8,
+    "time_of_arrival": "10:45",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 8,
+    "time_of_arrival": "10:50",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 8,
+    "time_of_arrival": "10:52",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 8,
+    "time_of_arrival": "10:53",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 8,
+    "time_of_arrival": "10:56",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 8,
+    "time_of_arrival": "10:56",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "11:03",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "11:04",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 8,
+    "time_of_arrival": "11:07",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 8,
+    "time_of_arrival": "11:09",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 8,
+    "time_of_arrival": "11:12",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "11:15",
+    "session": 2
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "11:30",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 8,
+    "time_of_arrival": "11:32",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "11:39",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "11:41",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 8,
+    "time_of_arrival": "11:42",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 8,
+    "time_of_arrival": "11:45",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 8,
+    "time_of_arrival": "11:50",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 8,
+    "time_of_arrival": "11:52",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 8,
+    "time_of_arrival": "11:53",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 8,
+    "time_of_arrival": "11:56",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 8,
+    "time_of_arrival": "11:56",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "12:03",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "12:04",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 8,
+    "time_of_arrival": "12:07",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 8,
+    "time_of_arrival": "12:09",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 8,
+    "time_of_arrival": "12:12",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "12:15",
+    "session": 3
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "12:30",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 8,
+    "time_of_arrival": "12:32",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "12:39",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "12:41",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 8,
+    "time_of_arrival": "12:42",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 8,
+    "time_of_arrival": "12:45",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 8,
+    "time_of_arrival": "12:50",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 8,
+    "time_of_arrival": "12:52",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 8,
+    "time_of_arrival": "12:53",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 8,
+    "time_of_arrival": "12:56",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 8,
+    "time_of_arrival": "12:56",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "13:03",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "13:04",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 8,
+    "time_of_arrival": "13:07",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 8,
+    "time_of_arrival": "13:09",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 8,
+    "time_of_arrival": "13:12",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "13:15",
+    "session": 4
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "13:30",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 8,
+    "time_of_arrival": "13:32",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "13:39",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "13:41",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 8,
+    "time_of_arrival": "13:42",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 8,
+    "time_of_arrival": "13:45",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 8,
+    "time_of_arrival": "13:50",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 8,
+    "time_of_arrival": "13:52",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 8,
+    "time_of_arrival": "13:53",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 8,
+    "time_of_arrival": "13:56",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 8,
+    "time_of_arrival": "13:56",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "14:03",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "14:04",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 8,
+    "time_of_arrival": "14:07",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 8,
+    "time_of_arrival": "14:09",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 8,
+    "time_of_arrival": "14:12",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "14:15",
+    "session": 5
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "14:30",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 8,
+    "time_of_arrival": "14:32",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "14:39",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "14:41",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 8,
+    "time_of_arrival": "14:42",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 8,
+    "time_of_arrival": "14:45",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 8,
+    "time_of_arrival": "14:50",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 8,
+    "time_of_arrival": "14:52",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 8,
+    "time_of_arrival": "14:53",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 8,
+    "time_of_arrival": "14:56",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 8,
+    "time_of_arrival": "14:56",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "15:03",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "15:04",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 8,
+    "time_of_arrival": "15:07",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 8,
+    "time_of_arrival": "15:09",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 8,
+    "time_of_arrival": "15:12",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "15:15",
+    "session": 6
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "15:30",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 8,
+    "time_of_arrival": "15:32",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "15:39",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "15:41",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 8,
+    "time_of_arrival": "15:42",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 8,
+    "time_of_arrival": "15:45",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 8,
+    "time_of_arrival": "15:50",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 8,
+    "time_of_arrival": "15:52",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 8,
+    "time_of_arrival": "15:53",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 8,
+    "time_of_arrival": "15:56",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 8,
+    "time_of_arrival": "15:56",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "16:03",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "16:04",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 8,
+    "time_of_arrival": "16:07",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 8,
+    "time_of_arrival": "16:09",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 8,
+    "time_of_arrival": "16:12",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "16:15",
+    "session": 7
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "16:30",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 8,
+    "time_of_arrival": "16:32",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "16:39",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "16:41",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 8,
+    "time_of_arrival": "16:42",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 8,
+    "time_of_arrival": "16:45",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 8,
+    "time_of_arrival": "16:50",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 8,
+    "time_of_arrival": "16:52",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 8,
+    "time_of_arrival": "16:53",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 8,
+    "time_of_arrival": "16:56",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 8,
+    "time_of_arrival": "16:56",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "17:03",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "17:04",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 8,
+    "time_of_arrival": "17:07",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 8,
+    "time_of_arrival": "17:09",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 8,
+    "time_of_arrival": "17:12",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "17:15",
+    "session": 8
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "17:30",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 8,
+    "time_of_arrival": "17:32",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "17:39",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "17:41",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 8,
+    "time_of_arrival": "17:42",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 8,
+    "time_of_arrival": "17:45",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 8,
+    "time_of_arrival": "17:50",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 8,
+    "time_of_arrival": "17:52",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 8,
+    "time_of_arrival": "17:53",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 8,
+    "time_of_arrival": "17:56",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 8,
+    "time_of_arrival": "17:56",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "18:03",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "18:04",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 8,
+    "time_of_arrival": "18:07",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 8,
+    "time_of_arrival": "18:09",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 8,
+    "time_of_arrival": "18:12",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "18:15",
+    "session": 9
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "18:30",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 8,
+    "time_of_arrival": "18:32",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "18:39",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "18:41",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 8,
+    "time_of_arrival": "18:42",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 8,
+    "time_of_arrival": "18:45",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 8,
+    "time_of_arrival": "18:50",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 8,
+    "time_of_arrival": "18:52",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 8,
+    "time_of_arrival": "18:53",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 8,
+    "time_of_arrival": "18:56",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 8,
+    "time_of_arrival": "18:56",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "19:03",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "19:04",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 8,
+    "time_of_arrival": "19:07",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 8,
+    "time_of_arrival": "19:09",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 8,
+    "time_of_arrival": "19:12",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "19:15",
+    "session": 10
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "19:30",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "CBD Timur 1",
+    "bus_number": 8,
+    "time_of_arrival": "19:32",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "19:39",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "19:41",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "CBD Utara 3",
+    "bus_number": 8,
+    "time_of_arrival": "19:42",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "ICE 1",
+    "bus_number": 8,
+    "time_of_arrival": "19:45",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "ICE 2,
+    "bus_number": 8,
+    "time_of_arrival": "19:50",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "ICE 6",
+    "bus_number": 8,
+    "time_of_arrival": "19:52",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "ICE 5",
+    "bus_number": 8,
+    "time_of_arrival": "19:53",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "CBD Barat 1",
+    "bus_number": 8,
+    "time_of_arrival": "19:56",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "CBD Barat 2",
+    "bus_number": 8,
+    "time_of_arrival": "19:56",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "Lobby AEON Mall",
+    "bus_number": 8,
+    "time_of_arrival": "20:03",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "AEON Mall 2",
+    "bus_number": 8,
+    "time_of_arrival": "20:04",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "CBD Timur 2",
+    "bus_number": 8,
+    "time_of_arrival": "20:07",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "Nava Park 1",
+    "bus_number": 8,
+    "time_of_arrival": "20:09",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "Green Cove",
+    "bus_number": 8,
+    "time_of_arrival": "20:12",
+    "session": 11
+  },
+  {
+		"bus_stop_name": "The Breeze",
+    "bus_number": 8,
+    "time_of_arrival": "20:15",
+    "session": 11
+  },
+]

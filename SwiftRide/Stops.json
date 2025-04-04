@@ -180,7 +180,7 @@
    "longitude": 106.6627761735028
   },
   {
-   "name": "Greencove",
+   "name": "Green Cove",
    "latitude": -6.2993814628841855,
    "longitude": 106.65987993540543
   },
@@ -320,8 +320,63 @@
    "longitude": 106.6363809368485
   },
   {
-   "name": ".teal",
+   "name": "Greenwich Park 1",
    "latitude": -6.27722670353427,
    "longitude": 106.63519582664144
-  }
+  },
+  {
+   "name": "Prestigia",
+   "latitude": -6.294574704864883,
+   "longitude": 106.63434147612814
+  },
+  {
+   "name": "The Mozia 1",
+   "latitude": -6.291653845052858,
+   "longitude": 106.62850019474901
+  },
+  {
+   "name": "Vanya Park",
+   "latitude": -6.295320322717712,
+   "longitude": 106.62186825923906
+  },
+  {
+   "name": "Piazza Mozia",
+   "latitude": -6.290512106223089,
+   "longitude": 106.62767242455752
+  },
+  {
+   "name": "The Mozia 2",
+   "latitude": -6.291595339802968,
+   "longitude": 106.62865576632026
+  },
+  {
+   "name": "Illustria",
+   "latitude": -6.294029293630429,
+   "longitude": 106.63433876241467
+  },
+  {
+   "name": "CBD Barat 2",
+   "latitude": -6.3023066800188365,
+   "longitude": 106.64210145762934
+  },
+  {
+   "name": "Lobby AEON Mall",
+   "latitude": -6.303683149161957,
+   "longitude": 106.64356012276883
+  },
+  {
+   "name": "CBD Utara 3",
+   "latitude": -6.2987607030499175,
+   "longitude": 106.6433604073996
+  },
+  {
+   "name": "CBD Barat 1",
+   "latitude": -6.299449375144083,
+   "longitude": 106.64191227244648
+  },
+  {
+   "name": "AEON Mall 2",
+   "latitude": -6.302851368209015,
+   "longitude": 106.64431300128254
+  },
 ]

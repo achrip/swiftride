@@ -21,16 +21,10 @@ struct MapView: View {
     @State private var isNavToPage3: Bool = false
     @State private var isNavToPage4: Bool = false
 
-<<<<<<< HEAD:SwiftRide/MapView.swift
-    private let busStops: [BusStop] = loadBusStops()
-    let columns = Array(repeating: GridItem(.flexible(), spacing: 3), count: 3)
-
-=======
     @State private var busStops: [BusStop] = loadBusStops()
     @State private var busSchedules: [BusSchedule] = loadBusSchedules()
     @State private var presentationDetent: PresentationDetent = .fraction(0.15)
     
->>>>>>> 4c8ca44 (restructure views and models):SwiftRide/View/MapView.swift
     var body: some View {
         NavigationStack {
             ZStack {
@@ -60,37 +54,9 @@ struct MapView: View {
                     Page2(isNavToPage3: $isNavToPage3, isNavToPage4: $isNavToPage4, isSheetShown: $isSheetShown)
                 }
             }
+            .toolbar(.hidden, for: .navigationBar)
             .sheet(isPresented: $isSheetShown) {
-                NavigationStack {
-                    ScrollView {
-                        ForEach(busStops) { stop in
-                            if stop.name.localizedCaseInsensitiveContains(searchText) || searchText.isEmpty {
-                                HStack {
-                                    Circle()
-                                        .frame(width: 30, height: 30)
-                                        .padding(.horizontal, 10)
-                                    VStack(alignment: .leading) {
-                                        Text(stop.name)
-                                            .padding(.horizontal, 10)
-                                            .onTapGesture {
-                                                isSheetShown = false
-                                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                                    isNavToPage2 = true
-                                                }
-                                            }
-                                    }
-                                    Spacer()
-                                }
-                            }
-                        }
-                        .padding()
-                    }
-                    .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always))
-                }
-                .presentationDetents([.fraction(0.15), .medium])
-                .presentationDragIndicator(.visible)
-                .presentationBackgroundInteraction(.enabled)
-                .interactiveDismissDisabled()
+                DefaultSheetView(busStops: $busStops, searchText: $searchText, selectionDetent: $presentationDetent)
             }
             .onChange(of: isNavToPage2) {
                 if (isNavToPage2 == false) {

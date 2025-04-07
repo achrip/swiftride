@@ -127,7 +127,11 @@ struct BusCard: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .contentShape(Rectangle())
                 .onTapGesture {
-                    print("YES")
+                    if let diff = bus.getClosestArrivalTime(from: "14:04"), diff > 0 {
+                        print("Will be arriving in: \(Int(diff / 60))")
+                    } else {
+                        print("has passed")
+                    }
                 }
             }
         }

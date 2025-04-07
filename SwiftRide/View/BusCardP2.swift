@@ -19,10 +19,10 @@ struct BusCardDataP2: Identifiable, Decodable {
 
     
     enum CodingKeys: String, CodingKey {
-        case number = "busNumber"
-        case name = "busName"
-        case license = "licensePlate"
-        case colorName = "busColor"
+        case name = "bus_name"
+        case number = "bus_number"
+        case license = "license_plate"
+        case colorName = "bus_color"
     }
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -35,7 +35,7 @@ struct BusCardDataP2: Identifiable, Decodable {
 }
 
 func getBusCardsP2() -> [BusCardDataP2] {
-    guard let url = Bundle.main.url(forResource: "BusName", withExtension: "json") else {
+    guard let url = Bundle.main.url(forResource: "Bus", withExtension: "json") else {
         print("Bus Name JSON file not found")
         return []
     }

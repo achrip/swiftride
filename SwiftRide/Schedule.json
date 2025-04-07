@@ -18907,7 +18907,7 @@
     "session": 1
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 7,
     "time_of_arrival": "09:20",
     "session": 1
@@ -19009,7 +19009,7 @@
     "session": 2
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 7,
     "time_of_arrival": "10:20",
     "session": 2
@@ -19111,7 +19111,7 @@
     "session": 3
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 7,
     "time_of_arrival": "11:20",
     "session": 3
@@ -19213,7 +19213,7 @@
     "session": 4
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 7,
     "time_of_arrival": "12:20",
     "session": 4
@@ -19315,7 +19315,7 @@
     "session": 5
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 7,
     "time_of_arrival": "13:20",
     "session": 5
@@ -19417,7 +19417,7 @@
     "session": 6
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 7,
     "time_of_arrival": "14:20",
     "session": 6
@@ -19519,7 +19519,7 @@
     "session": 7
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 7,
     "time_of_arrival": "15:20",
     "session": 7
@@ -19621,7 +19621,7 @@
     "session": 8
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 7,
     "time_of_arrival": "16:20",
     "session": 8
@@ -19723,7 +19723,7 @@
     "session": 9
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 7,
     "time_of_arrival": "17:20",
     "session": 9
@@ -19825,7 +19825,7 @@
     "session": 10
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 7,
     "time_of_arrival": "18:20",
     "session": 10
@@ -19927,7 +19927,7 @@
     "session": 11
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 7,
     "time_of_arrival": "19:20",
     "session": 11
@@ -20029,7 +20029,7 @@
     "session": 1
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 8,
     "time_of_arrival": "09:50",
     "session": 1
@@ -20131,7 +20131,7 @@
     "session": 2
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 8,
     "time_of_arrival": "10:50",
     "session": 2
@@ -20233,7 +20233,7 @@
     "session": 3
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 8,
     "time_of_arrival": "11:50",
     "session": 3
@@ -20335,7 +20335,7 @@
     "session": 4
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 8,
     "time_of_arrival": "12:50",
     "session": 4
@@ -20437,7 +20437,7 @@
     "session": 5
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 8,
     "time_of_arrival": "13:50",
     "session": 5
@@ -20539,7 +20539,7 @@
     "session": 6
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 8,
     "time_of_arrival": "14:50",
     "session": 6
@@ -20641,7 +20641,7 @@
     "session": 7
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 8,
     "time_of_arrival": "15:50",
     "session": 7
@@ -20743,7 +20743,7 @@
     "session": 8
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 8,
     "time_of_arrival": "16:50",
     "session": 8
@@ -20845,7 +20845,7 @@
     "session": 9
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 8,
     "time_of_arrival": "17:50",
     "session": 9
@@ -20947,7 +20947,7 @@
     "session": 10
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 8,
     "time_of_arrival": "18:50",
     "session": 10
@@ -21049,7 +21049,7 @@
     "session": 11
   },
   {
-    "bus_stop_name": "ICE 2,
+    "bus_stop_name": "ICE 2",
     "bus_number": 8,
     "time_of_arrival": "19:50",
     "session": 11

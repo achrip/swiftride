@@ -97,44 +97,71 @@ struct BusStopDetailView: View {
 }
 
 struct BusCard: View {
-    @State var buses: [Bus] = loadBuses()
-    @State var busSchedules: [BusSchedule] = loadBusSchedules()
     @Binding var currentBusStop: BusStop
-    
-    
+
+    private let buses: [Bus]
+
+    init(currentBusStop: Binding<BusStop>) {
+        self._currentBusStop = currentBusStop
+
+        let rawBuses = loadBuses()
+        let schedules = loadBusSchedules()
+        self.buses = rawBuses.map { $0.assignSchedule(schedules: schedules) }
+    }
+
+    // Precomputed upcoming bus and ETA pairs
+    private var upcomingBuses: [(bus: Bus, etaMinutes: Int)] {
+        buses.compactMap { bus in
+            guard let nextSchedule = nextSchedule(for: bus),
+                  let eta = bus.getClosestArrivalTime(from: nextSchedule.timeOfArrival),
+                  eta > 0 else {
+                return nil
+            }
+            return (bus, Int(eta / 60))
+        }
+    }
+
+    // Helper to get the next schedule for the current stop
+    private func nextSchedule(for bus: Bus) -> BusSchedule? {
+        bus.schedule
+            .filter { $0.busStopName == currentBusStop.name }
+            .sorted { a, b in a.timeOfArrival < b.timeOfArrival }
+            .first
+    }
+
     var body: some View {
-        VStack {
-            ForEach(buses) { bus in
-                ForEach(bus.schedule) { schedule in
-                    HStack {
-                        Image(systemName: "bus")
-                            .foregroundStyle(Color.orange)
-                            .font(.system(size: 40))
-                        VStack(alignment: .leading) {
-                            Text(bus.name)
-                                .font(.headline)
-    //                        Text("Bus No. \(bus.number)")
-    //                            .font(.caption)
-                            if let eta = bus.getClosestArrivalTime(from: schedule.timeOfArrival), eta > 0 {
-                               Text("Will be arriving in \(Int(eta / 60)) minutes")
-                            }
-                        }
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-    //                    if let diff = bus.getClosestArrivalTime(from: "14:04"), diff > 0 {
-    //                        print("Will be arriving in: \(Int(diff / 60))")
-    //                    } else {
-    //                        print("has passed")
-    //                    }
-                    }
-                }
+        VStack(alignment: .leading, spacing: 12) {
+            ForEach(upcomingBuses, id: \.bus.id) { pair in
+                BusRow(bus: pair.bus, etaMinutes: pair.etaMinutes)
             }
         }
-        .onAppear {
-            buses = buses.map { $0.assignSchedule(schedules: busSchedules) }
+        .padding()
+    }
+}
+
+struct BusRow: View {
+    let bus: Bus
+    let etaMinutes: Int
+
+    var body: some View {
+        HStack {
+            Image(systemName: "bus")
+                .foregroundStyle(Color.orange)
+                .font(.system(size: 40))
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(bus.name)
+                    .font(.headline)
+
+                Text("Will be arriving in \(etaMinutes) minute\(etaMinutes == 1 ? "" : "s")")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            // Handle tap if needed
         }
     }
 }

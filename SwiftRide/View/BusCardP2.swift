@@ -90,13 +90,13 @@ struct BusCardP2: View {
                         VStack(alignment: .leading) {
                             Text(cardData.name)
                                 .fontWeight(.bold)
+                                .onTapGesture {
+                                    isNavToPage3 = true
+                                }
                             HStack {
                                 Text("No.\(cardData.number)")
                                     .accessibilityLabel("No. \(cardData.number)")
                                     .font(.caption)
-                                    .onTapGesture {
-                                        isNavToPage3 = true
-                                    }
                                 Text(cardData.license)
                                     .font(.caption)
                             }

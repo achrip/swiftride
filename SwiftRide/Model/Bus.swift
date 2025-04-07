@@ -73,7 +73,7 @@ extension Color {
 }
 
 func loadBuses() -> [Bus] {
-    guard let url = Bundle.main.url(forResource: "BusName", withExtension: "json") else {
+    guard let url = Bundle.main.url(forResource: "Bus", withExtension: "json") else {
         print("Bus.json not found")
         return []
     }

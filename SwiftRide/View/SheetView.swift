@@ -4,10 +4,8 @@ struct DefaultSheetView: View {
     @Binding var busStops: [BusStop]
     @Binding var searchText: String
     @Binding var selectionDetent: PresentationDetent
-    @Binding var isSheetShown: Bool
-    @Binding var showBusStopDetail: Bool
+    @Binding var selectedSheet: SheetContentType
     @Binding var selectedBusStop: BusStop
-    @Binding var restoreSheet: Bool
     
     var body: some View {
         SearchBar(searchText: $searchText, busStops: $busStops)
@@ -31,14 +29,7 @@ struct DefaultSheetView: View {
                                         .padding(.horizontal, 10)
                                         .onTapGesture {
                                             selectedBusStop = stop
-                                            
-                                            if isSheetShown {
-                                                restoreSheet = isSheetShown
-                                                isSheetShown = false
-                                            }
-                                            
-                                            showBusStopDetail = true
-                                            
+                                            selectedSheet = .busStopDetailView
                                         }
                                 }
                                 Spacer()
@@ -49,10 +40,6 @@ struct DefaultSheetView: View {
                 }
             }
         }
-        .presentationDetents([.fraction(0.1), .medium, .large])
-        .presentationDragIndicator(.visible)
-        .presentationBackgroundInteraction(.enabled)
-        .interactiveDismissDisabled()
     }
 }
 
@@ -99,6 +86,7 @@ struct BusStopDetailView: View {
             Text("Available Buses")
                 .font(.title.bold())
         }
+        .padding(.top, 20)
         ScrollView {
             BusCard(currentBusStop: $currentBusStop)
         }
@@ -145,7 +133,6 @@ struct TitleCard: View {
         Text(title)
             .font(.title.bold())
             .frame(maxWidth: .infinity, alignment: .center)
-            .padding()
             .padding(.vertical, 15)
             .background(Color(.systemGray6))
             .clipShape(RoundedRectangle(cornerRadius: 12))

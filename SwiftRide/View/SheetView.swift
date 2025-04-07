@@ -98,33 +98,43 @@ struct BusStopDetailView: View {
 
 struct BusCard: View {
     @State var buses: [Bus] = loadBuses()
+    @State var busSchedules: [BusSchedule] = loadBusSchedules()
     @Binding var currentBusStop: BusStop
+    
     
     var body: some View {
         VStack {
             ForEach(buses) { bus in
-                HStack {
-                    Image(systemName: "bus")
-                        .foregroundStyle(Color.orange)
-                        .font(.system(size: 40))
-                    VStack(alignment: .leading) {
-                        Text(bus.name)
-                            .font(.headline)
-                        Text("Bus No. \(bus.number)")
-                            .font(.caption)
+                ForEach(bus.schedule) { schedule in
+                    HStack {
+                        Image(systemName: "bus")
+                            .foregroundStyle(Color.orange)
+                            .font(.system(size: 40))
+                        VStack(alignment: .leading) {
+                            Text(bus.name)
+                                .font(.headline)
+    //                        Text("Bus No. \(bus.number)")
+    //                            .font(.caption)
+                            if let eta = bus.getClosestArrivalTime(from: schedule.timeOfArrival), eta > 0 {
+                               Text("Will be arriving in \(Int(eta / 60)) minutes")
+                            }
+                        }
                     }
-                }
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    if let diff = bus.getClosestArrivalTime(from: "14:04"), diff > 0 {
-                        print("Will be arriving in: \(Int(diff / 60))")
-                    } else {
-                        print("has passed")
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .contentShape(Rectangle())
+                    .onTapGesture {
+    //                    if let diff = bus.getClosestArrivalTime(from: "14:04"), diff > 0 {
+    //                        print("Will be arriving in: \(Int(diff / 60))")
+    //                    } else {
+    //                        print("has passed")
+    //                    }
                     }
                 }
             }
+        }
+        .onAppear {
+            buses = buses.map { $0.assignSchedule(schedules: busSchedules) }
         }
     }
 }

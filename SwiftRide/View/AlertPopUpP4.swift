@@ -1,31 +1,28 @@
-//
-//  AlertTime.swift
-//  Page4
-//
-//  Created by Ferdinand Lunardy on 26/03/25.
-//
-
 import SwiftUI
 
 struct AlertPopup: View {
     @Binding var selectedTime: Date
-    var onCancel: () -> Void
-    var onSave: () -> Void
-    
+    @Binding var showConfirmation: Bool
+    @State var btnText: String = "Save"
+    var onClose: () -> Void
+
     var body: some View {
         VStack(spacing: 16) {
             // Header
             HStack {
-                Button("Back", action: onCancel)
+                Button("Back", action: onClose)
                 Spacer()
                 Text("Set Alert")
                     .font(.headline)
                 Spacer()
-                Button("Save", action: onSave)
+                Button(btnText) {
+                    showConfirmation = true // Tell parent to show alert
+                    onClose()  // Then close popup
+                }
             }
             .padding(.top)
             .padding(.horizontal)
-            
+
             // Time Picker
             DatePicker(
                 "",
@@ -34,13 +31,11 @@ struct AlertPopup: View {
             )
             .datePickerStyle(.wheel)
             .labelsHidden()
-            .frame(height: 150)
-            
+
             // Cancel button
-            Button("Cancel", action: onCancel)
+            Button("Cancel", action: onClose)
                 .foregroundColor(.red)
                 .padding(.bottom)
-
         }
         .frame(width: 300)
         .padding()
@@ -53,9 +48,15 @@ struct AlertPopup: View {
 #Preview {
     AlertPopup(
         selectedTime: .constant(Date()),
-        onCancel: {},
-        onSave: {}
+        showConfirmation: .constant(false),
+        onClose: {}
     )
 }
 
 
+#Preview {
+    AlertPopup(
+        selectedTime: .constant(Date()), showConfirmation: .constant(false),
+        onClose: {}
+    )
+}

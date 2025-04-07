@@ -1,15 +1,9 @@
-//
-//  ContentView.swift
-//  Page4
-//
-//  Created by Ferdinand Lunardy on 26/03/25.
-//
-
 import SwiftUI
 
 struct Page4: View {
     @State private var showAlert = false
     @State private var alertTime = Date()
+    @State private var showConfirmation = false
 
     var body: some View {
         NavigationStack {
@@ -40,24 +34,35 @@ struct Page4: View {
                 if showAlert {
                     AlertPopup(
                         selectedTime: $alertTime,
-                        onCancel: handleAlertDismiss,
-                        onSave: {
-                            handleAlertDismiss()
-                        }
+                        showConfirmation: $showConfirmation,
+                        onClose: handleAlertDismiss
                     )
                     .transition(.scale)
                     .zIndex(1)
                 }
             }
             .animation(.easeInOut(duration: 0.25), value: showAlert)
+            .alert("Alert Time Set", isPresented: $showConfirmation) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text("You’ve set an alert for \(formattedTime).")
+            }
         }
     }
+
     private func handleAlertDismiss() {
         withAnimation {
             showAlert = false
         }
     }
+
+    private var formattedTime: String {
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        return formatter.string(from: alertTime)
+    }
 }
+
 
 #Preview {
     Page4()

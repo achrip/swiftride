@@ -33,7 +33,10 @@ struct MapView: View {
                             .foregroundStyle(.teal)
                             .onTapGesture {
                                 selectedBusStop = stop
-                                selectedSheet = .busStopDetailView
+                                withAnimation(.easeInOut(duration: 0.7)){
+                                    selectedSheet = .busStopDetailView
+                                    presentationDetent = .medium
+                                }
 //
 //                                if isSheetShown {
 //                                    restoreSheet = isSheetShown
@@ -73,14 +76,14 @@ struct MapView: View {
                                      selectionDetent: $presentationDetent,
                                      selectedSheet: $selectedSheet,
                                      selectedBusStop: $selectedBusStop)
-                    .presentationDetents([.fraction(0.1), .medium, .large])
+                    .presentationDetents([.fraction(0.1), .medium, .large], selection: $presentationDetent)
                     .presentationDragIndicator(.visible)
                     .presentationBackgroundInteraction(.enabled)
                     .interactiveDismissDisabled()
                     
                 case .busStopDetailView:
                     BusStopDetailView(currentBusStop: $selectedBusStop)
-                        .presentationDetents([.fraction(0.15), .medium, .large])
+                        .presentationDetents([.medium], selection: $presentationDetent)
                         .presentationDragIndicator(.visible)
                         .presentationBackgroundInteraction(.enabled)
                         .onDisappear(perform: resetSheet)
@@ -92,6 +95,7 @@ struct MapView: View {
     private func resetSheet() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             isSheetShown = true
+            presentationDetent = .fraction(0.1)
             selectedSheet = .defaultView
         }
     }

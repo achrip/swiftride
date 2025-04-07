@@ -29,7 +29,10 @@ struct DefaultSheetView: View {
                                         .padding(.horizontal, 10)
                                         .onTapGesture {
                                             selectedBusStop = stop
-                                            selectedSheet = .busStopDetailView
+                                            withAnimation(.easeInOut(duration: 0.7)){
+                                                selectedSheet = .busStopDetailView
+                                                selectionDetent = .medium
+                                            }
                                         }
                                 }
                                 Spacer()

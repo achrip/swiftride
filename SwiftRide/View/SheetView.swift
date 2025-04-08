@@ -91,7 +91,6 @@ struct BusStopDetailView: View {
         }
         .padding(.top, 20)
         ScrollView {
-            // TODO: add sorting algorithm to sort the bus stops based on ETA
             BusCard(currentBusStop: $currentBusStop)
         }
     }
@@ -123,6 +122,7 @@ struct BusCard: View {
             }
             return (bus, Int(eta / 60))
         }
+        .sorted { $0.etaMinutes < $1.etaMinutes }
     }
 
     // Helper to get the next schedule for the current stop
@@ -182,7 +182,7 @@ struct BusRow: View {
                 Text(bus.name)
                     .font(.headline)
 
-                Text("Will be arriving in \(etaMinutes) minute\(etaMinutes == 1 ? "" : "s")")
+                Text("Will be arriving \(etaMinutes == 0 ? "soon" : "in \(etaMinutes)" ) minute\(etaMinutes == 1 ? "" : "s")")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }

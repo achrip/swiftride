@@ -1,12 +1,12 @@
 import Foundation 
 
 struct BusSchedule: Identifiable, Codable { 
-
     let id: UUID
     let busStopName: String
-    let busNumber: Int
+    let busNumber: String
     let timeOfArrival: String
-    let session: Int
+    let session: String
+    
 
     enum CodingKeys: String, CodingKey { 
         case busStopName = "bus_stop_name" 
@@ -19,10 +19,10 @@ struct BusSchedule: Identifiable, Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self) 
         id = UUID()
         busStopName = try container.decode(String.self, forKey: .busStopName)
-        busNumber = try container.decode(Int.self, forKey: .busNumber)
+        busNumber = try container.decode(String.self, forKey: .busNumber)
         timeOfArrival = try container.decode(String.self, forKey: .timeOfArrival)
-        session = try container.decode(Int.self, forKey: .session)
-    } 
+        session = try container.decode(String.self, forKey: .session)
+    }
 } 
 
 func loadBusSchedules() -> [BusSchedule] {

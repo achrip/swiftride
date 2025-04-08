@@ -26,6 +26,7 @@ struct BusRouteP4: View {
         Stop(name: "SML Plaza\nAnda di sini!", time: "17.15", status: .current),
         Stop(name: "The Breeze", time: "17.20", status: .upcoming)
     ]
+    private let busSchedule: [BusSchedule] = loadBusSchedules()
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -79,3 +80,47 @@ struct BusRouteP4: View {
 #Preview {
     BusRouteP4()
 }
+
+//import SwiftUI
+//
+//struct BusRouteP4: View {
+//    private let busSchedule: [BusSchedule] = loadBusSchedules()
+//    var filteredSchedules: [BusSchedule] {
+//        busSchedule.filter { $0.busStopName == "The Breeze" }
+//                   .sorted { $0.session < $1.session }
+//    }
+//    var body: some View {
+//        VStack(alignment: .leading, spacing: 10) {
+//            Text("Bus Schedule")
+//                .font(.title2)
+//                .bold()
+//                .padding(.bottom, 10)
+//            
+//            ForEach(filteredSchedules) { stop in
+//                HStack {
+//                    VStack(alignment: .leading) {
+//                        Text(stop.busStopName)
+//                            .font(.headline)
+//                        Text("Bus \(stop.busNumber)")
+//                            .font(.headline)
+//                        Text("Jam Tiba: \(stop.timeOfArrival)")
+//                            .font(.subheadline)
+//                        Text("Sesi: \(stop.session)")
+//                            .font(.caption)
+//                            .foregroundColor(.gray)
+//                    }
+//                    Spacer()
+//                }
+//                .padding()
+//                .background(Color.orange.opacity(0.1))
+//                .cornerRadius(8)
+//            }
+//        }
+//        .padding()
+//    }
+//}
+//
+//#Preview {
+//    BusRouteP4()
+//}
+

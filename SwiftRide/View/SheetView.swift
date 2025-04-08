@@ -97,44 +97,115 @@ struct BusStopDetailView: View {
 }
 
 struct BusCard: View {
-    @State var buses: [Bus] = loadBuses()
-    @State var busSchedules: [BusSchedule] = loadBusSchedules()
     @Binding var currentBusStop: BusStop
+
+    private let buses: [Bus]
+
+    init(currentBusStop: Binding<BusStop>) {
+        self._currentBusStop = currentBusStop
+
+        let rawBuses = loadBuses()
+        let schedules = loadBusSchedules()
+        self.buses = rawBuses.map { $0.assignSchedule(schedules: schedules) }
+    }
+
     
+    // Precomputed upcoming bus and ETA pairs
+    private var upcomingBuses: [(bus: Bus, etaMinutes: Int)] {
+        buses.compactMap { bus in
+            print("🔍 Checking bus: \(bus.name)")
+
+            guard let nextSchedule = nextSchedule(for: bus) else {
+                print("⛔️ No next schedule for \(bus.name)")
+                return nil
+            }
+
+            guard let eta = bus.getClosestArrivalTime(from: nextSchedule.timeOfArrival) else {
+                print("⛔️ Could not get ETA for \(bus.name)")
+                return nil
+            }
+
+            if eta <= 0 {
+                print("🕒 \(bus.name) already arrived or passed (\(eta) seconds ago)")
+                return nil
+            }
+
+            print("✅ Upcoming bus: \(bus.name), ETA: \(Int(eta / 60)) minutes")
+            return (bus, Int(eta / 60))
+        }
+    }
+
+    // Helper to get the next schedule for the current stop
+    private func nextSchedule(for bus: Bus) -> BusSchedule? {
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        formatter.locale = Locale(identifier: "en_US_POSIX") // Safe default
+        let calendar = Calendar.current
+
+        let matchingSchedules = bus.schedule
+            .filter { $0.busStopName == currentBusStop.name }
+            .compactMap { schedule -> (BusSchedule, Date)? in
+                guard let timeOnly = formatter.date(from: schedule.timeOfArrival) else {
+                    print("⚠️ Could not parse time: \(schedule.timeOfArrival)")
+                    return nil
+                }
+
+                // Merge "today" with the time from the schedule
+                var components = calendar.dateComponents([.year, .month, .day], from: now)
+                let timeComponents = calendar.dateComponents([.hour, .minute], from: timeOnly)
+                components.hour = timeComponents.hour
+                components.minute = timeComponents.minute
+
+                guard let fullDate = calendar.date(from: components) else { return nil }
+
+                return fullDate >= now ? (schedule, fullDate) : nil
+            }
+            .sorted { $0.1 < $1.1 }
+
+        if let next = matchingSchedules.first?.0 {
+            print("✅ Next upcoming schedule: \(next.timeOfArrival)")
+            return next
+        } else {
+            print("🚫 No upcoming schedule found for \(bus.name)")
+            return nil
+        }
+    }
+
     
     var body: some View {
-        VStack {
-            ForEach(buses) { bus in
-                ForEach(bus.schedule) { schedule in
-                    HStack {
-                        Image(systemName: "bus")
-                            .foregroundStyle(Color.orange)
-                            .font(.system(size: 40))
-                        VStack(alignment: .leading) {
-                            Text(bus.name)
-                                .font(.headline)
-    //                        Text("Bus No. \(bus.number)")
-    //                            .font(.caption)
-                            if let eta = bus.getClosestArrivalTime(from: schedule.timeOfArrival), eta > 0 {
-                               Text("Will be arriving in \(Int(eta / 60)) minutes")
-                            }
-                        }
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-    //                    if let diff = bus.getClosestArrivalTime(from: "14:04"), diff > 0 {
-    //                        print("Will be arriving in: \(Int(diff / 60))")
-    //                    } else {
-    //                        print("has passed")
-    //                    }
-                    }
-                }
+        VStack(alignment: .leading, spacing: 12) {
+            ForEach(upcomingBuses, id: \.bus.id) { pair in
+                BusRow(bus: pair.bus, etaMinutes: pair.etaMinutes)
             }
         }
-        .onAppear {
-            buses = buses.map { $0.assignSchedule(schedules: busSchedules) }
+        .padding()
+    }
+}
+
+struct BusRow: View {
+    let bus: Bus
+    let etaMinutes: Int
+
+    var body: some View {
+        HStack {
+            Image(systemName: "bus")
+                .foregroundStyle(Color.orange)
+                .font(.system(size: 40))
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(bus.name)
+                    .font(.headline)
+
+                Text("Will be arriving in \(etaMinutes) minute\(etaMinutes == 1 ? "" : "s")")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .contentShape(Rectangle())
+        .onTapGesture {
+            // Handle tap if needed
         }
     }
 }

@@ -98,6 +98,7 @@ struct BusStopDetailView: View {
 
 struct BusCard: View {
     @Binding var currentBusStop: BusStop
+    @State var timerTick: Date = Date()
 
     private let buses: [Bus]
 
@@ -112,7 +113,7 @@ struct BusCard: View {
     // Precomputed upcoming bus and ETA pairs
     private var upcomingBuses: [(bus: Bus, etaMinutes: Int)] {
         buses.compactMap { bus in
-            guard let nextSchedule = nextSchedule(for: bus),
+            guard let nextSchedule = nextSchedule(for: bus, now: timerTick),
                   let eta = bus.getClosestArrivalTime(from: nextSchedule.timeOfArrival) else {
                 return nil
             }
@@ -126,8 +127,7 @@ struct BusCard: View {
     }
 
     // Helper to get the next schedule for the current stop
-    private func nextSchedule(for bus: Bus) -> BusSchedule? {
-        let now = Date()
+    private func nextSchedule(for bus: Bus, now: Date) -> BusSchedule? {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         formatter.locale = Locale(identifier: "en_US_POSIX") // Safe default
@@ -165,6 +165,9 @@ struct BusCard: View {
             }
         }
         .padding()
+        .onReceive(Timer.publish(every: 5, on: .main, in: .common).autoconnect()) { now in
+            timerTick = now
+        }
     }
 }
 
@@ -182,7 +185,7 @@ struct BusRow: View {
                 Text(bus.name)
                     .font(.headline)
 
-                Text("Will be arriving \(etaMinutes == 0 ? "soon" : "in \(etaMinutes)" ) minute\(etaMinutes == 1 ? "" : "s")")
+                Text("Will be arriving \(etaMinutes == 0 ? "soon" : "in \(etaMinutes) \(etaMinutes == 1 ? "minute" : "minutes" )")")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }

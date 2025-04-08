@@ -22,6 +22,13 @@ struct BusStop: Identifiable, Decodable {
         coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         color = nil
     }
+    
+    init() {
+        self.id = UUID()
+        self.name = ""
+        self.coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+        self.color = nil
+    }
 }
 
 func loadBusStops() -> [BusStop] {

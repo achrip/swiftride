@@ -91,6 +91,7 @@ struct BusStopDetailView: View {
         }
         .padding(.top, 20)
         ScrollView {
+            // TODO: add sorting algorithm to sort the bus stops based on ETA
             BusCard(currentBusStop: $currentBusStop)
         }
     }
@@ -113,24 +114,14 @@ struct BusCard: View {
     // Precomputed upcoming bus and ETA pairs
     private var upcomingBuses: [(bus: Bus, etaMinutes: Int)] {
         buses.compactMap { bus in
-            print("🔍 Checking bus: \(bus.name)")
-
-            guard let nextSchedule = nextSchedule(for: bus) else {
-                print("⛔️ No next schedule for \(bus.name)")
-                return nil
-            }
-
-            guard let eta = bus.getClosestArrivalTime(from: nextSchedule.timeOfArrival) else {
-                print("⛔️ Could not get ETA for \(bus.name)")
+            guard let nextSchedule = nextSchedule(for: bus),
+                  let eta = bus.getClosestArrivalTime(from: nextSchedule.timeOfArrival) else {
                 return nil
             }
 
             if eta <= 0 {
-                print("🕒 \(bus.name) already arrived or passed (\(eta) seconds ago)")
                 return nil
             }
-
-            print("✅ Upcoming bus: \(bus.name), ETA: \(Int(eta / 60)) minutes")
             return (bus, Int(eta / 60))
         }
     }
@@ -147,7 +138,6 @@ struct BusCard: View {
             .filter { $0.busStopName == currentBusStop.name }
             .compactMap { schedule -> (BusSchedule, Date)? in
                 guard let timeOnly = formatter.date(from: schedule.timeOfArrival) else {
-                    print("⚠️ Could not parse time: \(schedule.timeOfArrival)")
                     return nil
                 }
 
@@ -163,11 +153,7 @@ struct BusCard: View {
             }
             .sorted { $0.1 < $1.1 }
 
-        if let next = matchingSchedules.first?.0 {
-            print("✅ Next upcoming schedule: \(next.timeOfArrival)")
-            return next
-        } else {
-            print("🚫 No upcoming schedule found for \(bus.name)")
+        if let next = matchingSchedules.first?.0 { return next } else {
             return nil
         }
     }

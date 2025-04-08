@@ -4,7 +4,8 @@ struct DefaultSheetView: View {
     @Binding var busStops: [BusStop]
     @Binding var searchText: String
     @Binding var selectionDetent: PresentationDetent
-    @Binding var selectedSheet: SheetContentType
+    @Binding var showDefaultSheet: Bool
+    @Binding var showDetailSheet: Bool
     @Binding var selectedBusStop: BusStop
     
     var body: some View {
@@ -29,8 +30,9 @@ struct DefaultSheetView: View {
                                         .padding(.horizontal, 10)
                                         .onTapGesture {
                                             selectedBusStop = stop
+                                            showDefaultSheet = false
                                             withAnimation(.easeInOut(duration: 0.7)){
-                                                selectedSheet = .busStopDetailView
+                                                showDetailSheet = true
                                                 selectionDetent = .medium
                                             }
                                         }
@@ -178,7 +180,7 @@ struct BusRow: View {
     var body: some View {
         HStack {
             Image(systemName: "bus")
-                .foregroundStyle(Color.orange)
+                .foregroundStyle(bus.color)
                 .font(.system(size: 40))
 
             VStack(alignment: .leading, spacing: 4) {

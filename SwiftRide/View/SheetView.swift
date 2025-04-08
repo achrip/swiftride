@@ -5,7 +5,11 @@ struct DefaultSheetView: View {
     @Binding var searchText: String
     @Binding var selectionDetent: PresentationDetent
     @Binding var selectedSheet: SheetContentType
+    @Binding var showDefaultSheet: Bool
+    @Binding var showStopDetailSheet: Bool
+    @Binding var showRouteDetailSheet: Bool
     @Binding var selectedBusStop: BusStop
+    @Binding var selectedBusNumber: Int
     
     var body: some View {
         SearchBar(searchText: $searchText, busStops: $busStops)
@@ -31,6 +35,7 @@ struct DefaultSheetView: View {
                                             selectedBusStop = stop
                                             withAnimation(.easeInOut(duration: 0.7)){
                                                 selectedSheet = .busStopDetailView
+                                                showStopDetailSheet = true
                                                 selectionDetent = .medium
                                             }
                                         }
@@ -82,6 +87,9 @@ struct SearchBar: View {
 
 struct BusStopDetailView: View {
     @Binding var currentBusStop: BusStop
+    @Binding var showRouteDetailSheet: Bool
+    @Binding var selectedBusNumber: Int
+    @Binding var selectedSheet: SheetContentType
     
     var body: some View {
         VStack {
@@ -92,23 +100,35 @@ struct BusStopDetailView: View {
         .padding(.top, 20)
         ScrollView {
             // TODO: add sorting algorithm to sort the bus stops based on ETA
-            BusCard(currentBusStop: $currentBusStop)
+            BusCard(
+                currentBusStop: $currentBusStop,
+                showRouteDetailSheet: $showRouteDetailSheet,
+                selectedBusNumber: $selectedBusNumber,
+                selectedSheet: $selectedSheet
+            )
         }
     }
 }
 
 struct BusCard: View {
     @Binding var currentBusStop: BusStop
+    @Binding var showRouteDetailSheet: Bool
+    @Binding var selectedBusNumber: Int
+    @Binding var selectedSheet: SheetContentType
+    @State var timerTick: Date = Date()
 
     private let buses: [Bus]
 
-    init(currentBusStop: Binding<BusStop>) {
-        self._currentBusStop = currentBusStop
+    init(currentBusStop: Binding<BusStop>, showRouteDetailSheet: Binding<Bool>, selectedBusNumber: Binding<Int>, selectedSheet: Binding<SheetContentType>) {
+            self._currentBusStop = currentBusStop
+            self._showRouteDetailSheet = showRouteDetailSheet
+            self._selectedBusNumber = selectedBusNumber
+            self._selectedSheet = selectedSheet
 
-        let rawBuses = loadBuses()
-        let schedules = loadBusSchedules()
-        self.buses = rawBuses.map { $0.assignSchedule(schedules: schedules) }
-    }
+            let rawBuses = loadBuses()
+            let schedules = loadBusSchedules()
+            self.buses = rawBuses.map { $0.assignSchedule(schedules: schedules) }
+        }
 
     // Precomputed upcoming bus and ETA pairs
     private var upcomingBuses: [(bus: Bus, etaMinutes: Int)] {
@@ -161,17 +181,26 @@ struct BusCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             ForEach(upcomingBuses, id: \.bus.id) { pair in
-                BusRow(bus: pair.bus, etaMinutes: pair.etaMinutes)
+                BusRow(bus: pair.bus, etaMinutes: pair.etaMinutes) { busNumber in
+                    selectedBusNumber = busNumber
+                    selectedSheet = .routeDetailView
+                    showRouteDetailSheet = true
+                }
             }
         }
         .padding()
+        .onAppear {
+                if showRouteDetailSheet {
+                    selectedSheet = .routeDetailView
+                }
+        }
     }
 }
 
 struct BusRow: View {
     let bus: Bus
     let etaMinutes: Int
-
+    let onTap: (Int) -> Void
     var body: some View {
         HStack {
             Image(systemName: "bus")
@@ -190,7 +219,7 @@ struct BusRow: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
         .onTapGesture {
-            // Handle tap if needed
+            onTap(bus.number)
         }
     }
 }

@@ -3,9 +3,9 @@ import Foundation
 struct BusSchedule: Identifiable, Codable { 
     let id: UUID
     let busStopName: String
-    let busNumber: String
+    let busNumber: Int
     let timeOfArrival: String
-    let session: String
+    let session: Int
     
 
     enum CodingKeys: String, CodingKey { 
@@ -19,9 +19,9 @@ struct BusSchedule: Identifiable, Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self) 
         id = UUID()
         busStopName = try container.decode(String.self, forKey: .busStopName)
-        busNumber = try container.decode(String.self, forKey: .busNumber)
+        busNumber = try container.decode(Int.self, forKey: .busNumber)
         timeOfArrival = try container.decode(String.self, forKey: .timeOfArrival)
-        session = try container.decode(String.self, forKey: .session)
+        session = try container.decode(Int.self, forKey: .session)
     }
 } 
 

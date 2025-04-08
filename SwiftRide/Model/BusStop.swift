@@ -2,7 +2,7 @@ import Foundation
 import CoreLocation
 import SwiftUI
 
-struct BusStop: Identifiable, Decodable{
+struct BusStop: Identifiable, Decodable {
     let id: UUID
     var name: String
     let coordinate: CLLocationCoordinate2D
@@ -21,6 +21,13 @@ struct BusStop: Identifiable, Decodable{
         let longitude = try container.decode(Double.self, forKey: .longitude)
         coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         color = nil
+    }
+    
+    init() {
+        self.id = UUID()
+        self.name = ""
+        self.coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
+        self.color = nil
     }
 }
 

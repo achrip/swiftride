@@ -91,6 +91,7 @@ struct BusStopDetailView: View {
         }
         .padding(.top, 20)
         ScrollView {
+            // TODO: add sorting algorithm to sort the bus stops based on ETA
             BusCard(currentBusStop: $currentBusStop)
         }
     }
@@ -113,8 +114,11 @@ struct BusCard: View {
     private var upcomingBuses: [(bus: Bus, etaMinutes: Int)] {
         buses.compactMap { bus in
             guard let nextSchedule = nextSchedule(for: bus),
-                  let eta = bus.getClosestArrivalTime(from: nextSchedule.timeOfArrival),
-                  eta > 0 else {
+                  let eta = bus.getClosestArrivalTime(from: nextSchedule.timeOfArrival) else {
+                return nil
+            }
+
+            if eta <= 0 {
                 return nil
             }
             return (bus, Int(eta / 60))
@@ -123,12 +127,37 @@ struct BusCard: View {
 
     // Helper to get the next schedule for the current stop
     private func nextSchedule(for bus: Bus) -> BusSchedule? {
-        bus.schedule
+        let now = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        formatter.locale = Locale(identifier: "en_US_POSIX") // Safe default
+        let calendar = Calendar.current
+
+        let matchingSchedules = bus.schedule
             .filter { $0.busStopName == currentBusStop.name }
-            .sorted { a, b in a.timeOfArrival < b.timeOfArrival }
-            .first
+            .compactMap { schedule -> (BusSchedule, Date)? in
+                guard let timeOnly = formatter.date(from: schedule.timeOfArrival) else {
+                    return nil
+                }
+
+                // Merge "today" with the time from the schedule
+                var components = calendar.dateComponents([.year, .month, .day], from: now)
+                let timeComponents = calendar.dateComponents([.hour, .minute], from: timeOnly)
+                components.hour = timeComponents.hour
+                components.minute = timeComponents.minute
+
+                guard let fullDate = calendar.date(from: components) else { return nil }
+
+                return fullDate >= now ? (schedule, fullDate) : nil
+            }
+            .sorted { $0.1 < $1.1 }
+
+        if let next = matchingSchedules.first?.0 { return next } else {
+            return nil
+        }
     }
 
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             ForEach(upcomingBuses, id: \.bus.id) { pair in

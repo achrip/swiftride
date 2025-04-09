@@ -79,9 +79,9 @@ struct MapView: View {
                     BusStopDetailView(currentBusStop: $selectedBusStop, showRouteDetailSheet: $showRouteDetailSheet,
                         selectedBusNumber: $selectedBusNumber,
                         selectedSheet: $selectedSheet)
-                        .presentationDetents([.medium], selection: $presentationDetent)
-                        .presentationDragIndicator(.visible)
-                        .presentationBackgroundInteraction(.enabled)
+                    .presentationDetents([.medium, .large])
+                    .presentationDragIndicator(.visible)
+                    .presentationBackgroundInteraction(.enabled)
                     
                 case .routeDetailView:
                     BusRoute(busNumber: selectedBusNumber)
@@ -95,9 +95,12 @@ struct MapView: View {
     
     private func resetSheet() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                        isSheetShown = true
-                        presentationDetent = .fraction(0.1)
-                        selectedSheet = .defaultView
+            isSheetShown = true
+            showDefaultSheet = true
+            showStopDetailSheet = false
+            showRouteDetailSheet = false
+            presentationDetent = .fraction(0.1)
+            selectedSheet = .defaultView
         }
     }
 }

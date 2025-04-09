@@ -21,7 +21,6 @@ struct BusRoute: View {
 
         let grouped = Dictionary(grouping: filtered, by: { $0.session })
         
-        print(grouped)
 
         // Find the session where the current time fits in the time range
         for (session, stops) in grouped {

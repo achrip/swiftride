@@ -194,9 +194,11 @@ struct BusCard: View {
         .padding()
 
         .onAppear {
-                if showRouteDetailSheet {
-                    selectedSheet = .routeDetailView
-                }
+
+            if showRouteDetailSheet {
+                selectedSheet = .routeDetailView
+            }
+        }
         .onReceive(Timer.publish(every: 5, on: .main, in: .common).autoconnect()) { now in
             timerTick = now
         }

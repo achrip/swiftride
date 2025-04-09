@@ -39,6 +39,7 @@ struct MapView: View {
                             .foregroundStyle(.teal)
                             .onTapGesture {
                                 selectedBusStop = stop
+                                showDefaultSheet = false
                                 withAnimation(.easeInOut(duration: 0.7)){
                                     selectedSheet = .busStopDetailView
                                     showStopDetailSheet = true

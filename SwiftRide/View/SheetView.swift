@@ -133,11 +133,10 @@ struct BusCard: View {
             self.buses = rawBuses.map { $0.assignSchedule(schedules: schedules) }
         }
 
-    
     // Precomputed upcoming bus and ETA pairs
     private var upcomingBuses: [(bus: Bus, etaMinutes: Int)] {
         buses.compactMap { bus in
-            guard let nextSchedule = nextSchedule(for: bus),
+            guard let nextSchedule = nextSchedule(for: bus, now: timerTick),
                   let eta = bus.getClosestArrivalTime(from: nextSchedule.timeOfArrival) else {
                 return nil
             }
@@ -147,11 +146,11 @@ struct BusCard: View {
             }
             return (bus, Int(eta / 60))
         }
+        .sorted { $0.etaMinutes < $1.etaMinutes }
     }
 
     // Helper to get the next schedule for the current stop
-    private func nextSchedule(for bus: Bus) -> BusSchedule? {
-        let now = Date()
+    private func nextSchedule(for bus: Bus, now: Date) -> BusSchedule? {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         formatter.locale = Locale(identifier: "en_US_POSIX") // Safe default
@@ -195,6 +194,7 @@ struct BusCard: View {
         .padding()
 
         .onAppear {
+
             if showRouteDetailSheet {
                 selectedSheet = .routeDetailView
             }
@@ -212,14 +212,14 @@ struct BusRow: View {
     var body: some View {
         HStack {
             Image(systemName: "bus")
-                .foregroundStyle(Color.orange)
+                .foregroundStyle(bus.color)
                 .font(.system(size: 40))
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(bus.name)
                     .font(.headline)
 
-                Text("Will be arriving in \(etaMinutes) minute\(etaMinutes == 1 ? "" : "s")")
+                Text("Will be arriving \(etaMinutes == 0 ? "soon" : "in \(etaMinutes) \(etaMinutes == 1 ? "minute" : "minutes" )")")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }

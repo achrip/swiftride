@@ -75,9 +75,6 @@ struct MapView: View {
                     .interactiveDismissDisabled()
                     
                 case .busStopDetailView:
-<<<<<<< HEAD
-                    BusStopDetailView(currentBusStop: $selectedBusStop)
-=======
                     BusStopDetailView(currentBusStop: $selectedBusStop, showRouteDetailSheet: $showRouteDetailSheet,
                         selectedBusNumber: $selectedBusNumber,
                         selectedSheet: $selectedSheet)
@@ -88,7 +85,6 @@ struct MapView: View {
                     
                 case .routeDetailView:
                     BusRoute(busNumber: selectedBusNumber)
->>>>>>> b7f395d (Merge pull request #2 from achrip/momo)
                         .presentationDetents([.medium], selection: $presentationDetent)
                         .presentationDragIndicator(.visible)
                         .presentationBackgroundInteraction(.enabled)

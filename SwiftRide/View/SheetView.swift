@@ -4,10 +4,12 @@ struct DefaultSheetView: View {
     @Binding var busStops: [BusStop]
     @Binding var searchText: String
     @Binding var selectionDetent: PresentationDetent
+
     @Binding var selectedSheet: SheetContentType
     @Binding var showDefaultSheet: Bool
     @Binding var showStopDetailSheet: Bool
     @Binding var showRouteDetailSheet: Bool
+
     @Binding var selectedBusStop: BusStop
     @Binding var selectedBusNumber: Int
     
@@ -33,6 +35,7 @@ struct DefaultSheetView: View {
                                         .padding(.horizontal, 10)
                                         .onTapGesture {
                                             selectedBusStop = stop
+                                            showDefaultSheet = false
                                             withAnimation(.easeInOut(duration: 0.7)){
                                                 selectedSheet = .busStopDetailView
                                                 showStopDetailSheet = true
@@ -99,7 +102,6 @@ struct BusStopDetailView: View {
         }
         .padding(.top, 20)
         ScrollView {
-            // TODO: add sorting algorithm to sort the bus stops based on ETA
             BusCard(
                 currentBusStop: $currentBusStop,
                 showRouteDetailSheet: $showRouteDetailSheet,
@@ -115,6 +117,7 @@ struct BusCard: View {
     @Binding var showRouteDetailSheet: Bool
     @Binding var selectedBusNumber: Int
     @Binding var selectedSheet: SheetContentType
+  
     @State var timerTick: Date = Date()
 
     private let buses: [Bus]
@@ -133,7 +136,7 @@ struct BusCard: View {
     // Precomputed upcoming bus and ETA pairs
     private var upcomingBuses: [(bus: Bus, etaMinutes: Int)] {
         buses.compactMap { bus in
-            guard let nextSchedule = nextSchedule(for: bus),
+            guard let nextSchedule = nextSchedule(for: bus, now: timerTick),
                   let eta = bus.getClosestArrivalTime(from: nextSchedule.timeOfArrival) else {
                 return nil
             }
@@ -143,11 +146,11 @@ struct BusCard: View {
             }
             return (bus, Int(eta / 60))
         }
+        .sorted { $0.etaMinutes < $1.etaMinutes }
     }
 
     // Helper to get the next schedule for the current stop
-    private func nextSchedule(for bus: Bus) -> BusSchedule? {
-        let now = Date()
+    private func nextSchedule(for bus: Bus, now: Date) -> BusSchedule? {
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         formatter.locale = Locale(identifier: "en_US_POSIX") // Safe default
@@ -189,10 +192,13 @@ struct BusCard: View {
             }
         }
         .padding()
+
         .onAppear {
                 if showRouteDetailSheet {
                     selectedSheet = .routeDetailView
                 }
+        .onReceive(Timer.publish(every: 5, on: .main, in: .common).autoconnect()) { now in
+            timerTick = now
         }
     }
 }
@@ -204,14 +210,14 @@ struct BusRow: View {
     var body: some View {
         HStack {
             Image(systemName: "bus")
-                .foregroundStyle(Color.orange)
+                .foregroundStyle(bus.color)
                 .font(.system(size: 40))
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(bus.name)
                     .font(.headline)
 
-                Text("Will be arriving in \(etaMinutes) minute\(etaMinutes == 1 ? "" : "s")")
+                Text("Will be arriving \(etaMinutes == 0 ? "soon" : "in \(etaMinutes) \(etaMinutes == 1 ? "minute" : "minutes" )")")
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }

@@ -18,8 +18,10 @@ struct MapView: View {
     @State var searchText: String = ""
     @State var isSheetShown: Bool = true
     @State var showDefaultSheet: Bool = true
+
     @State var showStopDetailSheet: Bool = false
     @State var showRouteDetailSheet: Bool = false
+  
     @State var presentationDetent: PresentationDetent = .fraction(0.1)
     @State var selectedSheet: SheetContentType = .defaultView
     
@@ -37,6 +39,7 @@ struct MapView: View {
                             .foregroundStyle(.teal)
                             .onTapGesture {
                                 selectedBusStop = stop
+                                showDefaultSheet = false
                                 withAnimation(.easeInOut(duration: 0.7)){
                                     selectedSheet = .busStopDetailView
                                     showStopDetailSheet = true
@@ -99,6 +102,7 @@ struct MapView: View {
                         presentationDetent = .fraction(0.1)
                         selectedSheet = .defaultView
                     }
+
         }
     }
 }

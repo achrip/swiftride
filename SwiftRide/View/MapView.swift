@@ -30,7 +30,7 @@ struct MapView: View {
     @State var selectedBusNumber: Int = 0
     
     var body: some View {
-        NavigationStack {
+        ZStack {
             Map(position: $defaultPosition) {
                 UserAnnotation()
                 ForEach(busStops) { stop in
@@ -82,14 +82,12 @@ struct MapView: View {
                         .presentationDetents([.medium], selection: $presentationDetent)
                         .presentationDragIndicator(.visible)
                         .presentationBackgroundInteraction(.enabled)
-                        .onDisappear(perform: resetSheet)
                     
                 case .routeDetailView:
                     BusRoute(busNumber: selectedBusNumber)
-                        .presentationDetents([.medium], selection: $presentationDetent)
+                        .presentationDetents([.large])
                         .presentationDragIndicator(.visible)
                         .presentationBackgroundInteraction(.enabled)
-                        .onDisappear(perform: resetSheet)
                 }
             }
         }
@@ -97,12 +95,9 @@ struct MapView: View {
     
     private func resetSheet() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            if selectedSheet != .routeDetailView {
                         isSheetShown = true
                         presentationDetent = .fraction(0.1)
                         selectedSheet = .defaultView
-                    }
-
         }
     }
 }

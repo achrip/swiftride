@@ -68,9 +68,9 @@ struct BusRoute: View {
 
     private func description(for status: StopStatus) -> String {
         switch status {
-        case .passed: return "Bus sudah melewati Halte ini."
-        case .current: return "Bus sudah sampai di Halte ini."
-        case .upcoming: return "Bus sedang dalam perjalanan."
+        case .passed: return "The bus has already passed this stop."
+        case .current: return "The bus is currently at this stop."
+        case .upcoming: return "The bus will pass this stop soon."
         }
     }
 
@@ -79,7 +79,7 @@ struct BusRoute: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading, spacing: 20) {
                     if currentSessionSchedule.isEmpty {
-                        Text("Tidak ada jadwal saat ini.")
+                        Text("There is no running session currently.")
                             .foregroundStyle(.gray)
                             .padding()
                     } else {

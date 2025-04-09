@@ -5,6 +5,7 @@ import MapKit
 enum SheetContentType {
     case defaultView
     case busStopDetailView
+    case routeDetailView
 }
 
 struct MapView: View {
@@ -17,13 +18,16 @@ struct MapView: View {
     @State var searchText: String = ""
     @State var isSheetShown: Bool = true
     @State var showDefaultSheet: Bool = true
-    @State var showDetailSheet: Bool = false
-//    @State var showBusStopDetail: Bool = false
+
+    @State var showStopDetailSheet: Bool = false
+    @State var showRouteDetailSheet: Bool = false
+  
     @State var presentationDetent: PresentationDetent = .fraction(0.1)
     @State var selectedSheet: SheetContentType = .defaultView
     
     @State var busStops: [BusStop] = loadBusStops()
     @State var selectedBusStop: BusStop = BusStop()
+    @State var selectedBusNumber: Int = 0
     
     var body: some View {
         NavigationStack {
@@ -37,16 +41,10 @@ struct MapView: View {
                                 selectedBusStop = stop
                                 showDefaultSheet = false
                                 withAnimation(.easeInOut(duration: 0.7)){
-                                    showDetailSheet = true
+                                    selectedSheet = .busStopDetailView
+                                    showStopDetailSheet = true
                                     presentationDetent = .medium
                                 }
-//
-//                                if isSheetShown {
-//                                    restoreSheet = isSheetShown
-//                                    isSheetShown = false
-//                                }
-//                                
-//                                showBusStopDetail = true
                             }
                     }
                 }
@@ -57,46 +55,54 @@ struct MapView: View {
             .mapControls {
                 MapUserLocationButton()
             }
-//            .navigationDestination(isPresented: $showBusStopDetail)
-//            {
-//                BusStopDetailView(currentBusStop: $selectedBusStop)
-//                    .onDisappear() {
-//                        showBusStopDetail = false
-//                        
-//                        if restoreSheet {
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-//                                isSheetShown = true
-//                                restoreSheet = false
-//                            }
-//                        }
-//                    }
-//            }
             .toolbar(.hidden, for: .navigationBar)
-            .sheet(isPresented: $showDefaultSheet) {
-                DefaultSheetView(busStops: $busStops, searchText: $searchText,
-                                 selectionDetent: $presentationDetent,
-                                 showDefaultSheet: $showDefaultSheet,
-                                 showDetailSheet: $showDetailSheet,
-                                 selectedBusStop: $selectedBusStop)
-                .presentationDetents([.fraction(0.1), .medium, .large], selection: $presentationDetent)
-                .presentationDragIndicator(.visible)
-                .presentationBackgroundInteraction(.enabled)
-                .interactiveDismissDisabled()
-                    
-            }
-            .sheet(isPresented: $showDetailSheet, onDismiss: resetSheet) {
-                BusStopDetailView(currentBusStop: $selectedBusStop)
-                    .presentationDetents([.fraction(0.1), .medium], selection: $presentationDetent)
+            .sheet(isPresented: $isSheetShown, onDismiss: resetSheet) {
+                switch selectedSheet {
+                    case .defaultView:
+                    DefaultSheetView(
+                        busStops: $busStops,
+                        searchText: $searchText,
+                        selectionDetent: $presentationDetent,
+                        selectedSheet: $selectedSheet,
+                        showDefaultSheet: $showDefaultSheet,
+                        showStopDetailSheet: $showStopDetailSheet,
+                        showRouteDetailSheet: $showRouteDetailSheet,
+                        selectedBusStop: $selectedBusStop,
+                        selectedBusNumber: $selectedBusNumber
+                    )
+                    .presentationDetents([.fraction(0.1), .medium, .large], selection: $presentationDetent)
                     .presentationDragIndicator(.visible)
                     .presentationBackgroundInteraction(.enabled)
+                    .interactiveDismissDisabled()
+                    
+                case .busStopDetailView:
+                    BusStopDetailView(currentBusStop: $selectedBusStop, showRouteDetailSheet: $showRouteDetailSheet,
+                        selectedBusNumber: $selectedBusNumber,
+                        selectedSheet: $selectedSheet)
+                        .presentationDetents([.medium], selection: $presentationDetent)
+                        .presentationDragIndicator(.visible)
+                        .presentationBackgroundInteraction(.enabled)
+                        .onDisappear(perform: resetSheet)
+                    
+                case .routeDetailView:
+                    BusRoute(busNumber: selectedBusNumber)
+                        .presentationDetents([.medium], selection: $presentationDetent)
+                        .presentationDragIndicator(.visible)
+                        .presentationBackgroundInteraction(.enabled)
+                        .onDisappear(perform: resetSheet)
+                }
             }
         }
     }
     
     private func resetSheet() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            presentationDetent = .fraction(0.1)
-            showDefaultSheet = true
+            if selectedSheet != .routeDetailView {
+                        isSheetShown = true
+                        presentationDetent = .fraction(0.1)
+                        selectedSheet = .defaultView
+                    }
+
         }
     }
 }

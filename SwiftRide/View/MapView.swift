@@ -70,7 +70,7 @@ struct MapView: View {
                         selectedBusStop: $selectedBusStop,
                         selectedBusNumber: $selectedBusNumber
                     )
-                    .presentationDetents([.fraction(0.1), .medium, .large], selection: $presentationDetent)
+                    .presentationDetents([.fraction(0.1), .medium ], selection: $presentationDetent)
                     .presentationDragIndicator(.visible)
                     .presentationBackgroundInteraction(.enabled)
                     .interactiveDismissDisabled()
@@ -79,13 +79,13 @@ struct MapView: View {
                     BusStopDetailView(currentBusStop: $selectedBusStop, showRouteDetailSheet: $showRouteDetailSheet,
                         selectedBusNumber: $selectedBusNumber,
                         selectedSheet: $selectedSheet)
-                    .presentationDetents([.medium, .large])
+                    .presentationDetents([.medium, .fraction(0.99)])
                     .presentationDragIndicator(.visible)
                     .presentationBackgroundInteraction(.enabled)
                     
                 case .routeDetailView:
                     BusRoute(busNumber: selectedBusNumber)
-                        .presentationDetents([.large])
+                        .presentationDetents([.fraction(0.99)])
                         .presentationDragIndicator(.visible)
                         .presentationBackgroundInteraction(.enabled)
                 }

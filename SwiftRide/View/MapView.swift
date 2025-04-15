@@ -30,7 +30,7 @@ struct MapView: View {
     @State var selectedBusNumber: Int = 0
     
     var body: some View {
-        NavigationStack {
+        ZStack {
             Map(position: $defaultPosition) {
                 UserAnnotation()
                 ForEach(busStops) { stop in
@@ -70,7 +70,7 @@ struct MapView: View {
                         selectedBusStop: $selectedBusStop,
                         selectedBusNumber: $selectedBusNumber
                     )
-                    .presentationDetents([.fraction(0.1), .medium, .large], selection: $presentationDetent)
+                    .presentationDetents([.fraction(0.1), .medium ], selection: $presentationDetent)
                     .presentationDragIndicator(.visible)
                     .presentationBackgroundInteraction(.enabled)
                     .interactiveDismissDisabled()
@@ -79,17 +79,15 @@ struct MapView: View {
                     BusStopDetailView(currentBusStop: $selectedBusStop, showRouteDetailSheet: $showRouteDetailSheet,
                         selectedBusNumber: $selectedBusNumber,
                         selectedSheet: $selectedSheet)
-                        .presentationDetents([.medium], selection: $presentationDetent)
-                        .presentationDragIndicator(.visible)
-                        .presentationBackgroundInteraction(.enabled)
-                        .onDisappear(perform: resetSheet)
+                    .presentationDetents([.medium, .fraction(0.99)])
+                    .presentationDragIndicator(.visible)
+                    .presentationBackgroundInteraction(.enabled)
                     
                 case .routeDetailView:
                     BusRoute(busNumber: selectedBusNumber)
-                        .presentationDetents([.medium], selection: $presentationDetent)
+                        .presentationDetents([.fraction(0.99)])
                         .presentationDragIndicator(.visible)
                         .presentationBackgroundInteraction(.enabled)
-                        .onDisappear(perform: resetSheet)
                 }
             }
         }
@@ -97,12 +95,12 @@ struct MapView: View {
     
     private func resetSheet() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            if selectedSheet != .routeDetailView {
-                        isSheetShown = true
-                        presentationDetent = .fraction(0.1)
-                        selectedSheet = .defaultView
-                    }
-
+            isSheetShown = true
+            showDefaultSheet = true
+            showStopDetailSheet = false
+            showRouteDetailSheet = false
+            presentationDetent = .fraction(0.1)
+            selectedSheet = .defaultView
         }
     }
 }

@@ -192,9 +192,7 @@ struct BusCard: View {
             }
         }
         .padding()
-
         .onAppear {
-
             if showRouteDetailSheet {
                 selectedSheet = .routeDetailView
             }

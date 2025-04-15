@@ -6,12 +6,12 @@ struct DefaultSheetView: View {
     @Binding var selectionDetent: PresentationDetent
 
     @Binding var selectedSheet: SheetContentType
-    @Binding var showDefaultSheet: Bool
-    @Binding var showStopDetailSheet: Bool
-    @Binding var showRouteDetailSheet: Bool
+//    @Binding var showDefaultSheet: Bool
+//    @Binding var showStopDetailSheet: Bool
+//    @Binding var showRouteDetailSheet: Bool
 
     @Binding var selectedBusStop: BusStop
-    @Binding var selectedBusNumber: Int
+//    @Binding var selectedBusNumber: Int
     
     var body: some View {
         SearchBar(searchText: $searchText, busStops: $busStops)
@@ -35,10 +35,10 @@ struct DefaultSheetView: View {
                                         .padding(.horizontal, 10)
                                         .onTapGesture {
                                             selectedBusStop = stop
-                                            showDefaultSheet = false
+//                                            showDefaultSheet = false
                                             withAnimation(.easeInOut(duration: 0.7)){
                                                 selectedSheet = .busStopDetailView
-                                                showStopDetailSheet = true
+//                                                showStopDetailSheet = true
                                                 selectionDetent = .medium
                                             }
                                         }
@@ -90,8 +90,8 @@ struct SearchBar: View {
 
 struct BusStopDetailView: View {
     @Binding var currentBusStop: BusStop
-    @Binding var showRouteDetailSheet: Bool
-    @Binding var selectedBusNumber: Int
+//    @Binding var showRouteDetailSheet: Bool
+//    @Binding var selectedBusNumber: Int
     @Binding var selectedSheet: SheetContentType
     
     var body: some View {
@@ -104,8 +104,8 @@ struct BusStopDetailView: View {
         ScrollView {
             BusCard(
                 currentBusStop: $currentBusStop,
-                showRouteDetailSheet: $showRouteDetailSheet,
-                selectedBusNumber: $selectedBusNumber,
+//                showRouteDetailSheet: $showRouteDetailSheet,
+//                selectedBusNumber: $selectedBusNumber,
                 selectedSheet: $selectedSheet
             )
         }
@@ -114,20 +114,21 @@ struct BusStopDetailView: View {
 
 struct BusCard: View {
     @Binding var currentBusStop: BusStop
-    @Binding var showRouteDetailSheet: Bool
-    @Binding var selectedBusNumber: Int
+//    @Binding var showRouteDetailSheet: Bool
+//    @Binding var selectedBusNumber: Int
     @Binding var selectedSheet: SheetContentType
   
     @State var timerTick: Date = Date()
 
     private let buses: [Bus]
 
-    init(currentBusStop: Binding<BusStop>, showRouteDetailSheet: Binding<Bool>, selectedBusNumber: Binding<Int>, selectedSheet: Binding<SheetContentType>) {
-            self._currentBusStop = currentBusStop
-            self._showRouteDetailSheet = showRouteDetailSheet
-            self._selectedBusNumber = selectedBusNumber
-            self._selectedSheet = selectedSheet
-
+    //    init(currentBusStop: Binding<BusStop>, showRouteDetailSheet: Binding<Bool>, selectedBusNumber: Binding<Int>, selectedSheet: Binding<SheetContentType>) {
+    init(currentBusStop: Binding<BusStop>, selectedSheet: Binding<SheetContentType>) {
+        self._currentBusStop = currentBusStop
+        self._selectedSheet = selectedSheet
+        //            self._showRouteDetailSheet = showRouteDetailSheet
+        //            self._selectedBusNumber = selectedBusNumber
+        
             let rawBuses = loadBuses()
             let schedules = loadBusSchedules()
             self.buses = rawBuses.map { $0.assignSchedule(schedules: schedules) }
@@ -185,18 +186,18 @@ struct BusCard: View {
         VStack(alignment: .leading, spacing: 12) {
             ForEach(upcomingBuses, id: \.bus.id) { pair in
                 BusRow(bus: pair.bus, etaMinutes: pair.etaMinutes) { busNumber in
-                    selectedBusNumber = busNumber
+//                    selectedBusNumber = busNumber
                     selectedSheet = .routeDetailView
-                    showRouteDetailSheet = true
+//                    showRouteDetailSheet = true
                 }
             }
         }
         .padding()
-        .onAppear {
-            if showRouteDetailSheet {
-                selectedSheet = .routeDetailView
-            }
-        }
+//        .onAppear {
+//            if showRouteDetailSheet {
+//                selectedSheet = .routeDetailView
+//            }
+//        }
         .onReceive(Timer.publish(every: 5, on: .main, in: .common).autoconnect()) { now in
             timerTick = now
         }

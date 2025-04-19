@@ -50,7 +50,7 @@ struct MapView: View {
             }
             .toolbar(.hidden, for: .navigationBar)
             .sheet(isPresented: isSheetActive(for: selectedSheet, matching: .defaultView), onDismiss: resetSheet) {
-                DefaultSheetView(
+                BaseSheetView(
                     busStops: $busStops,
                     searchText: $searchText,
                     selectionDetent: $presentationDetent,

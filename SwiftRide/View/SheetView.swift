@@ -27,23 +27,23 @@ struct DefaultSheetView: View {
                     ForEach(busStops) { stop in
                         if stop.name.localizedCaseInsensitiveContains(searchText) || searchText.isEmpty {
                             HStack {
-                                Circle()
+                                Image(systemName: "bus")
                                     .frame(width: 30, height: 30)
                                     .padding(.horizontal, 10)
                                 VStack(alignment: .leading) {
                                     Text(stop.name)
                                         .padding(.horizontal, 10)
-                                        .onTapGesture {
-                                            selectedBusStop = stop
-                                            showDefaultSheet = false
-                                            withAnimation(.easeInOut(duration: 0.7)){
-                                                selectedSheet = .busStopDetailView
-                                                showStopDetailSheet = true
-                                                selectionDetent = .medium
-                                            }
-                                        }
                                 }
                                 Spacer()
+                            }
+                            .onTapGesture {
+                                selectedBusStop = stop
+                                showDefaultSheet = false
+                                withAnimation(.easeInOut(duration: 0.7)){
+                                    selectedSheet = .busStopDetailView
+                                    showStopDetailSheet = true
+                                    selectionDetent = .medium
+                                }
                             }
                         }
                     }

@@ -9,11 +9,30 @@ enum SheetContentType {
 }
 
 struct MapView: View {
-    @State var defaultPosition =  MapCameraPosition.region(MKCoordinateRegion(
+    @State private var defaultRegion = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: -6.302793115915458, longitude: 106.65204508592274),
-        latitudinalMeters: CLLocationDistance(1000),
-        longitudinalMeters: CLLocationDistance(1000)
-    ))
+        latitudinalMeters: 1000,
+        longitudinalMeters: 1000
+    )
+
+    @State private var defaultPosition: MapCameraPosition = .region(
+        MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: -6.302793115915458, longitude: 106.65204508592274),
+            latitudinalMeters: 1000,
+            longitudinalMeters: 1000
+        )
+    )
+
+    @State private var mapBounds = MapCameraBounds(
+        centerCoordinateBounds: MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: -6.302793115915458, longitude: 106.65204508592274),
+            latitudinalMeters: 1500,
+            longitudinalMeters: 1500
+        ),
+        minimumDistance: 1,
+        maximumDistance: 50 * 1000
+    )
+
     
     @State var searchText: String = ""
     @State var isSheetShown: Bool = true
@@ -32,7 +51,7 @@ struct MapView: View {
     
     var body: some View {
         ZStack {
-            Map(position: $defaultPosition) {
+            Map(position: $defaultPosition, bounds: mapBounds) {
                 UserAnnotation()
                 ForEach(busStops) { stop in
                     Annotation(stop.name, coordinate: stop.coordinate) {

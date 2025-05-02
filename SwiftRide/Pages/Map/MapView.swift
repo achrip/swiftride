@@ -13,6 +13,7 @@ struct MapView: View {
     let region: MKCoordinateRegion
     let boundaries: MapCameraBounds
 
+    @State var isOverlayShown: Bool = false
     @Query var stops: [Stop]
 
     init() {
@@ -50,6 +51,13 @@ struct MapView: View {
                 MapUserLocationButton()
             }
             .toolbar(.hidden, for: .navigationBar)
+            .sheet(isPresented: .constant(true)) {
+                BaseSheetView()
+                    .presentationBackgroundInteraction(.enabled)
+                    .presentationDetents([.fraction(0.1), .medium, .fraction(0.9)])
+                    .presentationDragIndicator(.visible)
+                    .interactiveDismissDisabled()
+            }
         }
     }
 }

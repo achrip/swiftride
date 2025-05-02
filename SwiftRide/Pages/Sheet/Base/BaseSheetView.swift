@@ -1,50 +1,69 @@
+import SwiftData
 import SwiftUI
 
 struct BaseSheetView: View {
-    @Binding var busStops: [BusStop]
-    @Binding var searchText: String
-    @Binding var selectionDetent: PresentationDetent
+    @State private var selectedStop: Stop
+    @State private var searchText: String
+    @State private var showSheet: Bool
 
-    @Binding var selectedSheet: SheetContentType
+    @Query var stops: [Stop]
 
-    @Binding var selectedBusStop: BusStop
-    
+    init() {
+        self.searchText = ""
+        self.selectedStop = .init(name: "", latitude: 0, longitude: 0)
+        self.showSheet = false
+    }
+
     var body: some View {
-        SearchBar(searchText: $searchText, busStops: $busStops)
-        ScrollView {
+        VStack {
+            SearchBar(searchText: $searchText)
             switch searchText {
             case "":
-                Text("Nearest Bus Stops...?")
-                Text("Still cooking... 🍳")
-                Text("")
-                
-            default:
-                VStack(spacing: 10) {
-                    ForEach(busStops) { stop in
-                        if stop.name.localizedCaseInsensitiveContains(searchText) || searchText.isEmpty {
-                            HStack {
-                                Circle()
-                                    .frame(width: 30, height: 30)
-                                    .padding(.horizontal, 10)
-                                VStack(alignment: .leading) {
-                                    Text(stop.name)
-                                        .padding(.horizontal, 10)
-                                        .onTapGesture {
-                                            selectedBusStop = stop
-                                            withAnimation(.easeInOut(duration: 0.7)){
-                                                selectedSheet = .busStopDetailView
-                                                selectionDetent = .medium
-                                            }
-                                        }
-                                }
-                                Spacer()
-                            }
-                        }
-                    }
-                    .padding()
+                VStack {
                 }
+
+            default:
+                List(
+                    stops.filter { $0.name.localizedCaseInsensitiveContains(searchText) }, id: \.id
+                ) { stop in
+                    SheetItemCard(title: stop.name)
+                        .contentShape(Rectangle())
+                        .onTapGesture {
+                            selectedStop = stop
+                            showSheet.toggle()
+                        }
+                }
+                .listStyle(PlainListStyle())
             }
+
+            Spacer()
+        }
+        .sheet(isPresented: $showSheet) {
+            StopView(selectedStop: $selectedStop)
+                .presentationDragIndicator(.visible)
+                .presentationDetents([.fraction(0.6), .fraction(0.9)])
+
         }
     }
 }
 
+struct SheetItemCard: View {
+    let title: String
+
+    var body: some View {
+        HStack {
+            Circle()
+                .frame(width: 30, height: 30)
+                .padding(.horizontal, 10)
+            VStack(alignment: .leading) {
+                Text(title)
+                    .padding(.horizontal, 10)
+            }
+            Spacer()
+        }
+    }
+}
+
+#Preview {
+    BaseSheetView()
+}

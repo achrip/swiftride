@@ -2,17 +2,16 @@ import SwiftUI
 
 struct SearchBar: View {
     @Binding var searchText: String
-    @Binding var busStops: [BusStop]
     
     var body: some View {
-        VStack (spacing: 10) {
+        VStack(spacing: 10) {
             HStack {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.gray)
-                
+
                 TextField("Search Bus Stop", text: $searchText)
                     .textFieldStyle(PlainTextFieldStyle())
-                
+
                 if !searchText.isEmpty {
                     Button {
                         searchText = ""
@@ -20,7 +19,7 @@ struct SearchBar: View {
                         Image(systemName: "xmark.circle.fill")
                             .foregroundColor(.gray)
                     }
-                    
+
                 }
             }
             .padding()
@@ -30,6 +29,9 @@ struct SearchBar: View {
             .padding(.horizontal)
             .padding(.top, 25)
         }
-        .frame( alignment: .top)
     }
+}
+
+#Preview {
+    SearchBar(searchText: .constant(""))
 }

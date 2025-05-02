@@ -2,7 +2,12 @@ import MapKit
 import SwiftUI
 
 struct StopAnnotation: View {
+    let stop: Stop
     @State private var isSelected: Bool = false
+
+    init() {
+        self.stop = Stop(name: "", latitude: 0, longitude: 0)
+    }
 
     var body: some View {
         VStack {

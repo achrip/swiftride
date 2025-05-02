@@ -91,24 +91,46 @@ struct SearchBar: View {
 struct BusStopDetailView: View {
     @Binding var currentBusStop: BusStop
     @Binding var showRouteDetailSheet: Bool
+    @Binding var showStopDetailSheet: Bool
     @Binding var selectedBusNumber: Int
     @Binding var selectedSheet: SheetContentType
-    
+
+    @Environment(\.dismiss) private var dismiss
+
     var body: some View {
         VStack {
-            TitleCard(title: $currentBusStop.name)
+            HStack {
+                TitleCard(title: $currentBusStop.name)
+                Spacer()
+                Button {
+                    selectedSheet = .defaultView
+                    currentBusStop = BusStop()
+                    showStopDetailSheet = false
+                    dismiss()
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .resizable()
+                        .frame(width: 24, height: 24)
+                        .foregroundColor(.gray)
+                        .padding()
+                }
+            }
+
             Text("Available Buses")
-                .font(.title.bold())
+                .font(.title3.bold())
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 20)
+
+            ScrollView {
+                BusCard(
+                    currentBusStop: $currentBusStop,
+                    showRouteDetailSheet: $showRouteDetailSheet,
+                    selectedBusNumber: $selectedBusNumber,
+                    selectedSheet: $selectedSheet
+                )
+            }
         }
         .padding(.top, 20)
-        ScrollView {
-            BusCard(
-                currentBusStop: $currentBusStop,
-                showRouteDetailSheet: $showRouteDetailSheet,
-                selectedBusNumber: $selectedBusNumber,
-                selectedSheet: $selectedSheet
-            )
-        }
     }
 }
 
@@ -183,16 +205,22 @@ struct BusCard: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
-            ForEach(upcomingBuses, id: \.bus.id) { pair in
-                BusRow(bus: pair.bus, etaMinutes: pair.etaMinutes) { busNumber in
-                    selectedBusNumber = busNumber
-                    selectedSheet = .routeDetailView
-                    showRouteDetailSheet = true
+            if upcomingBuses.isEmpty {
+                Text("No Bus Available For Now")
+                    .font(.title2)
+                    .foregroundColor(.secondary)
+                    .padding(.top, 8)
+            } else {
+                ForEach(upcomingBuses, id: \.bus.id) { pair in
+                    BusRow(bus: pair.bus, etaMinutes: pair.etaMinutes) { busNumber in
+                        selectedBusNumber = busNumber
+                        selectedSheet = .routeDetailView
+                        showRouteDetailSheet = true
+                    }
                 }
             }
         }
         .padding()
-
         .onAppear {
             if showRouteDetailSheet {
                 selectedSheet = .routeDetailView
@@ -237,9 +265,7 @@ struct TitleCard: View {
     var body: some View {
         Text(title)
             .font(.title.bold())
-            .frame(maxWidth: .infinity, alignment: .center)
-            .padding(.vertical, 15)
-            .background(Color(.systemGray6))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 20)
     }
 }

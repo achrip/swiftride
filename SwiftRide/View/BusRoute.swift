@@ -8,7 +8,7 @@ struct BusRoute: View {
     private let busSchedule: [BusSchedule] = loadBusSchedules()
     let busNumber: Int
 
-    // ✅ Filtered to only include the current session
+    // Filtered to only include the current session
     private var currentSessionSchedule: [(session: Int, stops: [BusSchedule])] {
         let calendar = Calendar.current
         let now = Date()

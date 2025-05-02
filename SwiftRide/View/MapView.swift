@@ -17,6 +17,7 @@ struct MapView: View {
     
     @State var searchText: String = ""
     @State var isSheetShown: Bool = true
+    @State var isSelected: Bool = false
     @State var showDefaultSheet: Bool = true
 
     @State var showStopDetailSheet: Bool = false
@@ -35,15 +36,29 @@ struct MapView: View {
                 UserAnnotation()
                 ForEach(busStops) { stop in
                     Annotation(stop.name, coordinate: stop.coordinate) {
-                        Image(systemName: "mappin.circle.fill")
-                            .foregroundStyle(.teal)
+                        StopAnnotation(isSelected: selectedBusStop.id == stop.id)
                             .onTapGesture {
-                                selectedBusStop = stop
-                                showDefaultSheet = false
-                                withAnimation(.easeInOut(duration: 0.7)){
-                                    selectedSheet = .busStopDetailView
-                                    showStopDetailSheet = true
-                                    presentationDetent = .medium
+                                if selectedBusStop.id == stop.id {
+                                    selectedBusStop = BusStop()
+                                    selectedSheet = .defaultView
+                                    showStopDetailSheet = false
+                                    presentationDetent = .fraction(0.1)
+                                    showDefaultSheet = true
+                                } else {
+                                    selectedBusStop = stop
+                                    defaultPosition = .region(
+                                        MKCoordinateRegion(
+                                            center: stop.coordinate,
+                                            latitudinalMeters: 1000,
+                                            longitudinalMeters: 1000
+                                        )
+                                    )
+                                    showDefaultSheet = false
+                                    withAnimation(.interpolatingSpring(stiffness: 300, damping: 10)) {
+                                        selectedSheet = .busStopDetailView
+                                        showStopDetailSheet = true
+                                        presentationDetent = .medium
+                                    }
                                 }
                             }
                     }
@@ -76,10 +91,11 @@ struct MapView: View {
                     .interactiveDismissDisabled()
                     
                 case .busStopDetailView:
-                    BusStopDetailView(currentBusStop: $selectedBusStop, showRouteDetailSheet: $showRouteDetailSheet,
+                    BusStopDetailView(currentBusStop: $selectedBusStop, showRouteDetailSheet: $showRouteDetailSheet, showStopDetailSheet: $showStopDetailSheet,
                         selectedBusNumber: $selectedBusNumber,
-                        selectedSheet: $selectedSheet)
-                    .presentationDetents([.medium, .fraction(0.99)])
+                        selectedSheet: $selectedSheet
+                    )
+                    .presentationDetents([.fraction(0.35), .fraction(0.99)])
                     .presentationDragIndicator(.visible)
                     .presentationBackgroundInteraction(.enabled)
                     

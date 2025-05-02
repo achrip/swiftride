@@ -23,6 +23,7 @@ struct StopAnnotation: View {
                     .frame(width: 25, height: 25)
             }
             Image(systemName: "arrowtriangle.down.fill")
+                .foregroundColor(.black)
                 .font(.system(size: 10, weight: .black))
                 .offset(x: 0, y: -5)
         }

@@ -92,7 +92,7 @@ struct MapView: View {
                         busStops: $busStops,
                         searchText: $searchText,
                         selectionDetent: $presentationDetent,
-                        selectedSheet: $selectedSheet,
+                        defaultPosition: $defaultPosition, selectedSheet: $selectedSheet,
                         showDefaultSheet: $showDefaultSheet,
                         showStopDetailSheet: $showStopDetailSheet,
                         showRouteDetailSheet: $showRouteDetailSheet,

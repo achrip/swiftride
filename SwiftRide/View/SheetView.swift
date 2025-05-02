@@ -1,9 +1,11 @@
+import MapKit
 import SwiftUI
 
 struct DefaultSheetView: View {
     @Binding var busStops: [BusStop]
     @Binding var searchText: String
     @Binding var selectionDetent: PresentationDetent
+    @Binding var defaultPosition: MapCameraPosition
 
     @Binding var selectedSheet: SheetContentType
     @Binding var showDefaultSheet: Bool
@@ -38,6 +40,14 @@ struct DefaultSheetView: View {
                             }
                             .onTapGesture {
                                 selectedBusStop = stop
+                                defaultPosition = .region(
+                                    MKCoordinateRegion(
+                                        center: stop.coordinate,
+                                        latitudinalMeters: 1000,
+                                        longitudinalMeters: 1000
+                                    )
+                                )
+
                                 showDefaultSheet = false
                                 withAnimation(.easeInOut(duration: 0.7)){
                                     selectedSheet = .busStopDetailView

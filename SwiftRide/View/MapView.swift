@@ -71,9 +71,23 @@ struct MapView: View {
                 MapUserLocationButton()
             }
             .toolbar(.hidden, for: .navigationBar)
+            // Tap catcher for deselection
+            .gesture(
+                TapGesture()
+                    .onEnded {
+                        // Deselect if a stop is selected
+                        if selectedBusStop.id != UUID() {
+                            selectedBusStop = BusStop()
+                            selectedSheet = .defaultView
+                            showStopDetailSheet = false
+                            presentationDetent = .fraction(0.1)
+                            showDefaultSheet = true
+                        }
+                    }
+            )
             .sheet(isPresented: $isSheetShown, onDismiss: resetSheet) {
                 switch selectedSheet {
-                    case .defaultView:
+                case .defaultView:
                     DefaultSheetView(
                         busStops: $busStops,
                         searchText: $searchText,
@@ -92,8 +106,8 @@ struct MapView: View {
                     
                 case .busStopDetailView:
                     BusStopDetailView(currentBusStop: $selectedBusStop, showRouteDetailSheet: $showRouteDetailSheet, showStopDetailSheet: $showStopDetailSheet,
-                        selectedBusNumber: $selectedBusNumber,
-                        selectedSheet: $selectedSheet
+                                      selectedBusNumber: $selectedBusNumber,
+                                      selectedSheet: $selectedSheet
                     )
                     .presentationDetents([.fraction(0.35), .fraction(0.99)])
                     .presentationDragIndicator(.visible)

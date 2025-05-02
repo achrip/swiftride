@@ -26,8 +26,8 @@ struct MapView: View {
     @State private var mapBounds = MapCameraBounds(
         centerCoordinateBounds: MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: -6.302793115915458, longitude: 106.65204508592274),
-            latitudinalMeters: 1500,
-            longitudinalMeters: 1500
+            latitudinalMeters: 50000,
+            longitudinalMeters: 50000
         ),
         minimumDistance: 1,
         maximumDistance: 50 * 1000

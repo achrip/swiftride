@@ -26,6 +26,15 @@ struct Bus: Identifiable, Decodable{
         schedule = []
     }
     
+    init() {
+        self.id = UUID()
+        self.name = ""
+        self.number = 0
+        self.licensePlate = ""
+        self.color = .gray
+        self.schedule = []
+    }
+    
     func assignSchedule(schedules: [BusSchedule]) -> Bus {
         var updatedSelf = self
         

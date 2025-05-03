@@ -31,10 +31,11 @@ struct DefaultSheetView: View {
                             HStack {
                                 Image(systemName: "bus")
                                     .frame(width: 30, height: 30)
-                                    .padding(.horizontal, 10)
+                                    .padding(.horizontal, 8)
+                                
                                 VStack(alignment: .leading) {
                                     Text(stop.name)
-                                        .padding(.horizontal, 10)
+                                    .padding(.horizontal, 10)
                                 }
                                 Spacer()
                             }
@@ -103,6 +104,7 @@ struct BusStopDetailView: View {
     @Binding var showRouteDetailSheet: Bool
     @Binding var showStopDetailSheet: Bool
     @Binding var selectedBusNumber: Int
+    @Binding var selectedBusName: String
     @Binding var selectedSheet: SheetContentType
 
     @Environment(\.dismiss) private var dismiss
@@ -125,7 +127,7 @@ struct BusStopDetailView: View {
                         .padding()
                 }
             }
-
+            
             Text("Available Buses")
                 .font(.title3.bold())
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -136,9 +138,12 @@ struct BusStopDetailView: View {
                     currentBusStop: $currentBusStop,
                     showRouteDetailSheet: $showRouteDetailSheet,
                     selectedBusNumber: $selectedBusNumber,
+                    selectedBusName: $selectedBusName,
                     selectedSheet: $selectedSheet
                 )
             }
+            .padding(.horizontal, 20)
+            .padding(.top, 0)
         }
         .padding(.top, 20)
     }
@@ -148,22 +153,24 @@ struct BusCard: View {
     @Binding var currentBusStop: BusStop
     @Binding var showRouteDetailSheet: Bool
     @Binding var selectedBusNumber: Int
+    @Binding var selectedBusName: String
     @Binding var selectedSheet: SheetContentType
   
     @State var timerTick: Date = Date()
 
     private let buses: [Bus]
 
-    init(currentBusStop: Binding<BusStop>, showRouteDetailSheet: Binding<Bool>, selectedBusNumber: Binding<Int>, selectedSheet: Binding<SheetContentType>) {
-            self._currentBusStop = currentBusStop
-            self._showRouteDetailSheet = showRouteDetailSheet
-            self._selectedBusNumber = selectedBusNumber
-            self._selectedSheet = selectedSheet
-
-            let rawBuses = loadBuses()
-            let schedules = loadBusSchedules()
-            self.buses = rawBuses.map { $0.assignSchedule(schedules: schedules) }
-        }
+    init(currentBusStop: Binding<BusStop>, showRouteDetailSheet: Binding<Bool>, selectedBusNumber: Binding<Int>, selectedBusName: Binding<String>, selectedSheet: Binding<SheetContentType>) {
+        self._currentBusStop = currentBusStop
+        self._showRouteDetailSheet = showRouteDetailSheet
+        self._selectedBusNumber = selectedBusNumber
+        self._selectedBusName = selectedBusName
+        self._selectedSheet = selectedSheet
+        
+        let rawBuses = loadBuses()
+        let schedules = loadBusSchedules()
+        self.buses = rawBuses.map { $0.assignSchedule(schedules: schedules) }
+    }
 
     // Precomputed upcoming bus and ETA pairs
     private var upcomingBuses: [(bus: Bus, etaMinutes: Int)] {
@@ -222,15 +229,16 @@ struct BusCard: View {
                     .padding(.top, 8)
             } else {
                 ForEach(upcomingBuses, id: \.bus.id) { pair in
-                    BusRow(bus: pair.bus, etaMinutes: pair.etaMinutes) { busNumber in
+                    BusRow(bus: pair.bus, etaMinutes: pair.etaMinutes) { busNumber, busName in
                         selectedBusNumber = busNumber
+                        selectedBusName = busName
                         selectedSheet = .routeDetailView
                         showRouteDetailSheet = true
                     }
                 }
             }
         }
-        .padding()
+        .padding(.top, 0)
         .onAppear {
             if showRouteDetailSheet {
                 selectedSheet = .routeDetailView
@@ -245,7 +253,7 @@ struct BusCard: View {
 struct BusRow: View {
     let bus: Bus
     let etaMinutes: Int
-    let onTap: (Int) -> Void
+    let onTap: (_ busNumber: Int, _ busName: String) -> Void
     var body: some View {
         HStack {
             Image(systemName: "bus")
@@ -264,7 +272,7 @@ struct BusRow: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
         .onTapGesture {
-            onTap(bus.number)
+            onTap(bus.number, bus.name)
         }
     }
 }

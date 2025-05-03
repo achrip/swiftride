@@ -5,8 +5,14 @@ enum StopStatus {
 }
 
 struct BusRoute: View {
+    private let buses: [Bus] = loadBuses()
     private let busSchedule: [BusSchedule] = loadBusSchedules()
+    let name: String
     let busNumber: Int
+    
+    private var selectedBus: Bus? {
+        buses.first { $0.name == name }
+    }
 
     // Filtered to only include the current session
     private var currentSessionSchedule: [(session: Int, stops: [BusSchedule])] {
@@ -82,12 +88,17 @@ struct BusRoute: View {
                         Text("There is no running session currently.")
                             .foregroundStyle(.gray)
                             .padding()
+                        
                     } else {
                         ForEach(currentSessionSchedule, id: \.session) { group in
                             VStack(alignment: .leading, spacing: 8) {
-                                Text("Session \(group.session)")
-                                    .font(.headline)
-                                    .padding(.bottom, 5)
+                                HStack {
+                                    Text(name)
+                                        .font(.title.bold())
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .padding(.horizontal, 10)
+                                        .padding(.bottom, 10)
+                                }
 
                                 ForEach(Array(group.stops.enumerated()), id: \.offset) { index, stop in
                                     let status = stopStatus(for: stop.timeOfArrival)
@@ -138,5 +149,5 @@ struct BusRoute: View {
 }
 
 #Preview {
-    BusRoute(busNumber: 2)
+    BusRoute(name: "Intermoda - Sektor 1.3", busNumber: 2)
 }

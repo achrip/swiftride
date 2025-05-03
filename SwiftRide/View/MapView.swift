@@ -46,7 +46,9 @@ struct MapView: View {
     @State var selectedSheet: SheetContentType = .defaultView
     
     @State var busStops: [BusStop] = loadBusStops()
+    @State var selectedBus: Bus = Bus()
     @State var selectedBusStop: BusStop = BusStop()
+    @State var selectedBusName: String = ""
     @State var selectedBusNumber: Int = 0
     
     var body: some View {
@@ -56,30 +58,34 @@ struct MapView: View {
                 ForEach(busStops) { stop in
                     Annotation(stop.name, coordinate: stop.coordinate) {
                         StopAnnotation(isSelected: selectedBusStop.id == stop.id)
-                            .onTapGesture {
-                                if selectedBusStop.id == stop.id {
-                                    selectedBusStop = BusStop()
-                                    selectedSheet = .defaultView
-                                    showStopDetailSheet = false
-                                    presentationDetent = .fraction(0.1)
-                                    showDefaultSheet = true
-                                } else {
-                                    selectedBusStop = stop
-                                    defaultPosition = .region(
-                                        MKCoordinateRegion(
-                                            center: stop.coordinate,
-                                            latitudinalMeters: 1000,
-                                            longitudinalMeters: 1000
-                                        )
-                                    )
-                                    showDefaultSheet = false
-                                    withAnimation(.interpolatingSpring(stiffness: 300, damping: 10)) {
-                                        selectedSheet = .busStopDetailView
-                                        showStopDetailSheet = true
-                                        presentationDetent = .medium
+                            .contentShape(Rectangle())
+                            .highPriorityGesture(
+                                TapGesture()
+                                    .onEnded {
+                                        if selectedBusStop.id == stop.id {
+                                            selectedBusStop = BusStop()
+                                            selectedSheet = .defaultView
+                                            showStopDetailSheet = false
+                                            presentationDetent = .fraction(0.1)
+                                            showDefaultSheet = true
+                                        } else {
+                                            selectedBusStop = stop
+                                            let newRegion = MKCoordinateRegion(
+                                                center: stop.coordinate,
+                                                latitudinalMeters: 1000,
+                                                longitudinalMeters: 1000
+                                            )
+                                            defaultPosition = .region(newRegion)
+                                            showDefaultSheet = false
+                                            withAnimation(.interpolatingSpring(stiffness: 300, damping: 10)) {
+                                                selectedSheet = .busStopDetailView
+                                                showStopDetailSheet = true
+                                                presentationDetent = .medium
+                                            }
+                                        }
                                     }
-                                }
-                            }
+                            )
+
                     }
                 }
             }
@@ -126,6 +132,7 @@ struct MapView: View {
                 case .busStopDetailView:
                     BusStopDetailView(currentBusStop: $selectedBusStop, showRouteDetailSheet: $showRouteDetailSheet, showStopDetailSheet: $showStopDetailSheet,
                                       selectedBusNumber: $selectedBusNumber,
+                                      selectedBusName: $selectedBusName,
                                       selectedSheet: $selectedSheet
                     )
                     .presentationDetents([.fraction(0.35), .fraction(0.99)])
@@ -133,7 +140,7 @@ struct MapView: View {
                     .presentationBackgroundInteraction(.enabled)
                     
                 case .routeDetailView:
-                    BusRoute(busNumber: selectedBusNumber)
+                    BusRoute(name: selectedBusName, busNumber: selectedBusNumber)
                         .presentationDetents([.fraction(0.99)])
                         .presentationDragIndicator(.visible)
                         .presentationBackgroundInteraction(.enabled)

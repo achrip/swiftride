@@ -232,6 +232,7 @@ struct BusCard: View {
                     BusRow(bus: pair.bus, etaMinutes: pair.etaMinutes) { busNumber, busName in
                         selectedBusNumber = busNumber
                         selectedBusName = busName
+                        UserDefaults.standard.set(currentBusStop.name, forKey: "userStopName")
                         selectedSheet = .routeDetailView
                         showRouteDetailSheet = true
                     }

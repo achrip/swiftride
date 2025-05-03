@@ -26,8 +26,8 @@ struct MapView: View {
     @State private var mapBounds = MapCameraBounds(
         centerCoordinateBounds: MKCoordinateRegion(
             center: CLLocationCoordinate2D(latitude: -6.302793115915458, longitude: 106.65204508592274),
-            latitudinalMeters: 50000,
-            longitudinalMeters: 50000
+            latitudinalMeters: 10 * 1000,
+            longitudinalMeters: 10 * 1000
         ),
         minimumDistance: 1,
         maximumDistance: 50 * 1000
@@ -142,6 +142,7 @@ struct MapView: View {
                 case .routeDetailView:
                     BusRoute(name: selectedBusName,
                              busNumber: selectedBusNumber,
+                             currentStopName: UserDefaults.standard.string(forKey: "userStopName") ?? "",
                              currentBusStop: $selectedBusStop,
                              showRouteDetailSheet: $showRouteDetailSheet,
                              selectedSheet: $selectedSheet)

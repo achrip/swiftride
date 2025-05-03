@@ -7,8 +7,10 @@ enum StopStatus {
 struct BusRoute: View {
     private let buses: [Bus] = loadBuses()
     private let busSchedule: [BusSchedule] = loadBusSchedules()
+    
     let name: String
     let busNumber: Int
+    let currentStopName: String
     
     @Binding var currentBusStop: BusStop
     @Binding var showRouteDetailSheet: Bool
@@ -89,8 +91,24 @@ struct BusRoute: View {
     var body: some View {
         VStack(spacing: 0) {
             ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .leading, spacing: 20) {
+                VStack(alignment: .center, spacing: 20) {
                     if currentSessionSchedule.isEmpty {
+                        HStack {
+                            Spacer()
+                            Button {
+                                selectedSheet = .defaultView
+                                currentBusStop = BusStop()
+                                showRouteDetailSheet = false
+                                dismiss()
+                            } label: {
+                                Image(systemName: "xmark.circle.fill")
+                                    .resizable()
+                                    .frame(width: 24, height: 24)
+                                    .foregroundColor(.gray)
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 10)
+                            }
+                        }
                         Text("There is no running session currently.")
                             .foregroundStyle(.gray)
                             .padding()
@@ -123,6 +141,8 @@ struct BusRoute: View {
 
                                 ForEach(Array(group.stops.enumerated()), id: \.offset) { index, stop in
                                     let status = stopStatus(for: stop.timeOfArrival)
+                                    
+                                    let isUserHere = stop.busStopName == currentStopName
 
                                     HStack(alignment: .top) {
                                         VStack {
@@ -130,6 +150,10 @@ struct BusRoute: View {
                                                 .fill(status == .passed ? Color.gray :
                                                       status == .current ? Color.orange : Color.yellow)
                                                 .frame(width: 12, height: 12)
+                                            Image(systemName: isUserHere ? "person.circle" : "bus")
+                                                .foregroundStyle(isUserHere ? .blue : .orange)
+                                                .font(.system(size: 22))
+
 
                                             if index < group.stops.count - 1 {
                                                 Rectangle()
@@ -173,6 +197,7 @@ struct BusRoute: View {
     BusRoute(
         name: "Intermoda - Sektor 1.3",
         busNumber: 2,
+        currentStopName: "ICE 2",
         currentBusStop: .constant(BusStop()),
         showRouteDetailSheet: .constant(false),
         selectedSheet: .constant(.defaultView)

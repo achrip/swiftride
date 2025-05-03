@@ -140,7 +140,11 @@ struct MapView: View {
                     .presentationBackgroundInteraction(.enabled)
                     
                 case .routeDetailView:
-                    BusRoute(name: selectedBusName, busNumber: selectedBusNumber)
+                    BusRoute(name: selectedBusName,
+                             busNumber: selectedBusNumber,
+                             currentBusStop: $selectedBusStop,
+                             showRouteDetailSheet: $showRouteDetailSheet,
+                             selectedSheet: $selectedSheet)
                         .presentationDetents([.fraction(0.99)])
                         .presentationDragIndicator(.visible)
                         .presentationBackgroundInteraction(.enabled)

@@ -10,6 +10,12 @@ struct BusRoute: View {
     let name: String
     let busNumber: Int
     
+    @Binding var currentBusStop: BusStop
+    @Binding var showRouteDetailSheet: Bool
+    @Binding var selectedSheet: SheetContentType
+    
+    @Environment(\.dismiss) private var dismiss
+    
     private var selectedBus: Bus? {
         buses.first { $0.name == name }
     }
@@ -94,11 +100,26 @@ struct BusRoute: View {
                             VStack(alignment: .leading, spacing: 8) {
                                 HStack {
                                     Text(name)
-                                        .font(.title.bold())
+                                        .font(.title2.bold())
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                         .padding(.horizontal, 10)
-                                        .padding(.bottom, 10)
+                                        .padding(.vertical, 10)
+                                    Spacer()
+                                    Button {
+                                        selectedSheet = .defaultView
+                                        currentBusStop = BusStop()
+                                        showRouteDetailSheet = false
+                                        dismiss()
+                                    } label: {
+                                        Image(systemName: "xmark.circle.fill")
+                                            .resizable()
+                                            .frame(width: 24, height: 24)
+                                            .foregroundColor(.gray)
+                                            .padding(.horizontal, 10)
+                                            .padding(.vertical, 10)
+                                    }
                                 }
+                                .padding(.top, 10)
 
                                 ForEach(Array(group.stops.enumerated()), id: \.offset) { index, stop in
                                     let status = stopStatus(for: stop.timeOfArrival)
@@ -149,5 +170,11 @@ struct BusRoute: View {
 }
 
 #Preview {
-    BusRoute(name: "Intermoda - Sektor 1.3", busNumber: 2)
+    BusRoute(
+        name: "Intermoda - Sektor 1.3",
+        busNumber: 2,
+        currentBusStop: .constant(BusStop()),
+        showRouteDetailSheet: .constant(false),
+        selectedSheet: .constant(.defaultView)
+    )
 }

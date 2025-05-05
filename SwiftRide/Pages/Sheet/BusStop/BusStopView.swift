@@ -38,12 +38,13 @@ struct TitleCard: View {
 
 struct RouteCard: View {
     let name: String
+    let id: PersistentIdentifier
 
     var body: some View {
         HStack {
             Image(systemName: "bus.fill")
                 .font(.largeTitle)
-                .foregroundStyle(Color.primary)
+                .foregroundStyle(Color.color(for: id))
 
             Text(name)
                 .font(.title3)
@@ -63,8 +64,8 @@ struct StopView: View {
 
             Spacer()
             Spacer()
-            
-            Button(action: {} ) {
+
+            Button(action: {}) {
                 VStack {
                     Image(systemName: "arrow.trianglehead.turn.up.right.diamond.fill")
                         .font(.title2)
@@ -77,9 +78,9 @@ struct StopView: View {
             .frame(maxWidth: .infinity)
             .buttonStyle(.borderedProminent)
             .padding()
-            
+
             Divider()
-            
+
             Text("Available Buses")
                 .font(.headline)
 
@@ -88,7 +89,7 @@ struct StopView: View {
                 Dictionary(grouping: schedules.filter { $0.stop == selectedStop }, by: { $0.route })
                     .compactMap { $0.value.first?.route }
             ) { route in
-                RouteCard(name: route.name)
+                RouteCard(name: route.name, id: route.id)
             }
             .listStyle(.plain)
 
@@ -99,7 +100,7 @@ struct StopView: View {
 
 #Preview {
     let s = Stop(name: "Grand Central Terminal", latitude: 40.752778, longitude: -73.977222)
-    
+
     let container = {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
         let container = try! ModelContainer(for: Stop.self, Schedule.self, configurations: config)
@@ -109,7 +110,7 @@ struct StopView: View {
         context.insert(Schedule(route: Route(name: "123"), stop: s))
         return container
     }()
-    
+
     NavigationStack {
         StopView(selectedStop: .constant(s))
     }

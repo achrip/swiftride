@@ -63,10 +63,25 @@ struct StopView: View {
 
             Spacer()
             Spacer()
-            Spacer()
-
+            
+            Button(action: {} ) {
+                VStack {
+                    Image(systemName: "arrow.trianglehead.turn.up.right.diamond.fill")
+                        .font(.title2)
+                    Text("Get directions")
+                        .font(.headline)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 6)
+            }
+            .frame(maxWidth: .infinity)
+            .buttonStyle(.borderedProminent)
+            .padding()
+            
+            Divider()
+            
             Text("Available Buses")
-                .font(.title2)
+                .font(.headline)
 
             List(
                 // Specific filtering with dictionary to get unique routes.
@@ -80,4 +95,23 @@ struct StopView: View {
         }
         .padding()
     }
+}
+
+#Preview {
+    let s = Stop(name: "Grand Central Terminal", latitude: 40.752778, longitude: -73.977222)
+    
+    let container = {
+        let config = ModelConfiguration(isStoredInMemoryOnly: true)
+        let container = try! ModelContainer(for: Stop.self, Schedule.self, configurations: config)
+        let context = container.mainContext
+        context.insert(Stop(name: "My Location", latitude: 0, longitude: 0))
+        context.insert(s)
+        context.insert(Schedule(route: Route(name: "123"), stop: s))
+        return container
+    }()
+    
+    NavigationStack {
+        StopView(selectedStop: .constant(s))
+    }
+    .modelContainer(container)
 }

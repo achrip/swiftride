@@ -122,7 +122,8 @@ struct MapView: View {
                         showStopDetailSheet: $showStopDetailSheet,
                         showRouteDetailSheet: $showRouteDetailSheet,
                         selectedBusStop: $selectedBusStop,
-                        selectedBusNumber: $selectedBusNumber
+                        selectedBusNumber: $selectedBusNumber,
+                        onCancel: resetSheet
                     )
                     .presentationDetents([.fraction(0.1), .medium ], selection: $presentationDetent)
                     .presentationDragIndicator(.visible)

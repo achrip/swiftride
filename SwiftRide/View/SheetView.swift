@@ -15,30 +15,38 @@ struct DefaultSheetView: View {
     @Binding var selectedBusStop: BusStop
     @Binding var selectedBusNumber: Int
     
+    var onCancel: () -> Void
+    
     var body: some View {
-        SearchBar(searchText: $searchText, busStops: $busStops)
+        SearchBar(searchText: $searchText, busStops: $busStops, onCancel: onCancel)
         ScrollView {
             switch searchText {
             case "":
 //                Text("Nearest Bus Stops...?")
 //                Text("Still cooking... 🍳")
                 Text("")
-                
+
             default:
                 VStack(spacing: 10) {
                     ForEach(busStops) { stop in
                         if stop.name.localizedCaseInsensitiveContains(searchText) || searchText.isEmpty {
-                            HStack {
-                                Image(systemName: "bus")
-                                    .frame(width: 30, height: 30)
-                                    .padding(.horizontal, 8)
-                                
-                                VStack(alignment: .leading) {
-                                    Text(stop.name)
-                                    .padding(.horizontal, 10)
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(Color(UIColor.secondarySystemBackground))
+                                HStack {
+                                    Image(systemName: "bus")
+                                        .frame(width: 30, height: 30)
+                                        .padding(.horizontal, 8)
+                                    
+                                    VStack(alignment: .leading) {
+                                        Text(stop.name)
+                                        .padding(.horizontal, 10)
+                                    }
+                                    Spacer()
                                 }
-                                Spacer()
+                                .padding(5)
                             }
+                            .padding(.horizontal)
                             .onTapGesture {
                                 selectedBusStop = stop
                                 defaultPosition = .region(
@@ -58,7 +66,7 @@ struct DefaultSheetView: View {
                             }
                         }
                     }
-                    .padding()
+                    .padding(.top, 10)
                 }
             }
         }
@@ -68,36 +76,53 @@ struct DefaultSheetView: View {
 struct SearchBar: View {
     @Binding var searchText: String
     @Binding var busStops: [BusStop]
-    
+    var onCancel: () -> Void
+
+    @FocusState private var isTextFieldFocused: Bool
+
     var body: some View {
-        VStack (spacing: 10) {
+        VStack(alignment: .leading, spacing: 10) {
             HStack {
-                Image(systemName: "magnifyingglass")
-                    .foregroundColor(.gray)
-                
-                TextField("Search Bus Stop", text: $searchText)
-                    .textFieldStyle(PlainTextFieldStyle())
-                
-                if !searchText.isEmpty {
-                    Button {
-                        searchText = ""
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundColor(.gray)
+                HStack {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(.gray)
+
+                    TextField("Search Bus Stop", text: $searchText)
+                        .textFieldStyle(PlainTextFieldStyle())
+                        .focused($isTextFieldFocused)
+
+                    if !searchText.isEmpty {
+                        Button {
+                            searchText = ""
+                        } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(.gray)
+                        }
                     }
-                    
+                }
+                .padding()
+                .frame(height: 35)
+                .background(Color(.secondarySystemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+
+                if isTextFieldFocused || !searchText.isEmpty {
+                    Button("Cancel") {
+                        searchText = ""
+                        isTextFieldFocused = false
+                        onCancel()
+                    }
+                    .foregroundColor(.blue)
+                    .padding(.leading, 4)
+                    .transition(.move(edge: .trailing))
+                    .animation(.default, value: searchText)
                 }
             }
-            .padding()
-            .frame(height: 35)
-            .background(Color(.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
             .padding(.horizontal)
             .padding(.top, 25)
         }
-        .frame( alignment: .top)
     }
 }
+
 
 struct BusStopDetailView: View {
     @Binding var currentBusStop: BusStop

@@ -7,38 +7,33 @@ enum StopStatus {
 struct BusRoute: View {
     private let buses: [Bus] = loadBuses()
     private let busSchedule: [BusSchedule] = loadBusSchedules()
-    
+
     let name: String
     let busNumber: Int
     let currentStopName: String
-    
+
     @Binding var currentBusStop: BusStop
     @Binding var showRouteDetailSheet: Bool
     @Binding var selectedSheet: SheetContentType
-    
+
     @Environment(\.dismiss) private var dismiss
-    
+    @State private var isExpanded: Bool = false
+
     private var selectedBus: Bus? {
         buses.first { $0.name == name }
     }
 
-    // Filtered to only include the current session
     private var currentSessionSchedule: [(session: Int, stops: [BusSchedule])] {
         let calendar = Calendar.current
         let now = Date()
-
         let formatter = DateFormatter()
         formatter.dateFormat = "HH:mm"
         formatter.locale = Locale(identifier: "en_US_POSIX")
 
         let filtered = busSchedule.filter { $0.busNumber == busNumber }
-
         let grouped = Dictionary(grouping: filtered, by: { $0.session })
-        
 
-        // Find the session where the current time fits in the time range
         for (session, stops) in grouped {
-            // Parse all arrival times as today's Date
             let arrivalDates: [Date] = stops.compactMap { stop in
                 guard let timeOnly = formatter.date(from: stop.timeOfArrival) else { return nil }
                 var components = calendar.dateComponents([.year, .month, .day], from: now)
@@ -50,14 +45,22 @@ struct BusRoute: View {
 
             guard let first = arrivalDates.first, let last = arrivalDates.last else { continue }
 
-            // Check if current time falls within this session's range
             if now >= first && now <= last {
                 let sortedStops = stops.sorted { $0.timeOfArrival < $1.timeOfArrival }
-                return [(session: session, stops: sortedStops)]
+                var seenStops = Set<String>()
+                let uniqueUpcomingStops = sortedStops.filter { stop in
+                    let status = stopStatus(for: stop.timeOfArrival)
+                    let isUpcoming = status == .upcoming
+                    let isNew = !seenStops.contains(stop.busStopName)
+                    if isUpcoming && isNew {
+                        seenStops.insert(stop.busStopName)
+                        return true
+                    }
+                    return status != .upcoming
+                }
+                return [(session: session, stops: uniqueUpcomingStops)]
             }
         }
-
-        // Fallback: return nothing
         return []
     }
 
@@ -80,14 +83,6 @@ struct BusRoute: View {
         }
     }
 
-    private func description(for status: StopStatus) -> String {
-        switch status {
-        case .passed: return "The bus has already passed this stop."
-        case .current: return "The bus is currently at this stop."
-        case .upcoming: return "The bus will pass this stop soon."
-        }
-    }
-
     var body: some View {
         VStack(spacing: 0) {
             ScrollView(.vertical, showsIndicators: false) {
@@ -105,23 +100,23 @@ struct BusRoute: View {
                                     .resizable()
                                     .frame(width: 24, height: 24)
                                     .foregroundColor(.gray)
-                                    .padding(.horizontal, 10)
-                                    .padding(.vertical, 10)
+                                    .padding()
                             }
                         }
                         Text("There is no running session currently.")
                             .foregroundStyle(.gray)
                             .padding()
-                        
                     } else {
                         ForEach(currentSessionSchedule, id: \.session) { group in
+                            let busIndex = group.stops.firstIndex(where: { stopStatus(for: $0.timeOfArrival) == .current }) ?? 0
+                            let userIndex = group.stops.firstIndex(where: { $0.busStopName == currentStopName && stopStatus(for: $0.timeOfArrival) == .upcoming }) ?? group.stops.count - 1
+                            let hiddenRange = (busIndex + 1)..<userIndex
+
                             VStack(alignment: .leading, spacing: 8) {
                                 HStack {
                                     Text(name)
                                         .font(.title2.bold())
                                         .frame(maxWidth: .infinity, alignment: .leading)
-                                        .padding(.horizontal, 10)
-                                        .padding(.vertical, 10)
                                     Spacer()
                                     Button {
                                         selectedSheet = .defaultView
@@ -133,71 +128,145 @@ struct BusRoute: View {
                                             .resizable()
                                             .frame(width: 24, height: 24)
                                             .foregroundColor(.gray)
-                                            .padding(.horizontal, 10)
-                                            .padding(.vertical, 10)
+                                            .padding()
                                     }
                                 }
-                                .padding(.top, 10)
 
                                 ForEach(Array(group.stops.enumerated()), id: \.offset) { index, stop in
                                     let status = stopStatus(for: stop.timeOfArrival)
-                                    
-                                    let isUserHere = stop.busStopName == currentStopName
+                                    let isUserHere = stop.busStopName == currentStopName && status == .upcoming
+                                    let isBusHere = index == busIndex
+                                    let isHidden = hiddenRange.contains(index) && !isExpanded
 
-                                    HStack(alignment: .top) {
-                                        VStack {
-                                            Circle()
-                                                .fill(status == .passed ? Color.gray :
-                                                      status == .current ? Color.orange : Color.yellow)
-                                                .frame(width: 12, height: 12)
-                                            Image(systemName: isUserHere ? "person.circle" : "bus")
-                                                .foregroundStyle(isUserHere ? .blue : .orange)
-                                                .font(.system(size: 22))
-
-
-                                            if index < group.stops.count - 1 {
+                                    if isHidden {
+                                        if index == busIndex + 1 {
+                                            HStack(alignment: .center) {
                                                 Rectangle()
                                                     .fill(Color.gray.opacity(0.5))
                                                     .frame(width: 2, height: 30)
+                                                    .padding(.leading, 29)
+                                                Button(action: { isExpanded = true }) {
+                                                    HStack(spacing: 4) {
+                                                        Image(systemName: "chevron.down")
+                                                        Text("\(userIndex - busIndex - 1) stops remaining")
+                                                            .font(.headline)
+                                                    }
+                                                    .font(.caption)
+                                                    .foregroundColor(.gray)
+                                                }
+                                                Spacer()
                                             }
                                         }
-                                        .padding(.horizontal, 10)
+                                    } else {
+                                        StopRowView(stop: stop, index: index, isUserHere: isUserHere, isBusHere: isBusHere, status: status, showConnector: index < group.stops.count - 1)
 
-                                        VStack(alignment: .leading, spacing: 2) {
-                                            Text(stop.busStopName)
-                                                .font(status == .current ? .body.bold() : .body)
-                                                .foregroundColor(status == .passed ? .gray : .primary)
-                                            Text(description(for: status))
-                                                .font(.caption)
-                                                .foregroundColor(.gray)
+                                        if index == userIndex && isExpanded {
+                                            HStack {
+                                                Rectangle()
+                                                    .fill(Color.gray.opacity(0.5))
+                                                    .frame(width: 2, height: 30)
+                                                    .padding(.leading, 29)
+                                                Button(action: { isExpanded = false }) {
+                                                    HStack(spacing: 4) {
+                                                        Image(systemName: "chevron.up")
+                                                        Text("Hide stops")
+                                                            .font(.headline)
+                                                    }
+                                                    .font(.caption)
+                                                    .foregroundColor(.gray)
+                                                }
+                                                Spacer()
+                                            }
                                         }
-                                        Spacer()
-                                        Text(stop.timeOfArrival)
-                                            .font(.body)
-                                            .foregroundColor(.white)
-                                            .padding(.horizontal, 10)
-                                            .padding(.vertical, 5)
-                                            .background(status == .passed ? Color.gray : Color.black)
-                                            .cornerRadius(5)
                                     }
-                                    .padding(.vertical, 5)
                                 }
                             }
                         }
                     }
                 }
-                .padding(.horizontal)
-                .padding(.top, 10)
+                .padding()
             }
         }
     }
 }
 
+struct StopRowView: View {
+    let stop: BusSchedule
+    let index: Int
+    let isUserHere: Bool
+    let isBusHere: Bool
+    let status: StopStatus
+    let showConnector: Bool
+
+    var body: some View {
+        HStack(alignment: .center) {
+            VStack(spacing: 0) {
+                Group {
+                    if isBusHere {
+                        BusIcon()
+                    } else if isUserHere {
+                        Image(systemName: "person.circle")
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                            .foregroundColor(.blue)
+                    } else {
+                        Circle()
+                            .fill(status == .passed ? Color.gray : Color.yellow)
+                            .frame(width: 40, height: 40)
+                    }
+                }
+
+                if showConnector {
+                    Rectangle()
+                        .fill(Color.gray.opacity(0.5))
+                        .frame(width: 2, height: 30)
+                }
+            }
+            .frame(width: 40)
+            .padding(.horizontal, 10)
+
+            Text(stop.busStopName)
+                .font(isBusHere ? .title3.bold() : .title3)
+                .foregroundColor(status == .passed ? .gray : .primary)
+                .frame(height: 40, alignment: .center)
+
+            Spacer()
+
+            Text(stop.timeOfArrival)
+                .font(.title3)
+                .foregroundColor(.white)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+                .background(status == .passed ? Color.gray : Color.black)
+                .cornerRadius(5)
+                .frame(height: 40, alignment: .center)
+        }
+        .padding(.vertical, 5)
+    }
+}
+
+struct BusIcon: View {
+    var body: some View {
+        ZStack {
+            Circle()
+                .frame(width: 40, height: 40)
+                .foregroundStyle(.quaternary)
+                .shadow(radius: 1)
+            Image(systemName: "bus.fill")
+                .resizable()
+                .scaledToFit()
+                .foregroundStyle(.teal)
+                .frame(width: 25, height: 25)
+        }
+    }
+}
+
+
 #Preview {
     BusRoute(
         name: "Intermoda - Sektor 1.3",
         busNumber: 2,
-        currentStopName: "ICE 2",
+        currentStopName: "The Breeze",
         currentBusStop: .constant(BusStop()),
         showRouteDetailSheet: .constant(false),
         selectedSheet: .constant(.defaultView)

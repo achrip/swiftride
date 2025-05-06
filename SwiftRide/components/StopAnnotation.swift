@@ -11,7 +11,7 @@ struct StopAnnotation: View {
                     .fill(Color.black)
                     .frame(width: 40, height: 40)
                     .clipShape(RoundedRectangle(cornerRadius: 12))
-                Image(systemName: "bus")
+                Image(systemName: "mappin.circle.fill")
                     .resizable()
                     .scaledToFill()
                     .foregroundStyle(.teal)

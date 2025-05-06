@@ -6,7 +6,7 @@ struct SwiftRideApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MapView()
+            SplashView()
         }
     }
 }

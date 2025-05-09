@@ -8,7 +8,7 @@ struct RouteSelectionView: View {
     var body: some View {
         TitleCard(title: .constant("Route Selection"))
             .background(Color(.systemBackground))
-        
+
         List {
             ForEach(points, id: \.self) { p in
                 HStack {
@@ -20,6 +20,11 @@ struct RouteSelectionView: View {
         }
         .environment(\.editMode, .constant(.active))
         .scrollContentBackground(.hidden)
+        .sheet(isPresented: .constant(false)) {
+            RouteDetailView()
+                .presentationDragIndicator(.visible)
+                .presentationDetents([.fraction(0.6), .fraction(0.9)])
+        }
     }
 }
 

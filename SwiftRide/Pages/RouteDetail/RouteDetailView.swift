@@ -5,7 +5,7 @@ struct RouteDetailView: View {
     @State var items = ["a", "b", "c"]
 
     var body: some View {
-        NavigationStack {
+        TitleCard(title: .constant("Destination"))
             List {
                 ForEach(items, id: \.self) { i in
                     HStack {
@@ -26,14 +26,8 @@ struct RouteDetailView: View {
                 .listSectionSeparator(.hidden, edges: .top)
             }
             .listStyle(.plain)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    TitleCard(title: .constant("Destination"))
-                }
-            }
         }
     }
-}
 
 #Preview {
     RouteDetailView()

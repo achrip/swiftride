@@ -6,23 +6,20 @@ struct RouteSelectionView: View {
     @State var points = ["origin", "destination"]
 
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(points, id: \.self) { p in
-                    HStack {
-                        Image(systemName: "person.circle.fill")
-                        Text("\(p)")
-                    }
-                }
-                .onMove(perform: self.move)
-            }
-            .environment(\.editMode, .constant(.active))
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    TitleCard(title: .constant("Destinations"))
+        TitleCard(title: .constant("Route Selection"))
+            .background(Color(.systemBackground))
+        
+        List {
+            ForEach(points, id: \.self) { p in
+                HStack {
+                    Image(systemName: "person.circle.fill")
+                    Text("\(p)")
                 }
             }
+            .onMove(perform: self.move)
         }
+        .environment(\.editMode, .constant(.active))
+        .scrollContentBackground(.hidden)
     }
 }
 

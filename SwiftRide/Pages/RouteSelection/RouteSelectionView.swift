@@ -7,19 +7,34 @@ struct RouteSelectionView: View {
 
     var body: some View {
         TitleCard(title: .constant("Route Selection"))
-            .background(Color(.systemBackground))
 
         List {
-            ForEach(points, id: \.self) { p in
-                HStack {
-                    Image(systemName: "person.circle.fill")
-                    Text("\(p)")
+            Section {
+                ForEach(points, id: \.self) { p in
+                    HStack {
+                        Image(systemName: "person.circle.fill")
+                        Text("\(p)")
+                    }
+                }
+                .onMove(perform: self.move)
+            }
+            
+            Section {
+                ForEach(0..<3, id: \.self) { _ in
+                    HStack {
+                        Image(systemName: "person")
+                        
+                        Text("Destination")
+                        
+                        Spacer()
+                        Button(action: {  }) {
+                            Image(systemName: "chevron.right")
+                        }
+                    }
                 }
             }
-            .onMove(perform: self.move)
         }
         .environment(\.editMode, .constant(.active))
-        .scrollContentBackground(.hidden)
         .sheet(isPresented: .constant(false)) {
             RouteDetailView()
                 .presentationDragIndicator(.visible)

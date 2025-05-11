@@ -33,6 +33,7 @@ struct TitleCard: View {
                     dismiss()
                 }
         }
+        .background(Color(.systemBackground).opacity(0.1))
     }
 }
 
@@ -57,6 +58,8 @@ struct StopView: View {
     @Binding var selectedStop: Stop
 
     @Query var schedules: [Schedule]
+    
+    @State private var isShowingPopOver: Bool = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -65,7 +68,7 @@ struct StopView: View {
             Spacer()
             Spacer()
 
-            Button(action: {}) {
+            Button(action: { isShowingPopOver.toggle() }) {
                 VStack {
                     Image(systemName: "arrow.trianglehead.turn.up.right.diamond.fill")
                         .font(.title2)
@@ -95,6 +98,11 @@ struct StopView: View {
 
         }
         .padding()
+        .sheet(isPresented: $isShowingPopOver) {
+            RouteSelectionView()
+                .padding()
+                .presentationDragIndicator(.visible)
+        }
     }
 }
 

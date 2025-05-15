@@ -5,10 +5,19 @@ class RouteGraphBuilder {
     var stopNodes: [UUID: StopGraphNode] = [:]
     var graph: GKGraph = GKGraph()
 
-    func buildGraph(from context: ModelContext) {
-        // Fetch all stops once
-        let stopsFetch = FetchDescriptor<Stop>()
-        let stops = (try? context.fetch(stopsFetch)) ?? []
+    private let context: ModelContext
+
+    init(context: ModelContext) {
+        self.context = context
+    }
+
+    func buildGraph() {
+        stopNodes = [:]
+        graph = GKGraph()
+
+        // Fetch all stops
+        let stopDescriptor = FetchDescriptor<Stop>()
+        let stops = (try? context.fetch(stopDescriptor)) ?? []
 
         // Create a node for each stop
         for stop in stops {
@@ -44,31 +53,88 @@ class RouteGraphBuilder {
         }
     }
 
-    func findPath(from startStop: Stop, to endStop: Stop, context: ModelContext) -> [Stop]? {
-        guard let startNode = stopNodes[startStop.id],
-            let endNode = stopNodes[endStop.id]
+    /// Finds path and returns a list of (Stop, Route?) pairs for the path
+    func findPath(from start: Stop, to end: Stop) -> [(stop: Stop, route: Route?)] {
+        guard let startNode = stopNodes[start.id],
+            let endNode = stopNodes[end.id]
         else {
-            print("Start or end stop not found in graph.")
-            return nil
+            return []
         }
 
         // Find the path using GameplayKit
         let pathNodes = graph.findPath(from: startNode, to: endNode)
 
-        // Convert path nodes back to Stop model objects
-        let stopsPath = pathNodes.compactMap { node in
-            (node as? StopGraphNode).flatMap { graphNode in
-                // Fetch actual Stop model object from context using stopID
-                let stopID = graphNode.stopID
-                let descriptor = FetchDescriptor<Stop>(
-                    predicate: #Predicate { $0.id == stopID }
-                )
-                return try? context.fetch(descriptor).first
+        var result: [(Stop, Route?)] = []
+        var lastRoute: Route? = nil
+
+        for i in 0..<pathNodes.count {
+            guard let node = pathNodes[i] as? StopGraphNode else { continue }
+
+            let nodeStopID = node.stopID
+            let stopDescriptor = FetchDescriptor<Stop>(
+                predicate: #Predicate { $0.id == nodeStopID }
+            )
+            guard let stop = try? context.fetch(stopDescriptor).first else { continue }
+
+            var currentRoute: Route? = nil
+
+            if i > 0, let prevNode = pathNodes[i - 1] as? StopGraphNode {
+                let prevStopID = prevNode.stopID
+
+                // First try to continue on lastRoute if possible
+                if let lastRouteID = lastRoute?.persistentModelID {
+                    let nextStopDescriptor = FetchDescriptor<Schedule>(
+                        predicate: #Predicate {
+                            $0.route.persistentModelID == lastRouteID && $0.stop.id == prevStopID
+                        }
+                    )
+                    if let schedule = try? context.fetch(nextStopDescriptor).first {
+                        let nextStopOrder = schedule.stopOrder + 1
+
+                        let continuationDescriptor = FetchDescriptor<Schedule>(
+                            predicate: #Predicate {
+                                $0.route.persistentModelID == lastRouteID
+                                    && $0.stopOrder == nextStopOrder && $0.stop.id == nodeStopID
+                            }
+                        )
+                        if (try? context.fetch(continuationDescriptor).first) != nil {
+                            currentRoute = lastRoute
+                        }
+                    }
+                }
+
+                // If not, find any valid route between prev and current
+                if currentRoute == nil {
+                    let routeDescriptor = FetchDescriptor<Schedule>(
+                        predicate: #Predicate {
+                            ($0.stop.id == prevStopID || $0.stop.id == nodeStopID)
+                                && $0.stopOrder >= 0
+                        }
+                    )
+                    let schedules = (try? context.fetch(routeDescriptor)) ?? []
+
+                    for schedule in schedules {
+                        let routeID = schedule.route.persistentModelID
+                        let nextStopOrder = schedule.stopOrder + 1
+
+                        let nextStopDescriptor = FetchDescriptor<Schedule>(
+                            predicate: #Predicate {
+                                $0.route.persistentModelID == routeID
+                                    && $0.stopOrder == nextStopOrder && $0.stop.id == nodeStopID
+                            }
+                        )
+                        if (try? context.fetch(nextStopDescriptor).first) != nil {
+                            currentRoute = schedule.route
+                            break
+                        }
+                    }
+                }
             }
+
+            result.append((stop, currentRoute))
+            lastRoute = currentRoute
         }
 
-        return stopsPath
+        return result
     }
-
 }
-

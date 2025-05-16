@@ -2,8 +2,10 @@ import MapKit
 import SwiftUI
 
 struct StopAnnotation: View {
-    let stop: Stop
+    @EnvironmentObject var mapService: MapService
     @State private var isSelected: Bool = false
+
+    let stop: Stop
 
     init() {
         self.stop = Stop(name: "", latitude: 0, longitude: 0)
@@ -30,9 +32,16 @@ struct StopAnnotation: View {
         .compositingGroup()
         .scaleEffect(self.isSelected ? 1.5 : 1, anchor: .bottom)
         .onTapGesture {
+            mapService.selectedStop = stop
             withAnimation(.interpolatingSpring(stiffness: 300, damping: 10)) {
-                self.isSelected.toggle()
+                self.isSelected = true
             }
+        }
+        .onChange(of: mapService.selectedStop) { _, newValue in
+            withAnimation(.interpolatingSpring(stiffness: 300, damping: 10)) {
+                if newValue != stop { self.isSelected = false } else { self.isSelected = true }
+            }
+
         }
     }
 }

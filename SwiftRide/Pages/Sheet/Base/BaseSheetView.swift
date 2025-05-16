@@ -26,12 +26,10 @@ struct BaseSheetView: View {
 
     var body: some View {
         VStack(spacing: 5) {
-            // Always-on-top Search Bar
             SearchBar(searchText: $searchText)
                 .padding()
                 .padding(.top, 8)
 
-            // Scrollable Content
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
                     if searchText.isEmpty {
@@ -87,10 +85,9 @@ struct BaseSheetView: View {
                                         showSheet.toggle()
                                     }
 
-                                // Custom divider like in .plain List
                                 if index < filteredStops.count - 1 {
                                     Divider()
-                                        .padding(.leading, 50)  // Align divider nicely under content
+                                        .padding(.leading, 50)
                                 }
                             }
                             .padding(.horizontal)

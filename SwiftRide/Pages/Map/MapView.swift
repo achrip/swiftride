@@ -43,7 +43,7 @@ struct MapView: View {
                         coordinate: CLLocationCoordinate2D(
                             latitude: stop.latitude, longitude: stop.longitude)
                     ) {
-                        StopAnnotation()
+                        StopAnnotation(stop: stop)
                     }
                 }
             }
@@ -60,6 +60,7 @@ struct MapView: View {
                     .presentationDetents([.fraction(0.1), .medium, .fraction(0.9)])
                     .presentationDragIndicator(.visible)
                     .interactiveDismissDisabled()
+                    .environmentObject(SheetService.shared)
             }
         }
     }

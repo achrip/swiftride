@@ -7,8 +7,8 @@ struct StopAnnotation: View {
 
     let stop: Stop
 
-    init() {
-        self.stop = Stop(name: "", latitude: 0, longitude: 0)
+    init(stop: Stop) {
+        self.stop = stop
     }
 
     var body: some View {
@@ -38,7 +38,7 @@ struct StopAnnotation: View {
             }
         }
         .onChange(of: mapService.selectedStop) { _, newValue in
-            withAnimation(.interpolatingSpring(stiffness: 300, damping: 10)) {
+            withAnimation() {
                 if newValue != stop { self.isSelected = false } else { self.isSelected = true }
             }
 
@@ -47,5 +47,5 @@ struct StopAnnotation: View {
 }
 
 #Preview {
-    StopAnnotation()
+    StopAnnotation(stop: Stop(name: "", latitude: 0, longitude: 0))
 }

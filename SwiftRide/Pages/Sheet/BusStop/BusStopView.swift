@@ -2,7 +2,6 @@ import SwiftData
 import SwiftUI
 
 struct TitleCard: View {
-    @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var mapService: MapService
 
     @Binding var title: String?
@@ -22,7 +21,7 @@ struct TitleCard: View {
             Image(systemName: "xmark.circle.fill")
                 .imageScale(.large)
                 .onTapGesture {
-                    dismiss()
+                    mapService.selectedStop = nil
                 }
         }
         .background(Color(.systemBackground).opacity(0.1))

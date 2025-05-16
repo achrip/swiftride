@@ -6,17 +6,19 @@ final class SheetService: ObservableObject {
 
     @Published var searchText: String
     @Published var detent: PresentationDetent
+    @Published var showDetailSheet: Bool
 
     private init() {
         self.searchText = ""
         self.detent = .fraction(0.1)
+        self.showDetailSheet = false
     }
 }
 
 struct BaseSheetView: View {
     @EnvironmentObject var mapService: MapService
+    @EnvironmentObject var sheetService: SheetService
     @State private var searchText: String = ""
-    @State private var showSheet: Bool = false
 
     @Query var stops: [Stop]
 
@@ -82,7 +84,6 @@ struct BaseSheetView: View {
                                     .contentShape(Rectangle())
                                     .onTapGesture {
                                         mapService.selectedStop = stop
-                                        showSheet.toggle()
                                     }
 
                                 if index < filteredStops.count - 1 {
@@ -97,10 +98,11 @@ struct BaseSheetView: View {
                 .padding(.vertical)
             }
         }
-        .sheet(isPresented: $showSheet) {
+        .sheet(isPresented: .constant(mapService.selectedStop != nil), onDismiss: { mapService.selectedStop = nil }) {
             StopView()
                 .presentationDragIndicator(.visible)
                 .presentationDetents([.fraction(0.6), .fraction(0.9)])
+                .presentationBackgroundInteraction(.enabled)
         }
     }
 }

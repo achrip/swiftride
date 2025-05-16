@@ -6,7 +6,6 @@ struct TitleCard: View {
     @EnvironmentObject var mapService: MapService
 
     @Binding var title: String?
-    @State private var isShowingPopOver: Bool = false
 
     var body: some View {
         HStack {
@@ -15,14 +14,6 @@ struct TitleCard: View {
 
             Image(systemName: "star")
                 .imageScale(.large)
-                .onTapGesture {
-                    self.isShowingPopOver.toggle()
-                }
-                .popover(isPresented: $isShowingPopOver) {
-                    Text("Still cooking... 🍳")
-                        .padding()
-                        .presentationCompactAdaptation(.none)
-                }
 
             Spacer()
             Spacer()
@@ -105,6 +96,7 @@ struct StopView: View {
             RouteSelectionView()
                 .padding()
                 .presentationDragIndicator(.visible)
+                .presentationDetents([.medium, .fraction(0.7), .fraction(0.9)])
         }
     }
 }

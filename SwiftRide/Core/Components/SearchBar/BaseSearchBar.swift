@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SearchBar: View {
     @Binding var searchText: String
-    
+
     var body: some View {
         VStack(spacing: 10) {
             HStack {
@@ -26,8 +26,6 @@ struct SearchBar: View {
             .frame(height: 35)
             .background(Color(.secondarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 12))
-            .padding(.horizontal)
-            .padding(.top, 25)
         }
     }
 }

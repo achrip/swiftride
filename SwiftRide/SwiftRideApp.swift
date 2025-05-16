@@ -9,6 +9,7 @@ struct SwiftRideApp: App {
         WindowGroup {
             MapView()
         }
+        .environmentObject(MapService.shared)
         .modelContainer(container)
     }
 

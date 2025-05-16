@@ -2,6 +2,7 @@ import SwiftData
 import SwiftUI
 
 struct BaseSheetView: View {
+    @EnvironmentObject var mapService: MapService
     @State private var selectedStop: Stop
     @State private var searchText: String
     @State private var showSheet: Bool
@@ -30,6 +31,7 @@ struct BaseSheetView: View {
                         .contentShape(Rectangle())
                         .onTapGesture {
                             selectedStop = stop
+                            mapService.selectedStop = stop
                             showSheet.toggle()
                         }
                 }
@@ -39,7 +41,7 @@ struct BaseSheetView: View {
             Spacer()
         }
         .sheet(isPresented: $showSheet) {
-            StopView(selectedStop: $selectedStop)
+            StopView()
                 .presentationDragIndicator(.visible)
                 .presentationDetents([.fraction(0.6), .fraction(0.9)])
 

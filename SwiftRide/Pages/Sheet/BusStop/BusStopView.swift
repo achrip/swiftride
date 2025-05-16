@@ -3,17 +3,18 @@ import SwiftUI
 
 struct TitleCard: View {
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var mapService: MapService
 
+    @Binding var title: String?
     @State private var isShowingPopOver: Bool = false
-    @Binding var title: String
 
     var body: some View {
         HStack {
-            Text(title)
+            Text(title ?? "Unknown")
                 .font(.title.bold())
 
-            Image(systemName: "info.circle.fill")
-                .font(.headline)
+            Image(systemName: "star")
+                .imageScale(.large)
                 .onTapGesture {
                     self.isShowingPopOver.toggle()
                 }
@@ -28,7 +29,7 @@ struct TitleCard: View {
             Spacer()
 
             Image(systemName: "xmark.circle.fill")
-                .font(.headline)
+                .imageScale(.large)
                 .onTapGesture {
                     dismiss()
                 }
@@ -54,16 +55,15 @@ struct RouteCard: View {
 }
 
 struct StopView: View {
-
-    @Binding var selectedStop: Stop
+    @EnvironmentObject var mapService: MapService
 
     @Query var schedules: [Schedule]
-    
+
     @State private var isShowingPopOver: Bool = false
 
     var body: some View {
         VStack(alignment: .leading) {
-            TitleCard(title: $selectedStop.name)
+            TitleCard(title: .constant(mapService.selectedStop?.name))
 
             Spacer()
             Spacer()
@@ -89,8 +89,11 @@ struct StopView: View {
 
             List(
                 // Specific filtering with dictionary to get unique routes.
-                Dictionary(grouping: schedules.filter { $0.stop == selectedStop }, by: { $0.route })
-                    .compactMap { $0.value.first?.route }
+                Dictionary(
+                    grouping: schedules.filter { $0.stop == mapService.selectedStop },
+                    by: { $0.route }
+                )
+                .compactMap { $0.value.first?.route }
             ) { route in
                 RouteCard(name: route.name, id: route.id)
             }
@@ -120,7 +123,7 @@ struct StopView: View {
     }()
 
     NavigationStack {
-        StopView(selectedStop: .constant(s))
+        //StopView(selectedStop: .constant(s))
     }
     .modelContainer(container)
 }

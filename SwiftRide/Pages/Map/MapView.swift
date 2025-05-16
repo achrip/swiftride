@@ -2,36 +2,39 @@ import MapKit
 import SwiftData
 import SwiftUI
 
-enum SheetContentType {
-    case defaultView
-    case busStopDetailView
-    case routeDetailView
-}
+final class MapService: ObservableObject {
+    static let shared = MapService()
 
-struct MapView: View {
-    let mapCenter: MapCameraPosition
-    let region: MKCoordinateRegion
-    let boundaries: MapCameraBounds
+    @Published var selectedStop: Stop?
+    @Published var mapCenter: MapCameraPosition
+    @Published var region: MKCoordinateRegion
+    @Published var boundaries: MapCameraBounds
 
-    @State var isOverlayShown: Bool = false
-    @Query var stops: [Stop]
-
-    init() {
-        self.region = MKCoordinateRegion(
+    private init() {
+        let defaultRegion = MKCoordinateRegion(
             center: CLLocationCoordinate2D(
                 latitude: -6.302793115915458, longitude: 106.65204508592274),
             latitudinalMeters: CLLocationDistance(1000),
             longitudinalMeters: CLLocationDistance(1000)
         )
-        self.mapCenter = MapCameraPosition.region(self.region)
+        self.region = defaultRegion
+        self.mapCenter = MapCameraPosition.region(defaultRegion)
 
         self.boundaries = MapCameraBounds(
-            centerCoordinateBounds: self.region, minimumDistance: 1, maximumDistance: 50 * 1000)
+            centerCoordinateBounds: defaultRegion, minimumDistance: 1, maximumDistance: 50 * 1000)
     }
+}
+
+struct MapView: View {
+    @EnvironmentObject var mapService: MapService
+    @Query var stops: [Stop]
 
     var body: some View {
         ZStack {
-            Map(initialPosition: mapCenter, bounds: boundaries, interactionModes: .all) {
+            Map(
+                initialPosition: mapService.mapCenter, bounds: mapService.boundaries,
+                interactionModes: .all
+            ) {
                 UserAnnotation()
 
                 ForEach(stops, id: \.persistentModelID) { stop in
@@ -64,4 +67,5 @@ struct MapView: View {
 
 #Preview {
     MapView()
+        .environmentObject(MapService.shared)
 }

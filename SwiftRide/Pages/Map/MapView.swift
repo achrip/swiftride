@@ -14,14 +14,29 @@ final class MapService: ObservableObject {
         let defaultRegion = MKCoordinateRegion(
             center: CLLocationCoordinate2D(
                 latitude: -6.302793115915458, longitude: 106.65204508592274),
-            latitudinalMeters: CLLocationDistance(1000),
-            longitudinalMeters: CLLocationDistance(1000)
+            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        )
+        
+        let bsdRegion = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(
+                latitude: -6.302793115915458, longitude: 106.65204508592274),
+            span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         )
         self.region = defaultRegion
         self.mapCenter = MapCameraPosition.region(defaultRegion)
 
-        self.boundaries = MapCameraBounds(
-            centerCoordinateBounds: defaultRegion, minimumDistance: 1, maximumDistance: 50 * 1000)
+        self.boundaries = MapCameraBounds(centerCoordinateBounds: bsdRegion)
+    }
+
+    func centerMap(on stop: Stop, meters: CLLocationDistance = 500) {
+        let region = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude),
+            latitudinalMeters: meters,
+            longitudinalMeters: meters
+        )
+        withAnimation {
+            self.mapCenter = .region(region)
+        }
     }
 }
 
@@ -32,8 +47,7 @@ struct MapView: View {
     var body: some View {
         ZStack {
             Map(
-                initialPosition: mapService.mapCenter, bounds: mapService.boundaries,
-                interactionModes: .all
+                position: $mapService.mapCenter, bounds: mapService.boundaries,
             ) {
                 UserAnnotation()
 
@@ -47,9 +61,6 @@ struct MapView: View {
                     }
                 }
             }
-            .onAppear {
-                CLLocationManager().requestWhenInUseAuthorization()
-            }
             .mapControls {
                 MapUserLocationButton()
             }
@@ -61,6 +72,13 @@ struct MapView: View {
                     .presentationDragIndicator(.visible)
                     .interactiveDismissDisabled()
                     .environmentObject(SheetService.shared)
+            }
+            .onAppear {
+                CLLocationManager().requestWhenInUseAuthorization()
+            }
+            .onChange(of: mapService.selectedStop) { _, newStop in
+                guard let stop = newStop else { return }
+                mapService.centerMap(on: stop)
             }
         }
     }

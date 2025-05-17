@@ -18,23 +18,22 @@ final class SheetService: ObservableObject {
 struct BaseSheetView: View {
     @EnvironmentObject var mapService: MapService
     @EnvironmentObject var sheetService: SheetService
-    @State private var searchText: String = ""
 
     @Query var stops: [Stop]
 
     var filteredStops: [Stop] {
-        stops.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        stops.filter { $0.name.localizedCaseInsensitiveContains(sheetService.searchText) }
     }
 
     var body: some View {
         VStack(spacing: 5) {
-            SearchBar(searchText: $searchText)
+            SearchBar(searchText: $sheetService.searchText)
                 .padding()
                 .padding(.top, 8)
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    if searchText.isEmpty {
+                    if sheetService.searchText.isEmpty {
                         Section {
                             Text("Favorites")
                                 .font(.headline.bold())
@@ -55,7 +54,9 @@ struct BaseSheetView: View {
                                 .padding(.horizontal)
                             }
                         }
+
                         Spacer()
+
                         Section {
                             Text("Nearby Stops")
                                 .font(.headline.bold())
@@ -106,6 +107,7 @@ struct BaseSheetView: View {
         }
     }
 }
+
 
 struct SheetItemCard: View {
     let title: String

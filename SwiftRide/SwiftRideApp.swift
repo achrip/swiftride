@@ -49,6 +49,10 @@ struct SwiftRideApp: App {
         } catch {
             fatalError("❌ Unable to initialize ModelContainer: \(error)")
         }
+        
+        // -- MARK: Graph Initialization
+        RouteGraph.shared.configure(with: container.mainContext)
+        RouteGraph.shared.buildGraph()
     }
 
 }

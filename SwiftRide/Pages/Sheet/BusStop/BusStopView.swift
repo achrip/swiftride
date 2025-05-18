@@ -30,7 +30,6 @@ struct TitleCard: View {
                     if SheetService.shared.currentPage == .detail {
                        mapService.selectedStop = nil
                     }
-                    //                    mapService.selectedStop = nil
                 }
         }
         .background(Color(.systemBackground).opacity(0.1))
@@ -55,6 +54,7 @@ struct RouteCard: View {
 
 struct StopView: View {
     @EnvironmentObject var mapService: MapService
+    @EnvironmentObject var sheetService: SheetService
 
     @Query var schedules: [Schedule]
 
@@ -69,9 +69,9 @@ struct StopView: View {
 
             Button(action: {
                 isShowingPopOver.toggle()
-                SheetService.shared.currentPage = .routeSelect
+                sheetService.currentPage = .routeSelect
             }) {
-                VStack {
+                HStack {
                     Image(systemName: "arrow.trianglehead.turn.up.right.diamond.fill")
                         .font(.title2)
                     Text("Get directions")
@@ -103,7 +103,7 @@ struct StopView: View {
 
         }
         .padding()
-        .sheet(isPresented: $isShowingPopOver, onDismiss: {SheetService.shared.currentPage = .detail}) {
+        .sheet(isPresented: $isShowingPopOver, onDismiss: {sheetService.currentPage = .detail}) {
             RouteSelectionView()
                 .padding()
                 .presentationDragIndicator(.visible)

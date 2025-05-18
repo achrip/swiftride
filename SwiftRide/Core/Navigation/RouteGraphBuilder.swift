@@ -1,13 +1,17 @@
 import GameplayKit
 import SwiftData
 
-class RouteGraphBuilder {
+class RouteGraph {
+    static let shared = RouteGraph()
+    
     var stopNodes: [UUID: StopGraphNode] = [:]
     var graph: GKGraph = GKGraph()
 
-    private let context: ModelContext
+    private var context: ModelContext!
 
-    init(context: ModelContext) {
+    init() { }
+    
+    func configure(with context: ModelContext) {
         self.context = context
     }
 
@@ -137,4 +141,38 @@ class RouteGraphBuilder {
 
         return result
     }
+//    
+//    func computeEstimatedTravelTime(for path: [(stop: Stop, route: Route?)]) -> TimeInterval {
+//        var totalTime: TimeInterval = 0
+//
+//        for i in 1..<path.count {
+//            let fromStop = path[i - 1].stop
+//            let toStop = path[i].stop
+//            let route = path[i].route
+//
+//            // Fetch schedule for fromStop
+//            let fromDescriptor = FetchDescriptor<Schedule>(
+//                predicate: #Predicate {
+//                    $0.stop.id == fromStop.id &&
+//                    $0.route == route
+//                }
+//            )
+//            guard let fromSchedule = try? context.fetch(fromDescriptor).first else { continue }
+//
+//            // Fetch schedule for toStop
+//            let toDescriptor = FetchDescriptor<Schedule>(
+//                predicate: #Predicate {
+//                    $0.stop.id == toStop.id &&
+//                    $0.route == route
+//                }
+//            )
+//            guard let toSchedule = try? context.fetch(toDescriptor).first else { continue }
+//
+//            // Calculate time difference
+//            let timeDifference = toSchedule.time.timeIntervalSince(fromSchedule.time)
+//            totalTime += timeDifference
+//        }
+//
+//        return totalTime
+//    }
 }

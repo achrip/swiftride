@@ -2,35 +2,34 @@ import SwiftData
 import SwiftUI
 
 struct TitleCard: View {
-    @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var mapService: MapService
+    @Environment(\.dismiss) var dismiss
 
-    @State private var isShowingPopOver: Bool = false
-    @Binding var title: String
+    @Binding var title: String?
 
     var body: some View {
         HStack {
-            Text(title)
+            Text(title ?? "Unknown")
                 .font(.title.bold())
 
-            Image(systemName: "info.circle.fill")
-                .font(.headline)
-                .onTapGesture {
-                    self.isShowingPopOver.toggle()
-                }
-                .popover(isPresented: $isShowingPopOver) {
-                    Text("Still cooking... 🍳")
-                        .padding()
-                        .presentationCompactAdaptation(.none)
-                }
+            if SheetService.shared.currentPage == .detail {
+                Image(systemName: "star.fill")
+                    .imageScale(.large)
+                    .foregroundStyle(Color(.secondarySystemFill))
+            }
 
             Spacer()
             Spacer()
             Spacer()
 
             Image(systemName: "xmark.circle.fill")
-                .font(.headline)
+                .imageScale(.large)
                 .onTapGesture {
                     dismiss()
+                    
+                    if SheetService.shared.currentPage == .detail {
+                       mapService.selectedStop = nil
+                    }
                 }
         }
         .background(Color(.systemBackground).opacity(0.1))
@@ -54,22 +53,27 @@ struct RouteCard: View {
 }
 
 struct StopView: View {
-
-    @Binding var selectedStop: Stop
+    @EnvironmentObject var mapService: MapService
+    @EnvironmentObject var sheetService: SheetService
 
     @Query var schedules: [Schedule]
     
     @State private var isShowingPopOver: Bool = false
 
+    @State private var isShowingPopOver: Bool = false
+
     var body: some View {
         VStack(alignment: .leading) {
-            TitleCard(title: $selectedStop.name)
+            TitleCard(title: .constant(mapService.selectedStop?.name))
 
             Spacer()
             Spacer()
 
-            Button(action: { isShowingPopOver.toggle() }) {
-                VStack {
+            Button(action: {
+                isShowingPopOver.toggle()
+                sheetService.currentPage = .routeSelect
+            }) {
+                HStack {
                     Image(systemName: "arrow.trianglehead.turn.up.right.diamond.fill")
                         .font(.title2)
                     Text("Get directions")
@@ -89,8 +93,11 @@ struct StopView: View {
 
             List(
                 // Specific filtering with dictionary to get unique routes.
-                Dictionary(grouping: schedules.filter { $0.stop == selectedStop }, by: { $0.route })
-                    .compactMap { $0.value.first?.route }
+                Dictionary(
+                    grouping: schedules.filter { $0.stop == mapService.selectedStop },
+                    by: { $0.route }
+                )
+                .compactMap { $0.value.first?.route }
             ) { route in
                 RouteCard(name: route.name, id: route.id)
             }
@@ -98,10 +105,11 @@ struct StopView: View {
 
         }
         .padding()
-        .sheet(isPresented: $isShowingPopOver) {
+        .sheet(isPresented: $isShowingPopOver, onDismiss: {sheetService.currentPage = .detail}) {
             RouteSelectionView()
                 .padding()
                 .presentationDragIndicator(.visible)
+                .presentationDetents([.medium, .fraction(0.7), .fraction(0.9)])
         }
     }
 }
@@ -120,7 +128,7 @@ struct StopView: View {
     }()
 
     NavigationStack {
-        StopView(selectedStop: .constant(s))
+        //StopView(selectedStop: .constant(s))
     }
     .modelContainer(container)
 }

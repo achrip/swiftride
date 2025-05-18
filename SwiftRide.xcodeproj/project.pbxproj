@@ -23,6 +23,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4AE10D0D2DDA3F4D00B415E6 /* Embed ExtensionKit Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed ExtensionKit Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4A479BEB2D92E4150008030E /* SRPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SRPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		4A685DB42D88083C0053791C /* SwiftRide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftRide.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +117,7 @@
 				4A685DB02D88083C0053791C /* Sources */,
 				4A685DB12D88083C0053791C /* Frameworks */,
 				4A685DB22D88083C0053791C /* Resources */,
+				4AE10D0D2DDA3F4D00B415E6 /* Embed ExtensionKit Extensions */,
 			);
 			buildRules = (
 			);
@@ -172,7 +186,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1620;
+				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
 					4A685DB32D88083C0053791C = {

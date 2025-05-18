@@ -2,36 +2,54 @@ import MapKit
 import SwiftData
 import SwiftUI
 
-enum SheetContentType {
-    case defaultView
-    case busStopDetailView
-    case routeDetailView
+final class MapService: ObservableObject {
+    static let shared = MapService()
+
+    @Published var selectedStop: Stop?
+    @Published var mapCenter: MapCameraPosition
+    @Published var region: MKCoordinateRegion
+    @Published var boundaries: MapCameraBounds
+
+    private init() {
+        let defaultRegion = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(
+                latitude: -6.302793115915458, longitude: 106.65204508592274),
+            span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        )
+        
+        let bsdRegion = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(
+                latitude: -6.302793115915458, longitude: 106.65204508592274),
+            span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
+        )
+        self.region = defaultRegion
+        self.mapCenter = MapCameraPosition.region(defaultRegion)
+
+        self.boundaries = MapCameraBounds(centerCoordinateBounds: bsdRegion, minimumDistance: nil, maximumDistance: 50 * 1000)
+    }
+
+    func centerMap(on stop: Stop, meters: CLLocationDistance = 500) {
+        let region = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: stop.latitude, longitude: stop.longitude),
+            latitudinalMeters: meters,
+            longitudinalMeters: meters
+        )
+        withAnimation {
+            self.mapCenter = .region(region)
+        }
+    }
 }
 
 struct MapView: View {
-    let mapCenter: MapCameraPosition
-    let region: MKCoordinateRegion
-    let boundaries: MapCameraBounds
-
-    @State var isOverlayShown: Bool = false
+    @EnvironmentObject var mapService: MapService
+    @EnvironmentObject var sheetService: SheetService
     @Query var stops: [Stop]
-
-    init() {
-        self.region = MKCoordinateRegion(
-            center: CLLocationCoordinate2D(
-                latitude: -6.302793115915458, longitude: 106.65204508592274),
-            latitudinalMeters: CLLocationDistance(1000),
-            longitudinalMeters: CLLocationDistance(1000)
-        )
-        self.mapCenter = MapCameraPosition.region(self.region)
-
-        self.boundaries = MapCameraBounds(
-            centerCoordinateBounds: self.region, minimumDistance: 1, maximumDistance: 50 * 1000)
-    }
 
     var body: some View {
         ZStack {
-            Map(initialPosition: mapCenter, bounds: boundaries, interactionModes: .all) {
+            Map(
+                position: $mapService.mapCenter, bounds: mapService.boundaries,
+            ) {
                 UserAnnotation()
 
                 ForEach(stops, id: \.persistentModelID) { stop in
@@ -40,23 +58,30 @@ struct MapView: View {
                         coordinate: CLLocationCoordinate2D(
                             latitude: stop.latitude, longitude: stop.longitude)
                     ) {
-                        StopAnnotation()
+                        StopAnnotation(stop: stop)
                     }
                 }
             }
-            .onAppear {
-                CLLocationManager().requestWhenInUseAuthorization()
-            }
             .mapControls {
                 MapUserLocationButton()
+                MapScaleView()
+                MapPitchToggle()
             }
             .toolbar(.hidden, for: .navigationBar)
             .sheet(isPresented: .constant(true)) {
                 BaseSheetView()
                     .presentationBackgroundInteraction(.enabled)
-                    .presentationDetents([.fraction(0.1), .medium, .fraction(0.9)])
+                    .presentationContentInteraction(.resizes)
+                    .presentationDetents([.fraction(0.1), .fraction(0.3), .fraction(0.9)], selection: $sheetService.detent)
                     .presentationDragIndicator(.visible)
                     .interactiveDismissDisabled()
+            }
+            .onAppear {
+                CLLocationManager().requestWhenInUseAuthorization()
+            }
+            .onChange(of: mapService.selectedStop) { _, newStop in
+                guard let stop = newStop else { return }
+                mapService.centerMap(on: stop)
             }
         }
     }
@@ -64,4 +89,6 @@ struct MapView: View {
 
 #Preview {
     MapView()
+        .environmentObject(MapService.shared)
+        .environmentObject(SheetService.shared)
 }

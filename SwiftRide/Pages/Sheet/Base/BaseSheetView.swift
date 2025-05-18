@@ -1,48 +1,123 @@
 import SwiftData
 import SwiftUI
 
+final class SheetService: ObservableObject {
+    static let shared = SheetService()
+
+    @Published var searchText: String
+    @Published var detent: PresentationDetent
+    @Published var showDetailSheet: Bool
+    @Published var isSearchBarFocused: Bool
+    @Published var currentPage: Page
+    
+    enum Page {
+        case base
+        case detail
+        case routeSelect
+        case directions
+    }
+
+    private init() {
+        self.searchText = ""
+        self.detent = .fraction(0.3)
+        self.showDetailSheet = false
+        self.isSearchBarFocused = false
+        self.currentPage = .detail
+    }
+}
+
 struct BaseSheetView: View {
-    @State private var selectedStop: Stop
-    @State private var searchText: String
-    @State private var showSheet: Bool
+    @EnvironmentObject var mapService: MapService
+    @EnvironmentObject var sheetService: SheetService
+    @State private var searchText: String = ""
 
     @Query var stops: [Stop]
 
-    init() {
-        self.searchText = ""
-        self.selectedStop = .init(name: "", latitude: 0, longitude: 0)
-        self.showSheet = false
+    var filteredStops: [Stop] {
+        stops.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
     }
 
     var body: some View {
-        VStack {
+        VStack(spacing: 5) {
             SearchBar(searchText: $searchText)
-            switch searchText {
-            case "":
-                VStack {
-                }
+                .padding()
+                .padding(.top, 8)
 
-            default:
-                List(
-                    stops.filter { $0.name.localizedCaseInsensitiveContains(searchText) }, id: \.id
-                ) { stop in
-                    SheetItemCard(title: stop.name)
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            selectedStop = stop
-                            showSheet.toggle()
+            ScrollView {
+                VStack(alignment: .leading, spacing: 16) {
+                    if searchText.isEmpty {
+                        Section {
+                            Text("Favorites")
+                                .font(.headline.bold())
+                                .padding(.horizontal)
+
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                LazyHGrid(
+                                    rows: [GridItem(.fixed(100))],
+                                    spacing: 10
+                                ) {
+                                    ForEach(0..<5, id: \.self) { _ in
+                                        Rectangle()
+                                            .frame(width: 100, height: 100)
+                                            .foregroundColor(.blue)
+                                            .cornerRadius(10)
+                                    }
+                                }
+                                .padding(.horizontal)
+                            }
                         }
-                }
-                .listStyle(PlainListStyle())
-            }
+                        Spacer()
+                        Section {
+                            Text("Nearby Stops")
+                                .font(.headline.bold())
+                                .padding(.horizontal)
 
-            Spacer()
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                LazyHGrid(
+                                    rows: [GridItem(.fixed(100))],
+                                    spacing: 10
+                                ) {
+                                    ForEach(0..<5, id: \.self) { _ in
+                                        Rectangle()
+                                            .frame(width: 100, height: 100)
+                                            .foregroundColor(.blue)
+                                            .cornerRadius(10)
+                                    }
+                                }
+                                .padding(.horizontal)
+                            }
+                        }
+                    } else {
+                        ForEach(filteredStops.indices, id: \.self) { index in
+                            let stop = filteredStops[index]
+                            VStack(alignment: .leading, spacing: 0) {
+                                SheetItemCard(title: stop.name)
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        mapService.selectedStop = stop
+                                        sheetService.isSearchBarFocused = false
+                                    }
+
+                                if index < filteredStops.count - 1 {
+                                    Divider()
+                                        .padding(.leading, 50)
+                                }
+                            }
+                            .padding(.horizontal)
+                        }
+                    }
+                }
+                .padding(.vertical)
+            }
         }
-        .sheet(isPresented: $showSheet) {
-            StopView(selectedStop: $selectedStop)
+        .sheet(
+            isPresented: .constant(mapService.selectedStop != nil),
+            onDismiss: { mapService.selectedStop = nil }
+        ) {
+            StopView()
                 .presentationDragIndicator(.visible)
                 .presentationDetents([.fraction(0.6), .fraction(0.9)])
-
+                .presentationBackgroundInteraction(.enabled)
         }
     }
 }
@@ -66,4 +141,6 @@ struct SheetItemCard: View {
 
 #Preview {
     BaseSheetView()
+        .environmentObject(MapService.shared)
+        .environmentObject(SheetService.shared)
 }

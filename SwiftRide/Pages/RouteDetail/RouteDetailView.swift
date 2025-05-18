@@ -1,34 +1,45 @@
 import SwiftUI
 
 struct RouteDetailView: View {
-
-    @State var items = ["a", "b", "c"]
+    @Binding var path: [(stop: Stop, route: Route?)]
 
     var body: some View {
-        TitleCard(title: .constant("Destination"))
+        VStack {
+            TitleCard(title: .constant("Directions"))
+            
             List {
-                ForEach(items, id: \.self) { i in
+                ForEach(Array(path.enumerated()), id: \.element.stop.persistentModelID) { index, item in
                     HStack {
-                        Image(systemName: "person.circle")
-                            .font(.largeTitle)
+                        Image(systemName: "location.circle.fill")
+                            .font(.title2)
                             .imageScale(.large)
-
                         VStack(alignment: .leading) {
-                            Text("Instruction")
-                                .font(.title3)
-
-                            Text("Caption")
-                                .foregroundStyle(Color.secondary)
+                            Text("\(item.stop.name)")
+                                .font(.title2)
+                            if index != 0 {
+                                Text("Arrive here via the route: \(item.route?.name ?? "N/A")")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                            }
                         }
+                        Spacer()
                     }
                 }
-                .padding()
-                .listSectionSeparator(.hidden, edges: .top)
             }
             .listStyle(.plain)
         }
+        .safeAreaPadding()
+        .onAppear {
+            debugPrintPath(path: path)
+        }
     }
 
-#Preview {
-    RouteDetailView()
+
 }
+func debugPrintPath(path: [(stop: Stop, route: Route?)]) {
+        print("Route Path:")
+        for (index, item) in path.enumerated() {
+            let routeName = item.route?.name ?? "N/A"
+            print("\(index + 1). Stop: \(item.stop.name), Route: \(routeName)")
+        }
+    }

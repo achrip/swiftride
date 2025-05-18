@@ -1,8 +1,10 @@
 import Foundation
 import SwiftData
+
 import SwiftUI
 
 struct RouteSelectionView: View {
+
 
     @Environment(\.modelContext) private var context
     @EnvironmentObject var mapService: MapService
@@ -24,6 +26,7 @@ struct RouteSelectionView: View {
         var binding: Binding<Stop?>
         var isPresented: Binding<Bool>
     }
+
 
     var body: some View {
         TitleCard(title: .constant("Route Selection"))
@@ -56,7 +59,7 @@ struct RouteSelectionView: View {
                 }
                 .onMove(perform: self.move)
             }
-
+          
             Section(header: Text("Possible Routes")) {
                 switch (stopSelectors.first, stopSelectors.last, pathResults.isEmpty) {
                 case (nil, _, _), (_, nil, _):

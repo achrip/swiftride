@@ -57,6 +57,8 @@ struct StopView: View {
     @EnvironmentObject var sheetService: SheetService
 
     @Query var schedules: [Schedule]
+    
+    @State private var isShowingPopOver: Bool = false
 
     @State private var isShowingPopOver: Bool = false
 

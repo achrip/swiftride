@@ -11,10 +11,6 @@ struct RouteSelectionView: View {
     var body: some View {
         TitleCard(title: .constant("Route Selection"))
 
-        Button(action: getRoutes) {
-            Text("get routes")
-        }
-
         List {
             Section {
                 ForEach(points, id: \.self) { p in

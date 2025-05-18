@@ -25,7 +25,7 @@ final class MapService: ObservableObject {
         self.region = defaultRegion
         self.mapCenter = MapCameraPosition.region(defaultRegion)
 
-        self.boundaries = MapCameraBounds(centerCoordinateBounds: bsdRegion)
+        self.boundaries = MapCameraBounds(centerCoordinateBounds: bsdRegion, minimumDistance: nil, maximumDistance: 50 * 1000)
     }
 
     func centerMap(on stop: Stop, meters: CLLocationDistance = 500) {
@@ -42,6 +42,7 @@ final class MapService: ObservableObject {
 
 struct MapView: View {
     @EnvironmentObject var mapService: MapService
+    @EnvironmentObject var sheetService: SheetService
     @Query var stops: [Stop]
 
     var body: some View {
@@ -63,15 +64,17 @@ struct MapView: View {
             }
             .mapControls {
                 MapUserLocationButton()
+                MapScaleView()
+                MapPitchToggle()
             }
             .toolbar(.hidden, for: .navigationBar)
             .sheet(isPresented: .constant(true)) {
                 BaseSheetView()
                     .presentationBackgroundInteraction(.enabled)
-                    .presentationDetents([.fraction(0.1), .medium, .fraction(0.9)])
+                    .presentationContentInteraction(.resizes)
+                    .presentationDetents([.fraction(0.1), .fraction(0.3), .fraction(0.9)], selection: $sheetService.detent)
                     .presentationDragIndicator(.visible)
                     .interactiveDismissDisabled()
-                    .environmentObject(SheetService.shared)
             }
             .onAppear {
                 CLLocationManager().requestWhenInUseAuthorization()
@@ -87,4 +90,5 @@ struct MapView: View {
 #Preview {
     MapView()
         .environmentObject(MapService.shared)
+        .environmentObject(SheetService.shared)
 }

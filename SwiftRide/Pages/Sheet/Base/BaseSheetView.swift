@@ -7,33 +7,45 @@ final class SheetService: ObservableObject {
     @Published var searchText: String
     @Published var detent: PresentationDetent
     @Published var showDetailSheet: Bool
+    @Published var isSearchBarFocused: Bool
+    @Published var currentPage: Page
+    
+    enum Page {
+        case base
+        case detail
+        case routeSelect
+        case directions
+    }
 
     private init() {
         self.searchText = ""
-        self.detent = .fraction(0.1)
+        self.detent = .fraction(0.3)
         self.showDetailSheet = false
+        self.isSearchBarFocused = false
+        self.currentPage = .detail
     }
 }
 
 struct BaseSheetView: View {
     @EnvironmentObject var mapService: MapService
     @EnvironmentObject var sheetService: SheetService
+    @State private var searchText: String = ""
 
     @Query var stops: [Stop]
 
     var filteredStops: [Stop] {
-        stops.filter { $0.name.localizedCaseInsensitiveContains(sheetService.searchText) }
+        stops.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
     }
 
     var body: some View {
         VStack(spacing: 5) {
-            SearchBar(searchText: $sheetService.searchText)
+            SearchBar(searchText: $searchText)
                 .padding()
                 .padding(.top, 8)
 
             ScrollView {
                 VStack(alignment: .leading, spacing: 16) {
-                    if sheetService.searchText.isEmpty {
+                    if searchText.isEmpty {
                         Section {
                             Text("Favorites")
                                 .font(.headline.bold())
@@ -54,9 +66,7 @@ struct BaseSheetView: View {
                                 .padding(.horizontal)
                             }
                         }
-
                         Spacer()
-
                         Section {
                             Text("Nearby Stops")
                                 .font(.headline.bold())
@@ -85,6 +95,7 @@ struct BaseSheetView: View {
                                     .contentShape(Rectangle())
                                     .onTapGesture {
                                         mapService.selectedStop = stop
+                                        sheetService.isSearchBarFocused = false
                                     }
 
                                 if index < filteredStops.count - 1 {
@@ -99,7 +110,10 @@ struct BaseSheetView: View {
                 .padding(.vertical)
             }
         }
-        .sheet(isPresented: .constant(mapService.selectedStop != nil), onDismiss: { mapService.selectedStop = nil }) {
+        .sheet(
+            isPresented: .constant(mapService.selectedStop != nil),
+            onDismiss: { mapService.selectedStop = nil }
+        ) {
             StopView()
                 .presentationDragIndicator(.visible)
                 .presentationDetents([.fraction(0.6), .fraction(0.9)])
@@ -107,7 +121,6 @@ struct BaseSheetView: View {
         }
     }
 }
-
 
 struct SheetItemCard: View {
     let title: String
@@ -128,4 +141,6 @@ struct SheetItemCard: View {
 
 #Preview {
     BaseSheetView()
+        .environmentObject(MapService.shared)
+        .environmentObject(SheetService.shared)
 }

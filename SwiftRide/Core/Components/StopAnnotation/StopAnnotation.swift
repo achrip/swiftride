@@ -30,10 +30,10 @@ struct StopAnnotation: View {
                 .offset(x: 0, y: -5)
         }
         .compositingGroup()
-        .scaleEffect(self.isSelected ? 1.5 : 1, anchor: .bottom)
+        .scaleEffect(self.isSelected ? 2.0 : 1.1, anchor: .bottom)
         .onTapGesture {
             mapService.selectedStop = stop
-            withAnimation(.interpolatingSpring(stiffness: 300, damping: 10)) {
+            withAnimation(.interpolatingSpring(stiffness: 300, damping: 20)) {
                 self.isSelected = true
             }
         }

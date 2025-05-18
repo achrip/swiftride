@@ -10,6 +10,7 @@ struct SwiftRideApp: App {
             MapView()
         }
         .environmentObject(MapService.shared)
+        .environmentObject(SheetService.shared)
         .modelContainer(container)
     }
 

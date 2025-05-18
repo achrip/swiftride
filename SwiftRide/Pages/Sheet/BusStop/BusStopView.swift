@@ -3,6 +3,7 @@ import SwiftUI
 
 struct TitleCard: View {
     @EnvironmentObject var mapService: MapService
+    @Environment(\.dismiss) var dismiss
 
     @Binding var title: String?
 
@@ -11,8 +12,11 @@ struct TitleCard: View {
             Text(title ?? "Unknown")
                 .font(.title.bold())
 
-            Image(systemName: "star")
-                .imageScale(.large)
+            if SheetService.shared.currentPage == .detail {
+                Image(systemName: "star.fill")
+                    .imageScale(.large)
+                    .foregroundStyle(Color(.secondarySystemFill))
+            }
 
             Spacer()
             Spacer()
@@ -21,7 +25,12 @@ struct TitleCard: View {
             Image(systemName: "xmark.circle.fill")
                 .imageScale(.large)
                 .onTapGesture {
-                    mapService.selectedStop = nil
+                    dismiss()
+                    
+                    if SheetService.shared.currentPage == .detail {
+                       mapService.selectedStop = nil
+                    }
+                    //                    mapService.selectedStop = nil
                 }
         }
         .background(Color(.systemBackground).opacity(0.1))
@@ -58,7 +67,10 @@ struct StopView: View {
             Spacer()
             Spacer()
 
-            Button(action: { isShowingPopOver.toggle() }) {
+            Button(action: {
+                isShowingPopOver.toggle()
+                SheetService.shared.currentPage = .routeSelect
+            }) {
                 VStack {
                     Image(systemName: "arrow.trianglehead.turn.up.right.diamond.fill")
                         .font(.title2)
@@ -91,7 +103,7 @@ struct StopView: View {
 
         }
         .padding()
-        .sheet(isPresented: $isShowingPopOver) {
+        .sheet(isPresented: $isShowingPopOver, onDismiss: {SheetService.shared.currentPage = .detail}) {
             RouteSelectionView()
                 .padding()
                 .presentationDragIndicator(.visible)

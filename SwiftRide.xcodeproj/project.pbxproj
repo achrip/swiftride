@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F681F222E59ED54879477FC /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7305C3EB0AC5ABF415BA064E /* Drawer.swift */; };
 		4AB611A62DE477F700708171 /* Drawer in Frameworks */ = {isa = PBXBuildFile; productRef = 4AB611A52DE477F700708171 /* Drawer */; };
+		B8A4BDBEC6AB2CFDF7E7DF6B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC998B66B202F70C915A2D8D /* Stop.swift */; };
+		D16D222A977B379BA36F35F5 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FE76CF4831DF714268ED9 /* Schedule.swift */; };
+		FCA234B28498453553C791BF /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044121B57FCD8ADD426BEC7A /* Route.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,12 +28,18 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		044121B57FCD8ADD426BEC7A /* Route.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		4A685DB42D88083C0053791C /* SwiftRide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftRide.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7305C3EB0AC5ABF415BA064E /* Drawer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Drawer.swift; sourceTree = "<group>"; };
+		DC998B66B202F70C915A2D8D /* Stop.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
+		F19FE76CF4831DF714268ED9 /* Schedule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4A685DB62D88083C0053791C /* SwiftRide */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = SwiftRide;
 			sourceTree = "<group>";
 		};
@@ -50,6 +60,7 @@
 		0A3E13447E19B8B23607DE5D /* SwiftRide */ = {
 			isa = PBXGroup;
 			children = (
+				77CEB86FFF36B98B6FFA11FC /* Models */,
 			);
 			path = SwiftRide;
 			sourceTree = "<group>";
@@ -69,6 +80,18 @@
 				0A3E13447E19B8B23607DE5D /* SwiftRide */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		77CEB86FFF36B98B6FFA11FC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DC998B66B202F70C915A2D8D /* Stop.swift */,
+				7305C3EB0AC5ABF415BA064E /* Drawer.swift */,
+				044121B57FCD8ADD426BEC7A /* Route.swift */,
+				F19FE76CF4831DF714268ED9 /* Schedule.swift */,
+			);
+			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +173,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8A4BDBEC6AB2CFDF7E7DF6B /* Stop.swift in Sources */,
+				1F681F222E59ED54879477FC /* Drawer.swift in Sources */,
+				FCA234B28498453553C791BF /* Route.swift in Sources */,
+				D16D222A977B379BA36F35F5 /* Schedule.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

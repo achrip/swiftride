@@ -27,7 +27,7 @@ struct SearchBar: View {
             }
             .padding(8)
             .background(Color(.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
             .animation(.easeInOut, value: isTextFieldFocused)
 
             if isTextFieldFocused {

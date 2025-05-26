@@ -7,7 +7,11 @@ struct MapView: View, Sendable {
         Map {
             UserAnnotation()
         }
-        .mapControlVisibility(.visible)
+        .mapControls({
+            MapUserLocationButton()
+            MapCompass()
+            MapScaleView()
+        })
         .onAppear { CLLocationManager().requestWhenInUseAuthorization() }
     }
 }

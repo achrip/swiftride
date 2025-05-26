@@ -6,11 +6,15 @@ struct ContentView: View {
         ZStack {
             MapView()
 
-            //SearchDrawer()
+            SearchDrawer(showFavoritesView: .constant(true))
 
-            //DetailDrawer()
+            //DetailsDrawer()
 
             //RoutesDrawer()
         }
     }
+}
+
+#Preview {
+    ContentView()
 }

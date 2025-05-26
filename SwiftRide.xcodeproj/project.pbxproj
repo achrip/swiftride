@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1F681F222E59ED54879477FC /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7305C3EB0AC5ABF415BA064E /* Drawer.swift */; };
 		4AB611A62DE477F700708171 /* Drawer in Frameworks */ = {isa = PBXBuildFile; productRef = 4AB611A52DE477F700708171 /* Drawer */; };
 		B8A4BDBEC6AB2CFDF7E7DF6B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC998B66B202F70C915A2D8D /* Stop.swift */; };
 		D16D222A977B379BA36F35F5 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FE76CF4831DF714268ED9 /* Schedule.swift */; };
@@ -38,8 +37,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4A685DB62D88083C0053791C /* SwiftRide */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = SwiftRide;
 			sourceTree = "<group>";
 		};
@@ -90,7 +87,6 @@
 				044121B57FCD8ADD426BEC7A /* Route.swift */,
 				F19FE76CF4831DF714268ED9 /* Schedule.swift */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -174,7 +170,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8A4BDBEC6AB2CFDF7E7DF6B /* Stop.swift in Sources */,
-				1F681F222E59ED54879477FC /* Drawer.swift in Sources */,
 				FCA234B28498453553C791BF /* Route.swift in Sources */,
 				D16D222A977B379BA36F35F5 /* Schedule.swift in Sources */,
 			);
@@ -325,7 +320,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ccone-seven.SwiftRide";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -358,7 +353,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ccone-seven.SwiftRide";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		4AB611A62DE477F700708171 /* Drawer in Frameworks */ = {isa = PBXBuildFile; productRef = 4AB611A52DE477F700708171 /* Drawer */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		4A685DC72D88083E0053791C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -66,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4AB611A62DE477F700708171 /* Drawer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +133,7 @@
 			);
 			name = SwiftRide;
 			packageProductDependencies = (
+				4AB611A52DE477F700708171 /* Drawer */,
 			);
 			productName = SwiftRide;
 			productReference = 4A685DB42D88083C0053791C /* SwiftRide.app */;
@@ -211,6 +217,9 @@
 			);
 			mainGroup = 4A685DAB2D88083C0053791C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4AB6119F2DDD857D00708171 /* XCRemoteSwiftPackageReference "swiftui-drawer" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4A685DB52D88083C0053791C /* Products */;
 			projectDirPath = "";
@@ -580,6 +589,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4AB6119F2DDD857D00708171 /* XCRemoteSwiftPackageReference "swiftui-drawer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maustinstar/swiftui-drawer";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4AB611A52DE477F700708171 /* Drawer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AB6119F2DDD857D00708171 /* XCRemoteSwiftPackageReference "swiftui-drawer" */;
+			productName = Drawer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4A685DAC2D88083C0053791C /* Project object */;
 }

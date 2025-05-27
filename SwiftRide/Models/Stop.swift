@@ -1,12 +1,12 @@
 import Foundation
 
-class Stop: ObservableObject, Codable {
+struct Stop: Codable {
     let id: UUID
     let name: String
-    let latitude: Float
-    let longitude: Float
+    let latitude: Double
+    let longitude: Double
 
-    init(id: UUID = UUID(), name: String, latitude: Float, longitude: Float) {
+    init(id: UUID = UUID(), name: String, latitude: Double, longitude: Double) {
         self.id = id
         self.name = name
         self.latitude = latitude
@@ -20,15 +20,12 @@ class Stop: ObservableObject, Codable {
         case longitude
     }
 
-    required init(from decoder: any Decoder) throws {
+    init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode(String.self, forKey: .name)
-        self.latitude = try container.decode(Float.self, forKey: .latitude)
-        self.longitude = try container.decode(Float.self, forKey: .longitude)
+        self.latitude = try container.decode(Double.self, forKey: .latitude)
+        self.longitude = try container.decode(Double.self, forKey: .longitude)
         self.id = UUID()
     }
 
-}
-
-extension Stop {
 }

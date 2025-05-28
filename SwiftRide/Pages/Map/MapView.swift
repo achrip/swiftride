@@ -3,25 +3,29 @@ import MapKit
 import SwiftUI
 
 struct MapView: View, Sendable {
-    @State var stops: [Stop] = []
+    @ObservedObject var viewModel = MapViewModel()
+
     var body: some View {
-        Map {
+        Map(
+            position: $viewModel.mapCenter,
+            bounds: viewModel.mapBounds,
+            interactionModes: .all
+        ) {
             UserAnnotation()
 
-            ForEach(stops, id: \.id) { stop in
+            ForEach(viewModel.stops, id: \.id) { stop in
                 Annotation(
                     stop.name,
                     coordinate: CLLocationCoordinate2D(
                         latitude: stop.latitude, longitude: stop.longitude)
                 ) {
-                    StopAnnotation()
+                    StopAnnotation(stop: stop)
                 }
             }
         }
         .mapControls({
             MapUserLocationButton()
             MapCompass()
-            MapScaleView()
         })
         .onAppear { CLLocationManager().requestWhenInUseAuthorization() }
     }

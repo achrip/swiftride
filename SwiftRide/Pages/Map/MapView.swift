@@ -3,7 +3,7 @@ import MapKit
 import SwiftUI
 
 struct MapView: View, Sendable {
-    @ObservedObject var viewModel = MapViewModel()
+    @StateObject private var viewModel = MapViewModel()
 
     var body: some View {
         Map(

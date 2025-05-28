@@ -12,6 +12,7 @@
 		6787BC26947B51E8E3E440EE /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B981AAB8AA607194D3F62ED5 /* DataLoader.swift */; };
 		92BD6E69B5CA3A8B78C9FCA4 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4518AA19C72EC63D23B1B /* MapViewModel.swift */; };
 		B8A4BDBEC6AB2CFDF7E7DF6B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC998B66B202F70C915A2D8D /* Stop.swift */; };
+		C0C9A50333EE23C722146B18 /* SearchDrawerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898E1E6FC8FBBE99640508C6 /* SearchDrawerViewModel.swift */; };
 		D16D222A977B379BA36F35F5 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FE76CF4831DF714268ED9 /* Schedule.swift */; };
 		FCA234B28498453553C791BF /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044121B57FCD8ADD426BEC7A /* Route.swift */; };
 /* End PBXBuildFile section */
@@ -33,6 +34,7 @@
 		044121B57FCD8ADD426BEC7A /* Route.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		4A685DB42D88083C0053791C /* SwiftRide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftRide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7305C3EB0AC5ABF415BA064E /* Drawer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Drawer.swift; sourceTree = "<group>"; };
+		898E1E6FC8FBBE99640508C6 /* SearchDrawerViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchDrawerViewModel.swift; sourceTree = "<group>"; };
 		AE2A5E8EE4B16AFC755C7A03 /* NetworkHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		B981AAB8AA607194D3F62ED5 /* DataLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		CDB4518AA19C72EC63D23B1B /* MapViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
@@ -43,6 +45,8 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4A685DB62D88083C0053791C /* SwiftRide */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
 			path = SwiftRide;
 			sourceTree = "<group>";
 		};
@@ -126,6 +130,7 @@
 		9DF7DB50AEC36B4F53562A0C /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				898E1E6FC8FBBE99640508C6 /* SearchDrawerViewModel.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -240,6 +245,7 @@
 				4BCF01AD980CE0622760DD8D /* NetworkHelper.swift in Sources */,
 				6787BC26947B51E8E3E440EE /* DataLoader.swift in Sources */,
 				92BD6E69B5CA3A8B78C9FCA4 /* MapViewModel.swift in Sources */,
+				C0C9A50333EE23C722146B18 /* SearchDrawerViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +383,8 @@
 				DEVELOPMENT_TEAM = KNG572S59L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show it on the map";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -410,7 +417,8 @@
 				DEVELOPMENT_TEAM = KNG572S59L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show it on the map";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

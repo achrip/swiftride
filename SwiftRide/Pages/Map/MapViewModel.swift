@@ -1,7 +1,7 @@
 import MapKit
 import SwiftUI
 
-class MapViewModel: ObservableObject {
+final class MapViewModel: ObservableObject {
     @Published var mapCenter: MapCameraPosition
     @Published var stops: [Stop]
     var mapBounds: MapCameraBounds

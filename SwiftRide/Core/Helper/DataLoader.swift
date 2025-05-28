@@ -1,75 +1,44 @@
 import Foundation
 
-protocol DataLoader {
-    func loadData()
+final class DataLoader {
+    enum UrlType {
+        case stop, bus, schedule
 
-    //func loadData(from filename: String, with extension: String)
-}
-
-final class StopLoader: ObservableObject, DataLoader {
-
-    @Published var stops: [Stop] = []
-
-    let fileName: String = "BusStop"
-    let fileExtension: String = "json"
-
-    func loadData() {
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: fileExtension) else {
-            fatalError("Resource named " + fileName + "." + fileExtension + " not found.")
-        }
-
-        do {
-            let data = try Data(contentsOf: url)
-            let stops = try JSONDecoder().decode([Stop].self, from: data)
-            self.stops = stops
-        } catch {
-            assertionFailure("Failed to fetch or read data from " + fileName + "." + fileExtension)
-        }
-    }
-}
-
-final class ScheduleLoader: ObservableObject, DataLoader {
-
-    @Published var schedules: [Schedule] = []
-
-    let fileName: String = "Schedule"
-    let fileExtension: String = "json"
-
-    func loadData() {
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: fileExtension) else {
-            fatalError("Resource named " + fileName + "." + fileExtension + " not found.")
-        }
-
-        do {
-            let data = try Data(contentsOf: url)
-            let schedules = try JSONDecoder().decode([Schedule].self, from: data)
-            self.schedules = schedules
-        } catch {
-            assertionFailure("Failed to fetch or read data from " + fileName + "." + fileExtension)
-        }
-
-    }
-}
-
-final class BusLoader: ObservableObject, DataLoader {
-
-    @Published var buses: [Bus] = []
-
-    let fileName: String = "Bus"
-    let fileExtension: String = "json"
-
-    func loadData() {
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: fileExtension) else {
-            fatalError("Resource named " + fileName + "." + fileExtension + " not found.")
-        }
-
-        do {
-            let data = try Data(contentsOf: url)
-            let buses = try JSONDecoder().decode([Bus].self, from: data)
-            self.buses = buses
-        } catch {
-            assertionFailure("Failed to fetch or read data from " + fileName + "." + fileExtension)
+        var url: URL? {
+            switch self {
+            case .stop:
+                return Bundle.main.url(forResource: "Stops", withExtension: "json")
+            case .bus:
+                return Bundle.main.url(forResource: "Bus", withExtension: "json")
+            case .schedule:
+                return Bundle.main.url(forResource: "Schedule", withExtension: "json")
+            }
         }
     }
 
+    func loadData<T: Decodable>(for fileUrl: UrlType, as type: T.Type) throws -> T {
+        guard let url = fileUrl.url else {
+            throw NSError(domain: "Missing file", code: 404)
+        }
+
+        let data = try Data(contentsOf: url)
+        return try JSONDecoder().decode(T.self, from: data)
+    }
+
+    //    func loadData<T: Decodable>(for fileUrl: UrlType, as type: T.Type) -> T? {
+    //        guard let url = fileUrl.url else {
+    //            print("Missing file for: \(fileUrl)")
+    //            return nil
+    //        }
+    //
+    //        do {
+    //            let data = try Data(contentsOf: url)
+    //            let decoder = JSONDecoder()
+    //            let result = try decoder.decode(T.self, from: data)
+    //            return result
+    //        } catch {
+    //            print("Failed to load \(fileUrl) — \(error.localizedDescription)")
+    //            return nil
+    //        }
+    //    }
 }

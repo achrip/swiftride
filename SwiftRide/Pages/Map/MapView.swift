@@ -28,6 +28,7 @@ struct MapView: View, Sendable {
             MapCompass()
         })
         .onAppear { CLLocationManager().requestWhenInUseAuthorization() }
+        .ignoresSafeArea(.keyboard)
     }
 }
 

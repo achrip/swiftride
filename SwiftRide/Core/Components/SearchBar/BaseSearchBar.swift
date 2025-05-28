@@ -40,7 +40,7 @@ struct SearchBar: View {
                 }
                 .foregroundColor(.blue)
                 .transition(.move(edge: .trailing).combined(with: .opacity))
-                .animation(.easeInOut, value: isTextFieldFocused)
+                .animation(.smooth, value: isTextFieldFocused)
             }
         }
     }

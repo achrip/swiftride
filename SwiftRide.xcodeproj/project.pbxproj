@@ -6,22 +6,18 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXContainerItemProxy section */
-		4A685DC72D88083E0053791C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A685DAC2D88083C0053791C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4A685DB32D88083C0053791C;
-			remoteInfo = SwiftRide;
-		};
-		4A685DD12D88083E0053791C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4A685DAC2D88083C0053791C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4A685DB32D88083C0053791C;
-			remoteInfo = SwiftRide;
-		};
-/* End PBXContainerItemProxy section */
+/* Begin PBXBuildFile section */
+		4AB611A62DE477F700708171 /* Drawer in Frameworks */ = {isa = PBXBuildFile; productRef = 4AB611A52DE477F700708171 /* Drawer */; };
+		4BCF01AD980CE0622760DD8D /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A5E8EE4B16AFC755C7A03 /* NetworkHelper.swift */; };
+		6787BC26947B51E8E3E440EE /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B981AAB8AA607194D3F62ED5 /* DataLoader.swift */; };
+		92BD6E69B5CA3A8B78C9FCA4 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4518AA19C72EC63D23B1B /* MapViewModel.swift */; };
+		9F48F272F5EAEAAB0B251759 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91891FC9A1198D2DA79BEF /* DetailViewModel.swift */; };
+		B8A4BDBEC6AB2CFDF7E7DF6B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC998B66B202F70C915A2D8D /* Stop.swift */; };
+		BBA7ED31D4C8B156BC3A6D89 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAEDD098B8F9F29C03D2CC7 /* DateExtensions.swift */; };
+		C0C9A50333EE23C722146B18 /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898E1E6FC8FBBE99640508C6 /* ExploreViewModel.swift */; };
+		D16D222A977B379BA36F35F5 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FE76CF4831DF714268ED9 /* Schedule.swift */; };
+		FCA234B28498453553C791BF /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044121B57FCD8ADD426BEC7A /* Route.swift */; };
+/* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		4AE10D0D2DDA3F4D00B415E6 /* Embed ExtensionKit Extensions */ = {
@@ -37,26 +33,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4A479BEB2D92E4150008030E /* SRPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SRPlayground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		044121B57FCD8ADD426BEC7A /* Route.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		0A91891FC9A1198D2DA79BEF /* DetailViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		4A685DB42D88083C0053791C /* SwiftRide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftRide.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A685DC62D88083E0053791C /* SwiftRideTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftRideTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4A685DD02D88083E0053791C /* SwiftRideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftRideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4ABEE35D2DE8732D0074811E /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		7305C3EB0AC5ABF415BA064E /* Drawer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Drawer.swift; sourceTree = "<group>"; };
+		7FAEDD098B8F9F29C03D2CC7 /* DateExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		898E1E6FC8FBBE99640508C6 /* ExploreViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
+		AE2A5E8EE4B16AFC755C7A03 /* NetworkHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		B981AAB8AA607194D3F62ED5 /* DataLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
+		CDB4518AA19C72EC63D23B1B /* MapViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		DC998B66B202F70C915A2D8D /* Stop.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
+		F19FE76CF4831DF714268ED9 /* Schedule.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Schedule.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4A685DB62D88083C0053791C /* SwiftRide */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = SwiftRide;
-			sourceTree = "<group>";
-		};
-		4A685DC92D88083E0053791C /* SwiftRideTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SwiftRideTests;
-			sourceTree = "<group>";
-		};
-		4A685DD32D88083E0053791C /* SwiftRideUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = SwiftRideUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -66,34 +60,45 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4A685DC32D88083E0053791C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4A685DCD2D88083E0053791C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				4AB611A62DE477F700708171 /* Drawer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A3E13447E19B8B23607DE5D /* SwiftRide */ = {
+			isa = PBXGroup;
+			children = (
+				77CEB86FFF36B98B6FFA11FC /* Models */,
+				7887D2D41410C6B99B0728EA /* Core */,
+				B63489D2AD0C6DD163E7CF83 /* Pages */,
+			);
+			path = SwiftRide;
+			sourceTree = "<group>";
+		};
+		0DE4093C29AA83DA280C081B /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				0A91891FC9A1198D2DA79BEF /* DetailViewModel.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		224698DF03132A6F1380D739 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				CDB4518AA19C72EC63D23B1B /* MapViewModel.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		4A685DAB2D88083C0053791C = {
 			isa = PBXGroup;
 			children = (
+				4ABEE35D2DE8732D0074811E /* Playground.playground */,
 				4A685DB62D88083C0053791C /* SwiftRide */,
-				4A685DC92D88083E0053791C /* SwiftRideTests */,
-				4A685DD32D88083E0053791C /* SwiftRideUITests */,
 				4A685DB52D88083C0053791C /* Products */,
-				4A479BEB2D92E4150008030E /* SRPlayground.playground */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,10 +106,72 @@
 			isa = PBXGroup;
 			children = (
 				4A685DB42D88083C0053791C /* SwiftRide.app */,
-				4A685DC62D88083E0053791C /* SwiftRideTests.xctest */,
-				4A685DD02D88083E0053791C /* SwiftRideUITests.xctest */,
+				0A3E13447E19B8B23607DE5D /* SwiftRide */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		60F43AD7491BF893204D9605 /* Drawers */ = {
+			isa = PBXGroup;
+			children = (
+				9DF7DB50AEC36B4F53562A0C /* Explore */,
+				0DE4093C29AA83DA280C081B /* Detail */,
+			);
+			path = Drawers;
+			sourceTree = "<group>";
+		};
+		77CEB86FFF36B98B6FFA11FC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DC998B66B202F70C915A2D8D /* Stop.swift */,
+				7305C3EB0AC5ABF415BA064E /* Drawer.swift */,
+				044121B57FCD8ADD426BEC7A /* Route.swift */,
+				F19FE76CF4831DF714268ED9 /* Schedule.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7887D2D41410C6B99B0728EA /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D58A848B7C5FEFBDD1F9D537 /* Networking */,
+				D2B9EBE04CFCEC1F35DADD2A /* Helper */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		9DF7DB50AEC36B4F53562A0C /* Explore */ = {
+			isa = PBXGroup;
+			children = (
+				898E1E6FC8FBBE99640508C6 /* ExploreViewModel.swift */,
+			);
+			path = Explore;
+			sourceTree = "<group>";
+		};
+		B63489D2AD0C6DD163E7CF83 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				224698DF03132A6F1380D739 /* Map */,
+				60F43AD7491BF893204D9605 /* Drawers */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
+		D2B9EBE04CFCEC1F35DADD2A /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				B981AAB8AA607194D3F62ED5 /* DataLoader.swift */,
+				7FAEDD098B8F9F29C03D2CC7 /* DateExtensions.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		D58A848B7C5FEFBDD1F9D537 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				AE2A5E8EE4B16AFC755C7A03 /* NetworkHelper.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,56 +195,11 @@
 			);
 			name = SwiftRide;
 			packageProductDependencies = (
+				4AB611A52DE477F700708171 /* Drawer */,
 			);
 			productName = SwiftRide;
 			productReference = 4A685DB42D88083C0053791C /* SwiftRide.app */;
 			productType = "com.apple.product-type.application";
-		};
-		4A685DC52D88083E0053791C /* SwiftRideTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4A685DDD2D88083E0053791C /* Build configuration list for PBXNativeTarget "SwiftRideTests" */;
-			buildPhases = (
-				4A685DC22D88083E0053791C /* Sources */,
-				4A685DC32D88083E0053791C /* Frameworks */,
-				4A685DC42D88083E0053791C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4A685DC82D88083E0053791C /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				4A685DC92D88083E0053791C /* SwiftRideTests */,
-			);
-			name = SwiftRideTests;
-			packageProductDependencies = (
-			);
-			productName = SwiftRideTests;
-			productReference = 4A685DC62D88083E0053791C /* SwiftRideTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		4A685DCF2D88083E0053791C /* SwiftRideUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4A685DE02D88083E0053791C /* Build configuration list for PBXNativeTarget "SwiftRideUITests" */;
-			buildPhases = (
-				4A685DCC2D88083E0053791C /* Sources */,
-				4A685DCD2D88083E0053791C /* Frameworks */,
-				4A685DCE2D88083E0053791C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4A685DD22D88083E0053791C /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				4A685DD32D88083E0053791C /* SwiftRideUITests */,
-			);
-			name = SwiftRideUITests;
-			packageProductDependencies = (
-			);
-			productName = SwiftRideUITests;
-			productReference = 4A685DD02D88083E0053791C /* SwiftRideUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
@@ -192,14 +214,6 @@
 					4A685DB32D88083C0053791C = {
 						CreatedOnToolsVersion = 16.2;
 					};
-					4A685DC52D88083E0053791C = {
-						CreatedOnToolsVersion = 16.2;
-						TestTargetID = 4A685DB32D88083C0053791C;
-					};
-					4A685DCF2D88083E0053791C = {
-						CreatedOnToolsVersion = 16.2;
-						TestTargetID = 4A685DB32D88083C0053791C;
-					};
 				};
 			};
 			buildConfigurationList = 4A685DAF2D88083C0053791C /* Build configuration list for PBXProject "SwiftRide" */;
@@ -211,34 +225,21 @@
 			);
 			mainGroup = 4A685DAB2D88083C0053791C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				4AB6119F2DDD857D00708171 /* XCRemoteSwiftPackageReference "swiftui-drawer" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 4A685DB52D88083C0053791C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				4A685DB32D88083C0053791C /* SwiftRide */,
-				4A685DC52D88083E0053791C /* SwiftRideTests */,
-				4A685DCF2D88083E0053791C /* SwiftRideUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4A685DB22D88083C0053791C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4A685DC42D88083E0053791C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4A685DCE2D88083E0053791C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -252,37 +253,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4A685DC22D88083E0053791C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4A685DCC2D88083E0053791C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				B8A4BDBEC6AB2CFDF7E7DF6B /* Stop.swift in Sources */,
+				FCA234B28498453553C791BF /* Route.swift in Sources */,
+				D16D222A977B379BA36F35F5 /* Schedule.swift in Sources */,
+				4BCF01AD980CE0622760DD8D /* NetworkHelper.swift in Sources */,
+				6787BC26947B51E8E3E440EE /* DataLoader.swift in Sources */,
+				92BD6E69B5CA3A8B78C9FCA4 /* MapViewModel.swift in Sources */,
+				C0C9A50333EE23C722146B18 /* ExploreViewModel.swift in Sources */,
+				9F48F272F5EAEAAB0B251759 /* DetailViewModel.swift in Sources */,
+				BBA7ED31D4C8B156BC3A6D89 /* DateExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		4A685DC82D88083E0053791C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4A685DB32D88083C0053791C /* SwiftRide */;
-			targetProxy = 4A685DC72D88083E0053791C /* PBXContainerItemProxy */;
-		};
-		4A685DD22D88083E0053791C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4A685DB32D88083C0053791C /* SwiftRide */;
-			targetProxy = 4A685DD12D88083E0053791C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		4A685DD82D88083E0053791C /* Debug */ = {
@@ -416,7 +399,8 @@
 				DEVELOPMENT_TEAM = KNG572S59L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show it on the map";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -427,7 +411,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ccone-seven.SwiftRide";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -449,7 +433,8 @@
 				DEVELOPMENT_TEAM = KNG572S59L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We need your location to show it on the map";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -460,83 +445,13 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ccone-seven.SwiftRide";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		4A685DDE2D88083E0053791C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ccone-seven.SwiftRideTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftRide.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftRide";
-			};
-			name = Debug;
-		};
-		4A685DDF2D88083E0053791C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ccone-seven.SwiftRideTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwiftRide.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SwiftRide";
-			};
-			name = Release;
-		};
-		4A685DE12D88083E0053791C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ccone-seven.SwiftRideUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = SwiftRide;
-			};
-			name = Debug;
-		};
-		4A685DE22D88083E0053791C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ccone-seven.SwiftRideUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = SwiftRide;
 			};
 			name = Release;
 		};
@@ -561,25 +476,26 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4A685DDD2D88083E0053791C /* Build configuration list for PBXNativeTarget "SwiftRideTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4A685DDE2D88083E0053791C /* Debug */,
-				4A685DDF2D88083E0053791C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4A685DE02D88083E0053791C /* Build configuration list for PBXNativeTarget "SwiftRideUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4A685DE12D88083E0053791C /* Debug */,
-				4A685DE22D88083E0053791C /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4AB6119F2DDD857D00708171 /* XCRemoteSwiftPackageReference "swiftui-drawer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/maustinstar/swiftui-drawer";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4AB611A52DE477F700708171 /* Drawer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AB6119F2DDD857D00708171 /* XCRemoteSwiftPackageReference "swiftui-drawer" */;
+			productName = Drawer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4A685DAC2D88083C0053791C /* Project object */;
 }

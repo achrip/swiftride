@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct SearchBar: View {
-    @EnvironmentObject var sheetService: SheetService
     @FocusState var isTextFieldFocused: Bool
     @Binding var searchText: String
 
@@ -28,7 +27,7 @@ struct SearchBar: View {
             }
             .padding(8)
             .background(Color(.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
             .animation(.easeInOut, value: isTextFieldFocused)
 
             if isTextFieldFocused {
@@ -37,24 +36,11 @@ struct SearchBar: View {
                     DispatchQueue.main.async {
                         searchText = ""
                         isTextFieldFocused = false
-                        sheetService.isSearchBarFocused = false
                     }
                 }
                 .foregroundColor(.blue)
                 .transition(.move(edge: .trailing).combined(with: .opacity))
-                .animation(.easeInOut, value: isTextFieldFocused)
-            }
-        }
-        .onChange(of: isTextFieldFocused) { _, focused in
-            if sheetService.isSearchBarFocused != focused {
-                let prevDetent = sheetService.detent
-                sheetService.isSearchBarFocused = focused
-                sheetService.detent = focused ? .fraction(0.9) : prevDetent
-            }
-        }
-        .onChange(of: sheetService.isSearchBarFocused) { _, focused in
-            if isTextFieldFocused != focused {
-                isTextFieldFocused = focused
+                .animation(.smooth, value: isTextFieldFocused)
             }
         }
     }
@@ -62,5 +48,4 @@ struct SearchBar: View {
 
 #Preview {
     SearchBar(searchText: .constant(""))
-        .environmentObject(SheetService.shared)
 }

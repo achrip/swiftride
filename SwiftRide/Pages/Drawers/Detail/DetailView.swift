@@ -1,12 +1,17 @@
 import Drawer
 import SwiftUI
 
-struct DetailsDrawer: View, Sendable {
+struct DetailView: View, Sendable {
 
     @State var restingHeight: [CGFloat] = drawerSecondary
     @State var currentDrawerHeight: CGFloat = drawerSecondary[0]
+    
+    @StateObject var viewModel: DetailViewModel = DetailViewModel()
 
+    #if DEBUG
     let buses = ["123", "456", "789"]
+    @State var cs: Stop = .init(name: "Terminal Intermoda", latitude: -6.321395070998093, longitude: 106.64347051762091)
+#endif
 
     var body: some View {
         Drawer {
@@ -47,6 +52,9 @@ struct DetailsDrawer: View, Sendable {
                     }
 
                     Button {
+                        #if DEBUG
+                        viewModel.fetchDetails(for: cs)
+                        #endif
                     } label: {
                         HStack {
                             Image(systemName: "arrow.trianglehead.turn.up.right.diamond.fill")
@@ -74,11 +82,17 @@ struct DetailsDrawer: View, Sendable {
         .onRest { restingHeight in
             self.currentDrawerHeight = restingHeight
         }
-        .ignoresSafeArea()
+        .onAppear {
+            do {
+                try viewModel.fetchData()
+            } catch {
+                fatalError("Failed to fetch data: \(error)")
+            }
+        }
     }
 }
 
-extension DetailsDrawer {
+extension DetailView {
 
     @ViewBuilder
     func content() -> some View {
@@ -103,5 +117,5 @@ extension DetailsDrawer {
 }
 
 #Preview {
-    DetailsDrawer()
+    DetailView()
 }

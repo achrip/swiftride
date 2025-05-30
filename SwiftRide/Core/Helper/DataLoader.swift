@@ -22,6 +22,8 @@ final class DataLoader {
         }
 
         let data = try Data(contentsOf: url)
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
         return try JSONDecoder().decode(T.self, from: data)
     }
 

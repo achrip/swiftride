@@ -11,8 +11,10 @@
 		4BCF01AD980CE0622760DD8D /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2A5E8EE4B16AFC755C7A03 /* NetworkHelper.swift */; };
 		6787BC26947B51E8E3E440EE /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B981AAB8AA607194D3F62ED5 /* DataLoader.swift */; };
 		92BD6E69B5CA3A8B78C9FCA4 /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB4518AA19C72EC63D23B1B /* MapViewModel.swift */; };
+		9F48F272F5EAEAAB0B251759 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A91891FC9A1198D2DA79BEF /* DetailViewModel.swift */; };
 		B8A4BDBEC6AB2CFDF7E7DF6B /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC998B66B202F70C915A2D8D /* Stop.swift */; };
-		C0C9A50333EE23C722146B18 /* SearchDrawerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898E1E6FC8FBBE99640508C6 /* SearchDrawerViewModel.swift */; };
+		BBA7ED31D4C8B156BC3A6D89 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FAEDD098B8F9F29C03D2CC7 /* DateExtensions.swift */; };
+		C0C9A50333EE23C722146B18 /* ExploreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 898E1E6FC8FBBE99640508C6 /* ExploreViewModel.swift */; };
 		D16D222A977B379BA36F35F5 /* Schedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19FE76CF4831DF714268ED9 /* Schedule.swift */; };
 		FCA234B28498453553C791BF /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044121B57FCD8ADD426BEC7A /* Route.swift */; };
 /* End PBXBuildFile section */
@@ -32,9 +34,12 @@
 
 /* Begin PBXFileReference section */
 		044121B57FCD8ADD426BEC7A /* Route.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		0A91891FC9A1198D2DA79BEF /* DetailViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		4A685DB42D88083C0053791C /* SwiftRide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftRide.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4ABEE35D2DE8732D0074811E /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		7305C3EB0AC5ABF415BA064E /* Drawer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Drawer.swift; sourceTree = "<group>"; };
-		898E1E6FC8FBBE99640508C6 /* SearchDrawerViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchDrawerViewModel.swift; sourceTree = "<group>"; };
+		7FAEDD098B8F9F29C03D2CC7 /* DateExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		898E1E6FC8FBBE99640508C6 /* ExploreViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExploreViewModel.swift; sourceTree = "<group>"; };
 		AE2A5E8EE4B16AFC755C7A03 /* NetworkHelper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		B981AAB8AA607194D3F62ED5 /* DataLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		CDB4518AA19C72EC63D23B1B /* MapViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
@@ -45,8 +50,6 @@
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		4A685DB62D88083C0053791C /* SwiftRide */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-			);
 			path = SwiftRide;
 			sourceTree = "<group>";
 		};
@@ -74,6 +77,14 @@
 			path = SwiftRide;
 			sourceTree = "<group>";
 		};
+		0DE4093C29AA83DA280C081B /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				0A91891FC9A1198D2DA79BEF /* DetailViewModel.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		224698DF03132A6F1380D739 /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +96,7 @@
 		4A685DAB2D88083C0053791C = {
 			isa = PBXGroup;
 			children = (
+				4ABEE35D2DE8732D0074811E /* Playground.playground */,
 				4A685DB62D88083C0053791C /* SwiftRide */,
 				4A685DB52D88083C0053791C /* Products */,
 			);
@@ -102,7 +114,8 @@
 		60F43AD7491BF893204D9605 /* Drawers */ = {
 			isa = PBXGroup;
 			children = (
-				9DF7DB50AEC36B4F53562A0C /* Search */,
+				9DF7DB50AEC36B4F53562A0C /* Explore */,
+				0DE4093C29AA83DA280C081B /* Detail */,
 			);
 			path = Drawers;
 			sourceTree = "<group>";
@@ -127,12 +140,12 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		9DF7DB50AEC36B4F53562A0C /* Search */ = {
+		9DF7DB50AEC36B4F53562A0C /* Explore */ = {
 			isa = PBXGroup;
 			children = (
-				898E1E6FC8FBBE99640508C6 /* SearchDrawerViewModel.swift */,
+				898E1E6FC8FBBE99640508C6 /* ExploreViewModel.swift */,
 			);
-			path = Search;
+			path = Explore;
 			sourceTree = "<group>";
 		};
 		B63489D2AD0C6DD163E7CF83 /* Pages */ = {
@@ -148,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				B981AAB8AA607194D3F62ED5 /* DataLoader.swift */,
+				7FAEDD098B8F9F29C03D2CC7 /* DateExtensions.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -245,7 +259,9 @@
 				4BCF01AD980CE0622760DD8D /* NetworkHelper.swift in Sources */,
 				6787BC26947B51E8E3E440EE /* DataLoader.swift in Sources */,
 				92BD6E69B5CA3A8B78C9FCA4 /* MapViewModel.swift in Sources */,
-				C0C9A50333EE23C722146B18 /* SearchDrawerViewModel.swift in Sources */,
+				C0C9A50333EE23C722146B18 /* ExploreViewModel.swift in Sources */,
+				9F48F272F5EAEAAB0B251759 /* DetailViewModel.swift in Sources */,
+				BBA7ED31D4C8B156BC3A6D89 /* DateExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

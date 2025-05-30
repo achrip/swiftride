@@ -32,12 +32,28 @@ struct Schedule: Codable {
 
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.time = try container.decode(Date.self, forKey: .time)
+        let now = Date()
+        
         self.busNumber = try container.decode(Int.self, forKey: .busNumber)
         self.stopName = try container.decode(String.self, forKey: .stopName)
         self.session = try container.decode(Int.self, forKey: .session)
         self.stopOrder = try container.decode(Int.self, forKey: .stopOrder)
         self.id = UUID()
-    }
+        
+        
+        let dateString = try container.decode(String.self, forKey: .time)
+        let date = ISO8601DateFormatter().date(from: dateString)!
 
+        let calendar = Calendar.current
+        let currentComponents = calendar.dateComponents([.year, .month, .day], from: now)
+
+        var targetComponents = calendar.dateComponents([.hour, .minute, .second, .timeZone], from: date)
+
+        targetComponents.year = currentComponents.year
+        targetComponents.month = currentComponents.month
+        targetComponents.day = currentComponents.day
+        
+        self.time = calendar.date(from: targetComponents) ?? now
+        print(self.time)
+    }
 }

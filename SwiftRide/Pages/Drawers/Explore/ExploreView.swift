@@ -1,14 +1,14 @@
 import Drawer
 import SwiftUI
 
-struct SearchDrawer: View, Sendable {
+struct ExploreView: View, Sendable {
     //    @Binding var setDrawerHeight: DrawerType
     @Binding var showFavoritesView: Bool
 
     @State private var restingHeight: [CGFloat] = drawerDefault
     @State private var currentDrawerHeight: CGFloat = drawerDefault[1]
 
-    @StateObject private var viewModel: SearchDrawerViewModel = SearchDrawerViewModel()
+    @StateObject private var viewModel: ExploreViewModel = ExploreViewModel()
 
     /// Haptics
     let impactGenerator: UIImpactFeedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
@@ -61,7 +61,7 @@ struct SearchDrawer: View, Sendable {
     }
 }
 
-extension SearchDrawer {
+extension ExploreView {
 
     @ViewBuilder
     func ContentSelection() -> some View {
@@ -86,5 +86,5 @@ extension SearchDrawer {
 }
 
 #Preview {
-    SearchDrawer(showFavoritesView: .constant(true))
+    ExploreView(showFavoritesView: .constant(true))
 }

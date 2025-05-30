@@ -1,6 +1,6 @@
 import SwiftUI
 
-final class SearchDrawerViewModel: ObservableObject {
+final class ExploreViewModel: ObservableObject {
 
     @Published var stops: [Stop]
     @Published var searchText: String

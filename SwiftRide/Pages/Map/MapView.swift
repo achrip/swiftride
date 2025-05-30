@@ -2,7 +2,7 @@ import CoreLocation
 import MapKit
 import SwiftUI
 
-struct MapView: View, Sendable {
+struct MapView: View {
     @StateObject private var viewModel = MapViewModel()
 
     var body: some View {
@@ -29,6 +29,14 @@ struct MapView: View, Sendable {
         })
         .onAppear { CLLocationManager().requestWhenInUseAuthorization() }
         .ignoresSafeArea(.keyboard)
+        .sheet(isPresented: .constant(true)) {
+            ExploreView()
+                .interactiveDismissDisabled()
+                .presentationBackgroundInteraction(.enabled)
+                .presentationDetents([
+                    .fraction(0.15), .fraction(0.3), .fraction(0.6), .fraction(0.9),
+                ])
+        }
     }
 }
 

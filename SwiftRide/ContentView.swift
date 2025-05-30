@@ -6,7 +6,7 @@ struct ContentView: View {
         ZStack {
             MapView()
 
-            SearchDrawer(showFavoritesView: .constant(true))
+            //SearchDrawer(showFavoritesView: .constant(true))
 
             //DetailsDrawer()
 

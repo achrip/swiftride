@@ -5,7 +5,8 @@ import SwiftUI
 struct SwiftRideApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            //ContentView()
+            MapView()
         }
     }
 }

@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct SearchBar: View {
-    @FocusState var isTextFieldFocused: Bool
+struct SearchBar: View, Sendable {
     @Binding var searchText: String
+    @FocusState.Binding var focus: Bool
 
     var body: some View {
         HStack {
@@ -12,7 +12,7 @@ struct SearchBar: View {
 
                 TextField("Search Bus Stop", text: $searchText)
                     .textFieldStyle(PlainTextFieldStyle())
-                    .focused($isTextFieldFocused)
+                    .focused($focus)
                     .submitLabel(.search)
 
                 if !searchText.isEmpty {
@@ -28,24 +28,25 @@ struct SearchBar: View {
             .padding(8)
             .background(Color(.secondarySystemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 10))
-            .animation(.easeInOut, value: isTextFieldFocused)
+            .animation(.easeInOut, value: focus)
 
-            if isTextFieldFocused {
+            if focus {
                 Button("Cancel") {
                     // make it async so that it does not crash.
-                    DispatchQueue.main.async {
-                        searchText = ""
-                        isTextFieldFocused = false
-                    }
+                    //DispatchQueue.main.async {
+                    searchText = ""
+                    focus = false
+                    //}
                 }
                 .foregroundColor(.blue)
                 .transition(.move(edge: .trailing).combined(with: .opacity))
-                .animation(.smooth, value: isTextFieldFocused)
+                .animation(.smooth, value: focus)
             }
         }
     }
 }
 
 #Preview {
-    SearchBar(searchText: .constant(""))
+    @FocusState var focus
+    SearchBar(searchText: .constant(""), focus: $focus)
 }

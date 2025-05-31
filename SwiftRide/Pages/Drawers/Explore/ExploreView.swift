@@ -66,7 +66,7 @@ struct ExploreView: View, Sendable {
     @StateObject var viewModel = ExploreViewModel()
     @State var showDetailView = false
     @State private var sheetDetent: PresentationDetent = .medium
-    
+
     @FocusState var focus
 
     var body: some View {
@@ -78,10 +78,11 @@ struct ExploreView: View, Sendable {
             Spacer()
         }
         .padding()
-        .sheet(isPresented: $showDetailView, onDismiss: { self.focus.toggle() }) {
+        .sheet(isPresented: $showDetailView, onDismiss: {}) {
             DetailView()
                 .presentationBackgroundInteraction(.enabled)
-                .presentationDetents([.fraction(0.3), .medium, .fraction(0.9)], selection: $sheetDetent)
+                .presentationDetents(
+                    [.fraction(0.3), .medium, .fraction(0.9)], selection: $sheetDetent)
         }
     }
 }
@@ -94,8 +95,8 @@ extension ExploreView {
             List(viewModel.filteredStops, id: \.id) { stop in
                 Button {
                     DispatchQueue.main.async {
-                        showDetailView.toggle()
-                        focus.toggle()
+                        showDetailView = true
+                        focus = false
                     }
                 } label: {
                     HStack {

@@ -1,7 +1,6 @@
-import Drawer
 import SwiftUI
 
-struct ExploreView: View, Sendable {
+struct ExploreView: View {
 
     @StateObject var viewModel = ExploreViewModel()
     @State var showDetailView = false
@@ -19,7 +18,7 @@ struct ExploreView: View, Sendable {
             Spacer()
         }
         .padding()
-        .sheet(isPresented: $showDetailView, onDismiss: {}) {
+        .sheet(isPresented: $showDetailView) {
             DetailView(stop: selectedStop)
                 .presentationBackgroundInteraction(.enabled)
                 .presentationDetents(
@@ -35,10 +34,10 @@ extension ExploreView {
         if !viewModel.searchText.isEmpty {
             List(viewModel.filteredStops, id: \.id) { stop in
                 Button {
+                    self.selectedStop = stop
+                    focus = false
                     DispatchQueue.main.async {
-                        selectedStop = stop
                         showDetailView = true
-                        focus = false
                     }
                 } label: {
                     HStack {

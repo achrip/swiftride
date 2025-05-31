@@ -1,7 +1,6 @@
-import Drawer
 import SwiftUI
 
-struct DetailView: View, Sendable {
+struct DetailView: View {
 
     @Environment(\.dismiss) var dismiss
 
@@ -9,17 +8,13 @@ struct DetailView: View, Sendable {
 
     let stop: Stop?
 
-    #if DEBUG
-        let buses = ["123", "456", "789"]
-        @State var cs: Stop = .init(
-            name: "Terminal Intermoda", latitude: -6.321395070998093, longitude: 106.64347051762091)
-    #endif
-
     var body: some View {
         VStack {
             HStack {
-                Text(stop!.name)
-                    .font(.title)
+                if let stop = stop {
+                    Text(stop.name)
+                        .font(.title)
+                }
 
                 Button {
 
@@ -41,9 +36,6 @@ struct DetailView: View, Sendable {
             }
 
             Button {
-                #if DEBUG
-                    viewModel.fetchDetails(for: cs)
-                #endif
             } label: {
                 HStack {
                     Image(systemName: "arrow.trianglehead.turn.up.right.diamond.fill")
@@ -62,6 +54,15 @@ struct DetailView: View, Sendable {
             Spacer()
         }
         .padding()
+        .onAppear {
+            do {
+                try viewModel.fetchData()
+            } catch {
+                fatalError("Failed to fetch data. \(error)")
+            }
+
+            if let stop { viewModel.fetchDetails(for: stop) }
+        }
     }
 }
 
@@ -74,12 +75,17 @@ extension DetailView {
                 .font(.headline)
 
             // Maybe this should be a navigation stack idk..
-            List(buses, id: \.self) { bus in
+            List(viewModel.upcomingSchedules, id: \.0.id) { tuple in
                 HStack {
                     Image(systemName: "bus")
                         .imageScale(.large)
-                    Text(bus)
-                        .font(.title3)
+                    VStack {
+                        Text("Bus \(tuple.0.busNumber)")
+                            .font(.title3)
+
+                        Text("Will be arriving in approximately \(tuple.1) minutes.")
+                            .font(.caption)
+                    }
                 }
                 .padding(.vertical)
             }

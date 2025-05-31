@@ -4,6 +4,7 @@ import SwiftUI
 
 struct MapView: View {
     @StateObject private var viewModel = MapViewModel()
+    @State private var sheetHeight: PresentationDetent = .fraction(0.4)
 
     var body: some View {
         Map(
@@ -33,9 +34,9 @@ struct MapView: View {
             ExploreView()
                 .interactiveDismissDisabled()
                 .presentationBackgroundInteraction(.enabled)
-                .presentationDetents([
-                    .fraction(0.15), .fraction(0.3), .fraction(0.6), .fraction(0.9),
-                ])
+                .presentationDetents(
+                    [.fraction(0.15), .fraction(0.4), .fraction(0.6), .fraction(0.9)],
+                    selection: $sheetHeight)
         }
     }
 }

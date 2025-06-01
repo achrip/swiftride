@@ -2,11 +2,11 @@ import MapKit
 import SwiftUI
 
 struct StopAnnotation: View {
-    let stop: Stop
 
-    init(stop: Stop) {
-        self.stop = stop
-    }
+    @Binding var selectedStop: Stop?
+
+    let stop: Stop
+    var isSelected: Bool { selectedStop == stop }
 
     var body: some View {
         VStack {
@@ -27,9 +27,17 @@ struct StopAnnotation: View {
                 .offset(x: 0, y: -5)
         }
         .compositingGroup()
+        .scaleEffect(isSelected ? 1.8 : 1.1, anchor: .bottom)
+        .animation(.interpolatingSpring(stiffness: 300, damping: 20), value: isSelected)
+        .onTapGesture {
+            withAnimation(.interpolatingSpring(stiffness: 300, damping: 20)) {
+                selectedStop = stop
+            }
+        }
     }
 }
 
 #Preview {
-    //StopAnnotation(stop: Stop(name: "", latitude: 0, longitude: 0))
+    let dummyStop = Stop(name: "Title", latitude: 0, longitude: 0)
+    StopAnnotation(selectedStop: .constant(nil), stop: dummyStop)
 }

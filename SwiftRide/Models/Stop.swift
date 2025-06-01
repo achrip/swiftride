@@ -1,6 +1,6 @@
 import Foundation
 
-struct Stop: Codable {
+struct Stop: Codable, Equatable {
     let id: UUID
     let name: String
     let latitude: Double

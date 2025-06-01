@@ -2,8 +2,12 @@ import MapKit
 import SwiftUI
 
 final class MapViewModel: ObservableObject {
+
     @Published var mapCenter: MapCameraPosition
     @Published var stops: [Stop]
+    @Published var sheetDetent: PresentationDetent
+    @Published var selectedStop: Stop?
+
     var mapBounds: MapCameraBounds
 
     init() {
@@ -27,5 +31,6 @@ final class MapViewModel: ObservableObject {
 
         self.mapCenter = .region(defaultMapCenter)
         self.mapBounds = .init(centerCoordinateBounds: bsdRegion)
+        self.sheetDetent = .fraction(0.4)
     }
 }

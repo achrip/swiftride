@@ -1,13 +1,22 @@
 import SwiftUI
 
-struct ExploreView: View {
+struct ExploreView: View, Sendable {
+
+    @Binding var selectedStop: Stop?
 
     @StateObject var viewModel = ExploreViewModel()
-    @State var showDetailView = false
     @State private var sheetDetent: PresentationDetent = .medium
-    @State private var selectedStop: Stop?
 
     @FocusState var focus
+
+    var showDetailView: Binding<Bool> {
+        Binding(
+            get: { selectedStop != nil },
+            set: { newValue in
+                if !newValue { selectedStop = nil }
+            }
+        )
+    }
 
     var body: some View {
         VStack {
@@ -18,7 +27,7 @@ struct ExploreView: View {
             Spacer()
         }
         .padding()
-        .sheet(isPresented: $showDetailView) {
+        .sheet(isPresented: showDetailView, onDismiss: { selectedStop = nil }) {
             DetailView(stop: selectedStop)
                 .presentationBackgroundInteraction(.enabled)
                 .presentationDetents(
@@ -36,9 +45,6 @@ extension ExploreView {
                 Button {
                     self.selectedStop = stop
                     focus = false
-                    DispatchQueue.main.async {
-                        showDetailView = true
-                    }
                 } label: {
                     HStack {
                         Image(systemName: "bus.fill")
@@ -60,5 +66,6 @@ extension ExploreView {
 }
 
 #Preview {
-    ExploreView()
+    let dummyStop = Stop(name: "Title", latitude: 0, longitude: 0)
+    ExploreView(selectedStop: .constant(dummyStop))
 }

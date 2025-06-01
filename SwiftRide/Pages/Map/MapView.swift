@@ -3,8 +3,8 @@ import MapKit
 import SwiftUI
 
 struct MapView: View {
-    @StateObject private var viewModel = MapViewModel()
-    @State private var sheetHeight: PresentationDetent = .fraction(0.4)
+
+    @ObservedObject private var viewModel = MapViewModel()
 
     var body: some View {
         Map(
@@ -20,7 +20,7 @@ struct MapView: View {
                     coordinate: CLLocationCoordinate2D(
                         latitude: stop.latitude, longitude: stop.longitude)
                 ) {
-                    StopAnnotation(stop: stop)
+                    StopAnnotation(selectedStop: $viewModel.selectedStop, stop: stop)
                 }
             }
         }
@@ -31,12 +31,12 @@ struct MapView: View {
         .onAppear { CLLocationManager().requestWhenInUseAuthorization() }
         .ignoresSafeArea(.keyboard)
         .sheet(isPresented: .constant(true)) {
-            ExploreView()
+            ExploreView(selectedStop: $viewModel.selectedStop)
                 .interactiveDismissDisabled()
                 .presentationBackgroundInteraction(.enabled)
                 .presentationDetents(
                     [.fraction(0.15), .fraction(0.4), .fraction(0.6), .fraction(0.9)],
-                    selection: $sheetHeight)
+                    selection: $viewModel.sheetDetent)
         }
     }
 }

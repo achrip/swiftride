@@ -54,14 +54,20 @@ struct DetailView: View {
             Spacer()
         }
         .padding()
+        .onChange(of: stop) { _, newStop in
+            Task { await viewModel.fetchDetails(for: newStop) }
+            viewModel.startAutoRefresh(for: newStop)
+        }
         .onAppear {
-            do {
-                try viewModel.fetchData()
-            } catch {
-                fatalError("Failed to fetch data. \(error)")
+            Task {
+                do {
+                    try await viewModel.fetchData()
+                } catch {
+                    fatalError("Failed to fetch data. \(error)")
+                }
+                await viewModel.fetchDetails(for: stop)
+                viewModel.startAutoRefresh(for: stop)
             }
-
-            if let stop { viewModel.fetchDetails(for: stop) }
         }
     }
 }

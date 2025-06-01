@@ -40,10 +40,12 @@ extension DetailViewModel {
         }
 
         self.upcomingSchedules = currentStopRoutes.compactMap { bus in
-            let scheduledForBus = filteredSchedules.filter { $0.busNumber == bus.number }
+            let scheduledForBus = filteredSchedules.filter {
+                $0.busNumber == bus.number && $0.time > currentTime
+            }
             guard
                 let nextSchedule = scheduledForBus.min(by: { (date1, date2) -> Bool in
-                    date1.time > currentTime
+                    date1.time < date2.time
                 })
             else {
                 // no future schedules for this bus
@@ -56,7 +58,11 @@ extension DetailViewModel {
             } else {
                 return nil
             }
+
         }
+
+        // sort ascending based on eta
+        self.upcomingSchedules.sort { $0.1 < $1.1 }
     }
 
     func calculateETA(for schedule: Schedule) -> Int {

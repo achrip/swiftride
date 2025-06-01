@@ -79,7 +79,7 @@ extension DetailView {
                 HStack {
                     Image(systemName: "bus")
                         .imageScale(.large)
-                    VStack {
+                    VStack(alignment: .leading) {
                         Text("Bus \(tuple.0.busNumber)")
                             .font(.title3)
 

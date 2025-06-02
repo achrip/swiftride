@@ -1,12 +1,12 @@
 import MapKit
 import SwiftUI
 
-struct StopAnnotation: View {
+struct StopAnnotation: View, Sendable {
 
-    @Binding var selectedStop: Stop?
+    @Binding var selectedStopID: UUID?
 
-    let stop: Stop
-    var isSelected: Bool { selectedStop == stop }
+    let stopID: UUID
+    var isSelected: Bool { selectedStopID == stopID }
 
     var body: some View {
         VStack {
@@ -31,7 +31,7 @@ struct StopAnnotation: View {
         .animation(.interpolatingSpring(stiffness: 300, damping: 20), value: isSelected)
         .onTapGesture {
             withAnimation(.interpolatingSpring(stiffness: 300, damping: 20)) {
-                selectedStop = stop
+                selectedStopID = stopID
             }
         }
     }
@@ -39,5 +39,5 @@ struct StopAnnotation: View {
 
 #Preview {
     let dummyStop = Stop(name: "Title", latitude: 0, longitude: 0)
-    StopAnnotation(selectedStop: .constant(nil), stop: dummyStop)
+    StopAnnotation(selectedStopID: .constant(nil), stopID: dummyStop.id)
 }

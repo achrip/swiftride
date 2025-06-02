@@ -6,7 +6,7 @@ final class MapViewModel: ObservableObject {
     @Published var mapCenter: MapCameraPosition
     @Published var stops: [Stop]
     @Published var sheetDetent: PresentationDetent
-    @Published var selectedStop: Stop?
+    @Published var selectedStopID: UUID?
 
     var mapBounds: MapCameraBounds
 
@@ -35,7 +35,7 @@ final class MapViewModel: ObservableObject {
     }
 
     func recenterMap() {
-        guard let stop = selectedStop else { return }
+        guard let stop = stops.first(where: { $0.id == selectedStopID }) else { return }
 
         let offset: Double
         switch sheetDetent {

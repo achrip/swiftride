@@ -15,9 +15,7 @@ struct Stop: Codable, Equatable {
 
     // MARK: -- Codable Conformance
     enum CodingKeys: String, CodingKey {
-        case name
-        case latitude
-        case longitude
+        case name, latitude, longitude, id
     }
 
     init(from decoder: any Decoder) throws {
@@ -25,7 +23,7 @@ struct Stop: Codable, Equatable {
         self.name = try container.decode(String.self, forKey: .name)
         self.latitude = try container.decode(Double.self, forKey: .latitude)
         self.longitude = try container.decode(Double.self, forKey: .longitude)
-        self.id = UUID()
+        self.id = try container.decode(UUID.self, forKey: .id)
     }
 
 }

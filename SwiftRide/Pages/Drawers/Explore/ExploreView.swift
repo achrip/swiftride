@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ExploreView: View, Sendable {
 
-    @Binding var selectedStop: Stop?
+    @Binding var selectedStopID: UUID?
 
     @StateObject var viewModel = ExploreViewModel()
 
@@ -10,9 +10,9 @@ struct ExploreView: View, Sendable {
 
     var showDetailView: Binding<Bool> {
         Binding(
-            get: { selectedStop != nil },
+            get: { selectedStopID != nil },
             set: { newValue in
-                if !newValue { selectedStop = nil }
+                if !newValue { selectedStopID = nil }
             }
         )
     }
@@ -26,8 +26,8 @@ struct ExploreView: View, Sendable {
             Spacer()
         }
         .padding()
-        .sheet(isPresented: showDetailView, onDismiss: { selectedStop = nil }) {
-            DetailView(stop: selectedStop)
+        .sheet(isPresented: showDetailView, onDismiss: { selectedStopID = nil }) {
+            DetailView(stop: viewModel.stops.first(where: { $0.id == selectedStopID }))
                 .presentationBackgroundInteraction(.enabled)
                 .presentationDetents(
                     [.fraction(0.3), .medium, .fraction(0.9)], selection: $viewModel.sheetDetent)
@@ -42,7 +42,7 @@ extension ExploreView {
         if !viewModel.searchText.isEmpty {
             List(viewModel.filteredStops, id: \.id) { stop in
                 Button {
-                    self.selectedStop = stop
+                    self.selectedStopID = stop.id
                     focus = false
                 } label: {
                     HStack {
@@ -66,5 +66,5 @@ extension ExploreView {
 
 #Preview {
     let dummyStop = Stop(name: "Title", latitude: 0, longitude: 0)
-    ExploreView(selectedStop: .constant(dummyStop))
+    ExploreView(selectedStopID: .constant(dummyStop.id))
 }

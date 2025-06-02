@@ -123,5 +123,5 @@ extension DetailView {
 }
 
 #Preview {
-//    DetailView(stop: nil)
+    //    DetailView(stop: nil)
 }

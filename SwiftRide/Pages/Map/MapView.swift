@@ -38,6 +38,9 @@ struct MapView: View {
                     [.fraction(0.15), .fraction(0.4), .fraction(0.6), .fraction(0.9)],
                     selection: $viewModel.sheetDetent)
         }
+        .onChange(of: viewModel.selectedStop) { _, _ in
+            viewModel.recenterMap()
+        }
     }
 }
 

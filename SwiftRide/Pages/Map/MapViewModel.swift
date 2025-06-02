@@ -33,4 +33,24 @@ final class MapViewModel: ObservableObject {
         self.mapBounds = .init(centerCoordinateBounds: bsdRegion)
         self.sheetDetent = .fraction(0.4)
     }
+
+    func recenterMap() {
+        guard let stop = selectedStop else { return }
+
+        let offset: Double
+        switch sheetDetent {
+        case .fraction(0.15): offset = 0.0005
+        case .fraction(0.4): offset = 0.001
+        case .fraction(0.6): offset = 0.0015
+        case .fraction(0.9): offset = 0.002
+        default: offset = 0.001
+        }
+
+        let newCenterRegion = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(
+                latitude: stop.latitude - offset, longitude: stop.longitude),
+            span: MKCoordinateSpan(latitudeDelta: 0.003, longitudeDelta: 0.003))
+
+        withAnimation { self.mapCenter = .region(newCenterRegion) }
+    }
 }

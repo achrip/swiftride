@@ -4,9 +4,12 @@ final class ExploreViewModel: ObservableObject {
 
     @Published var stops: [Stop]
     @Published var searchText: String
+    @Published var sheetDetent: PresentationDetent
 
-    var filteredStops: [Stop] { self.stops.filter { $0.name.localizedCaseInsensitiveContains(self.searchText) } }
-    
+    var filteredStops: [Stop] {
+        self.stops.filter { $0.name.localizedCaseInsensitiveContains(self.searchText) }
+    }
+
     init() {
         do {
             self.stops = try DataLoader().loadData(for: .stop, as: [Stop].self)
@@ -15,5 +18,6 @@ final class ExploreViewModel: ObservableObject {
         }
 
         self.searchText = ""
+        self.sheetDetent = .medium
     }
 }

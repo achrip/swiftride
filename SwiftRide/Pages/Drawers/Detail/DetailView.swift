@@ -5,6 +5,10 @@ struct DetailView: View {
     @Environment(\.dismiss) var dismiss
 
     @StateObject var viewModel: DetailViewModel = DetailViewModel()
+    @State var showRoutesView: Bool = false
+    @State var showBusRouteView: Bool = false
+    @State var sheetDetent: PresentationDetent = .medium
+    @State var selectedBus: Bus = Bus(name: "", number: 0)
 
     let stop: Stop?
 
@@ -36,6 +40,7 @@ struct DetailView: View {
             }
 
             Button {
+                showRoutesView.toggle()
             } label: {
                 HStack {
                     Image(systemName: "arrow.trianglehead.turn.up.right.diamond.fill")
@@ -69,6 +74,12 @@ struct DetailView: View {
                 viewModel.startAutoRefresh(for: stop)
             }
         }
+        .sheet(isPresented: $showRoutesView) {
+            RoutesDrawer()
+                .presentationBackgroundInteraction(.enabled)
+                .presentationDetents(
+                    [.fraction(0.3), .medium, .fraction(0.9)], selection: $sheetDetent)
+        }
     }
 }
 
@@ -82,25 +93,35 @@ extension DetailView {
 
             // Maybe this should be a navigation stack idk..
             List(viewModel.upcomingSchedules, id: \.0.id) { tuple in
-                HStack {
-                    Image(systemName: "bus")
-                        .imageScale(.large)
-                    VStack(alignment: .leading) {
-                        Text("Bus \(tuple.0.busNumber)")
-                            .font(.title3)
+                Button {
+                    print("Navigating to route view...")
+                } label: {
+                    HStack {
+                        Image(systemName: "bus")
+                            .imageScale(.large)
+                        VStack(alignment: .leading) {
+                            Text("Bus \(tuple.0.busNumber)")
+                                .font(.title3)
 
-                        Text("Will be arriving in approximately \(tuple.1) minutes.")
-                            .font(.caption)
+                            Text("Will be arriving in approximately \(tuple.1) minutes.")
+                                .font(.caption)
+                                .foregroundStyle(Color(.secondaryLabel))
+                        }
                     }
                 }
-                .padding(.vertical)
             }
             .listStyle(.plain)
+            .sheet(isPresented: $showBusRouteView) {
+                BusRouteView(selectedBus: $selectedBus)
+                    .presentationBackgroundInteraction(.enabled)
+                    .presentationDetents(
+                        [.fraction(0.3), .medium, .fraction(0.9)], selection: $sheetDetent)
+            }
         }
 
     }
 }
 
 #Preview {
-    DetailView(stop: nil)
+//    DetailView(stop: nil)
 }

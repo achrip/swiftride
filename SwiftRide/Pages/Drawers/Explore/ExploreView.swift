@@ -5,7 +5,6 @@ struct ExploreView: View, Sendable {
     @Binding var selectedStop: Stop?
 
     @StateObject var viewModel = ExploreViewModel()
-    @State private var sheetDetent: PresentationDetent = .medium
 
     @FocusState var focus
 
@@ -31,7 +30,7 @@ struct ExploreView: View, Sendable {
             DetailView(stop: selectedStop)
                 .presentationBackgroundInteraction(.enabled)
                 .presentationDetents(
-                    [.fraction(0.3), .medium, .fraction(0.9)], selection: $sheetDetent)
+                    [.fraction(0.3), .medium, .fraction(0.9)], selection: $viewModel.sheetDetent)
         }
     }
 }
